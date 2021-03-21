@@ -8,7 +8,7 @@
 
 #reload sxhkd:
 super + shift + c
-	pkill -USR1 -x sxhkd
+	pkill -x sxhkd && sxhkd
 
 #quit/reload bspwm:
 super + shift + {x,Delete}
