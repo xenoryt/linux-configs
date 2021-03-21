@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ -f /tmp/scratchid ]; then
+  id=$(cat /tmp/scratchid) 
+  bspc node $id -d focused && \
+    bspc node $id --flag hidden=off && \
+    bspc node -f $id
+else 
+  termite --class scratchpad -e ~/scripts/scratchpad.sh
+fi
+

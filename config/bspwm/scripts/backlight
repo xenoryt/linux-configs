@@ -1,0 +1,33 @@
+#!/bin/bash
+
+help() {
+  echo "Usage: $0 DISPLAY VALUE" >&2
+  echo "Display can be either 'auto' or a dir in /sys/class/backlight/" >&2
+}
+
+printerr() {
+  echo "$*"
+  exit 1
+}
+
+if [ "$#" -lt 2 -o -z "$display" ]; then
+  help
+  exit 1
+fi
+
+if [ "$display" = "auto" ]; then
+  [ "$(ls /sys/class/backlight/ | wc -l)" -ne 1 ] && printerr "Unable to automatically select display"
+
+  display="$(ls /sys/class/backlight/)"
+fi
+
+if [ ! -d "/sys/class/backlight/$display" ]; then
+  printerr "Unable to find display '$display'"
+fi
+
+# ---
+
+
+
+
+

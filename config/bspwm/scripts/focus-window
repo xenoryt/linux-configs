@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ids=($(bspc query -N -n $1.window))
+options="$(xtitle "${ids[@]}" | awk '{ print ++i": "$0 }')"
+
+[[ -n "$options" ]] || exit
+
+id_index="$(<<< "$options" dmenu -i -l 7 -fn Tamsyn -h 50 -w 500 -x 680 -y 450 | cut -d: -f1)"
+[ "$id_index" ] || exit 
+
+id="${ids[$((id_index - 1))]}"
+bspc node $id --flag hidden=off
+bspc node $id -f
