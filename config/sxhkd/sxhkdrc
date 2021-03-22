@@ -160,6 +160,9 @@ super + d
   rofi -modi drun -show drun
 
 super + s
+  ~/.config/bspwm/scripts/focus-window .local
+
+super + shift + s
   ~/.config/bspwm/scripts/focus-window
 
 #dmenu
