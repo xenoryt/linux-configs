@@ -18,7 +18,7 @@ xfsettingsd &
 xfce4-panel &
 
 xsetroot -cursor_name left_ptr &
-sxhkd -c ~/.config/bspwm/sxhkd/sxhkdrc &
+sxhkd &
 
 feh --bg-fill --randomize ~/Pictures/wallpapers/**
 
