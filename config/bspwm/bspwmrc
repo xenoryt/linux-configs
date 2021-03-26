@@ -83,7 +83,7 @@ bspc rule -a VirtualBox Machine state=fullscreen
 #bspc rule -a Stacer state=floating
 #bspc rule -a Xfce4-appfinder state=floating sticky=on
 bspc rule -a SimpleScreenRecorder state=floating
-bspc rule -a Firefox:Toolkit desktop='A' state=floating
+bspc rule -a firefox:Toolkit desktop='A' state=floating
 bspc rule -a Wrapper-2.0:wrapper-2.0 state=floating
 
 
