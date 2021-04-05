@@ -196,15 +196,15 @@ super + t
 
 #entire screen
 Print
-  xfce4-screenshooter -cf
+  gnome-screenshot -c
 
 #area
 super + Print
-  xfce4-screenshooter -cr
+  gnome-screenshot -ca
 
 #window
 alt + Print
-  xfce4-screenshooter -cw
+  gnome-screenshot -cw
 
 
 #################################################################
