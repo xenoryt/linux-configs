@@ -196,15 +196,15 @@ super + t
 
 #entire screen
 Print
-  gnome-screenshot -c
+  ~/.config/bspwm/scripts/screenshot.sh
 
 #area
 super + Print
-  gnome-screenshot -ca
+  ~/.config/bspwm/scripts/screenshot.sh -a
 
 #window
 alt + Print
-  gnome-screenshot -cw
+  ~/.config/bspwm/scripts/screenshot.sh -w
 
 
 #################################################################
