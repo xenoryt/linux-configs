@@ -196,15 +196,15 @@ super + t
 
 #entire screen
 Print
-  xfce4-screenshooter -cf
+  ~/.config/bspwm/scripts/screenshot.sh
 
 #area
 super + Print
-  xfce4-screenshooter -cr
+  ~/.config/bspwm/scripts/screenshot.sh -a
 
 #window
 alt + Print
-  xfce4-screenshooter -cw
+  ~/.config/bspwm/scripts/screenshot.sh -w
 
 
 #################################################################
@@ -224,6 +224,9 @@ alt + Print
 # 
 # XF86AudioMicMute
 #   pactl -- set-source-mute 1 toggle
+
+super + v
+  pactl -- set-source-mute 1 toggle
 
 #Playerctl works for Pragha, Spotify and others
 #Delete the line for playerctl if you want to use mpc
