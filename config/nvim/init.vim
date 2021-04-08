@@ -1,0 +1,370 @@
+set nocompatible
+syntax on
+
+let autocompleteEngine = 'completion-nvim'
+let enableLSP = 1
+
+" Install vim-plug with 
+" curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+call plug#begin('~/.vim/plugged')
+
+if !exists('g:vscode')
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+Plug 'Yggdroot/indentLine'
+
+" Colour Schemes
+Plug 'crusoexia/vim-monokai'
+
+"Plug 'lervag/vimtex'
+"Plug 'iloginow/vim-stylus'
+
+
+if autocompleteEngine ==? 'completion-nvim'
+  Plug 'nvim-lua/completion-nvim'
+  autocmd BufEnter * lua require'completion'.on_attach()
+
+  " Use <Tab> and <S-Tab> to navigate through popup menu
+  inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+  "map <c-space> to manually trigger completion
+  imap <silent> <c-space> <Plug>(completion_trigger)
+
+  " Set completeopt to have a better completion experience
+  set completeopt=menuone,noinsert,noselect
+
+  " Avoid showing message extra message when using completion
+  set shortmess+=c
+elseif autocompleteEngine ==? 'YouCompleteMe'
+  Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --ts-completer --go-completer --clang-completer' }
+
+  let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+endif
+
+endif
+call plug#end()
+
+" Initialise NeoVim's lspconfig
+lua <<EOF
+local nvim_lsp = require('lspconfig')
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+  -- Set some keybinds conditional on server capabilities
+  if client.resolved_capabilities.document_formatting then
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  elseif client.resolved_capabilities.document_range_formatting then
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+  end
+
+  -- Set autocommands conditional on server_capabilities
+  if client.resolved_capabilities.document_highlight then
+    vim.api.nvim_exec([[
+      hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+      hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+      hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]], false)
+  end
+end
+
+local function setup_servers()
+  require'lspinstall'.setup()
+  local servers = require'lspinstall'.installed_servers()
+  for _, server in pairs(servers) do
+    require'lspconfig'[server].setup{ on_attach = on_attach }
+  end
+end
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require'lspinstall'.post_install_hook = function ()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
+
+EOF
+
+
+
+"autocmd Filetype json :IndentLinesDisable
+autocmd Filetype json let g:indentLine_enabled = 0
+"autocmd Filetype json let g:conceal = 0
+autocmd Filetype json let g:indentLine_setConceal = 0
+autocmd Filetype json let g:indentLine_conceallevel = 0
+
+"" Auto close scratchspace for the function preview for ycm
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" " Set indent options for specific filetypes
+" filetype plugin on
+" filetype plugin indent on
+
+set wildignore+=**/node_modules/**
+set wildignore+=**/dist/**
+
+set number
+set mouse=a
+set ignorecase
+set smartindent
+set shiftwidth=2
+set tabstop=2
+set expandtab
+set softtabstop=2
+set nowrap
+set pastetoggle=<F10>
+set clipboard=unnamedplus
+set splitbelow
+set splitright
+tab sall
+
+set colorcolumn=100
+colo monokai
+
+
+" PROJECTS
+augroup ProjectSetup
+au BufRead,BufEnter ~/gitrepos/caseware/cwi-int-cicd/**/*.js set shiftwidth=4 softtabstop=4
+augroup END
+
+
+" LSP hotkeys
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> ga <plug>(lsp-code-action)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gp <plug>(lsp-peek-definition)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    nmap <buffer> <C-A-l> <plug>(lsp-document-format)
+    
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+"nnoremap ga :LspCodeAction<CR>
+"nnoremap gd :LspDefinition<CR>
+"nnoremap gr :LspReferences<CR>
+"nnoremap gp :LspPeekDefinition<CR>
+"nnoremap K :LspHover<CR>
+"nnoremap <F2> :LspRename<CR>
+"nnoremap <C-j> :LspNextDiagnostic<CR>
+"nnoremap <C-k> :LspPreviousDiagnostic<CR>
+
+
+
+" Set smart homekey
+noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
+imap <silent> <Home> <C-O><Home>
+
+" Window Navigation
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h          
+nnoremap <A-j> <C-w>j          
+nnoremap <A-k> <C-w>k          
+nnoremap <A-l> <C-w>l  
+
+" Set tab navigation
+"nnoremap <C-t> :tabnew<CR>
+nnoremap <C-tab> :tabnext<CR>
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <tab> :tabnext<CR>
+nnoremap <S-tab> :tabprevious<CR>
+inoremap <C-tab> <Esc>:tabnext<CR>i
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+
+nnoremap <Leader>q :copen<CR>
+nnoremap <Leader>Q :cclose<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprev<CR>
+
+" Set backspace to delete previous word
+inoremap <C-w> <C-\><C-o>dB
+inoremap <C-BS> <C-\><C-o>db
+
+" Set CTRL-S to save
+nnoremap <C-s> :w<CR>
+nnoremap <C-c> :nohl<CR>:w<CR>
+
+map <Leader>t :tabedit 
+map <Leader>v :vsplit <CR>
+map <Leader>s :split <CR>
+
+nnoremap <Leader>d "_d
+
+if !exists('g:vscode')
+nnoremap <C-\> :NERDTreeToggle<CR>
+nnoremap <C-p> :FZF<CR>
+nnoremap <C-A-P> :call fzf#run(fzf#wrap({'source': 'find . -type f -not -path *.git/*'}))<CR>
+nnoremap <Leader>bb :History<CR>
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+endif
+
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <C-o> :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
+
+
+fun! GetInput(prompt)
+	call inputsave()
+	let inp = input(a:prompt)
+	call inputrestore()
+	return inp
+endfun
+
+fun! Compile()
+	let type=&ft
+    let cflags="-Wall -g"
+	let cppflags="-std=c++11 -Wall"
+	let nflags="-sm-"
+	if filereadable("Makefile") || filereadable("makefile") 
+		exec "!make"
+	elseif filereadable("compile.sh")
+		exec "!sh compile.sh"
+    elseif type == "c"
+		exec "!gcc ".cflags." -o ".expand('%:r')." ".expand('%:t')
+	elseif type == "cpp"
+		exec "!g++ ".cppflags." -o ".expand('%:r')." ".expand('%:t')
+	elseif type == "nxc"
+		echo "Compiling ".expand('%:t')
+		exec "!nbc '".expand('%:t')."'  -O='".expand('%:r')."'.rxe ".nflags
+	elseif type == "java"
+		exec "!javac '".expand('%:t')."'"
+	endif
+endfun
+
+fun! Run()
+	let type=&ft
+	if filereadable("run.sh")
+		exec "!sh run.sh"
+	elseif type == "python"
+		exec "!python3 ".expand('%:t')
+	elseif type == "javascript"
+		exec "!node ".expand('%:t')
+	elseif type == "cpp" || type == "c"
+		"call Compile()
+		"let inp = GetInput("Continue? [Y/n]")
+		"if inp == '' || inp ==? 'y'
+			exec "!./".expand('%:R')
+		"endif
+	elseif type == "go"
+		exec "!go run ".expand('%:R')
+	elseif type == "sh"
+		exec "!sh ".expand('%:R')
+	elseif type == "nxc"
+		"call Compile()
+		"let inp = GetInput("Continue? [Y/n]")
+		"if inp == '' || inp ==? 'y'
+			exec "!t2n -put ".expand('%:r').".rxe"
+	elseif type == "v" || type == "velma"
+		exec "!/home/xenoryt/scripts/velma.sh ".expand('%:t')." 01234567"
+	endif
+endfun
+fun! Time()
+	let type=&ft
+	if type == "cpp"
+		call Compile()
+	elseif type == "python"
+		exec "!time python3 ".expand('%:t')
+	endif
+endfun
+
+"inoremap <C-c> <ESC>:w<CR>:call Compile()<CR>
+"nnoremap <C-c> :w<CR>:call Compile()<CR>
+"inoremap <F5> <ESC>:w<CR>:call Run()<CR>
+"nnoremap <F5> :w<CR>:call Run()<CR>
+"inoremap <F6> <ESC>:w<CR>:call Time()<CR>
+"nnoremap <F6> :w<CR>:call Time()<CR>
+
+" Some custom settings for programming in Go
+
+" Auto import
+let g:go_fmt_command = "goimports"
+
+" for docs
+au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+
+" Find type info
+au FileType go nmap <Leader>i <Plug>(go-info)
+" To find out what the current type implements
+au FileType go nmap <Leader>m <Plug>(go-implements)
+
+" Run, build, test go
+au FileType go nmap <Leader>r <Plug>(go-run)
+au FileType go nmap <Leader>b <Plug>(go-build)
+au FileType go nmap <Leader>gt <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
