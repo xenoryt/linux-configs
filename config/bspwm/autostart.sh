@@ -13,6 +13,10 @@ function run {
 #xrandr --output LVDS1 --mode 1366x768 --output DP3 --mode 1920x1080 --right-of LVDS1
 #xrandr --output HDMI2 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off
 
+xrandr \
+  --output eDP --primary --mode 1920x1080 --pos 1920x0 --rotate normal \
+  --output DisplayPort-0 --mode 1920x1080 --pos 0x0 --rotate normal
+
 # $HOME/.config/polybar/launch.sh &
 #xfsettingsd &
 xfce4-panel &
