@@ -175,15 +175,16 @@ super + Return
 
 #Thunar
 super + e
-    thunar
+  thunar
 
 #Oblogout
 ctrl + alt + Delete
-   bash ~/.config/bspwm/scripts/powermenu-alt
+  bash ~/.config/bspwm/scripts/powermenu-alt
 
 #Terminal
 super + t
-    tilix
+  alacritty
+  #tilix
 
 # #task manager
 # ctrl + alt + m

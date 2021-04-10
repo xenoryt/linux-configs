@@ -1,0 +1,4 @@
+key_bindings:
+- mods: Control|Shift
+  key: N
+  action: SpawnNewInstance

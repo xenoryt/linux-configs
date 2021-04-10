@@ -1,0 +1,10 @@
+import:
+  - ~/.config/alacritty/colour-schemes.yml
+  - ~/.config/alacritty/keybindings.yml
+
+font:
+  size: 8
+  normal:
+    family: noto sans mono
+
+background_opacity: 0.85

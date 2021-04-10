@@ -1,0 +1,557 @@
+
+schemes:
+  ayu-dark: &ayu-dark
+    # Default colors
+    primary:
+      background: '#0A0E14'
+      foreground: '#B3B1AD'
+
+    # Normal colors
+    normal:
+      black: '#01060E'
+      red: '#EA6C73'
+      green: '#91B362'
+      yellow: '#F9AF4F'
+      blue: '#53BDFA'
+      magenta: '#FAE994'
+      cyan: '#90E1C6'
+      white: '#C7C7C7'
+
+    # Bright colors
+    bright:
+      black: '#686868'
+      red: '#F07178'
+      green: '#C2D94C'
+      yellow: '#FFB454'
+      blue: '#59C2FF'
+      magenta: '#FFEE99'
+      cyan: '#95E6CB'
+      white: '#FFFFFF'
+  ayu-mirage: &ayu-mirage
+    # Default colors
+    primary:
+      background: '#202734'
+      foreground: '#CBCCC6'
+
+    # Normal colors
+    normal:
+      black: '#191E2A'
+      red: '#FF3333'
+      green: '#BAE67E'
+      yellow: '#FFA759'
+      blue: '#73D0FF'
+      magenta: '#FFD580'
+      cyan: '#95E6CB'
+      white: '#C7C7C7'
+
+    # Bright colors
+    bright:
+      black: '#686868'
+      red: '#F27983'
+      green: '#A6CC70'
+      yellow: '#FFCC66'
+      blue: '#5CCFE6'
+      magenta: '#FFEE99'
+      cyan: '#95E6CB'
+      white: '#FFFFFF'
+
+  blood-moon: &blood-moon
+    # Default colors
+    primary:
+      background: '#10100E'
+      foreground: '#C6C6C4'
+
+    # Normal colors
+    normal:
+      black:   '#10100E'
+      red:     '#C40233'
+      green:   '#009F6B'
+      yellow:  '#FFD700'
+      blue:    '#0087BD'
+      magenta: '#9A4EAE'
+      cyan:    '#20B2AA'
+      white:   '#C6C6C4'
+
+    # Bright colors
+    bright:
+      black:   '#696969'
+      red:     '#FF2400'
+      green:   '#03C03C'
+      yellow:  '#FDFF00'
+      blue:    '#007FFF'
+      magenta: '#FF1493'
+      cyan:    '#00CCCC'
+      white:   '#FFFAFA'
+
+  darkside: &darkside
+    primary:
+      background: '#222324'
+      foreground: '#BABABA'
+
+    # Normal colors
+    normal:
+      black:    '#000000'
+      red:      '#E8341C'
+      green:    '#68C256'
+      yellow:   '#F2D42C'
+      blue:     '#1C98E8'
+      magenta:  '#8E69C9'
+      cyan:     '#1C98E8'
+      white:    '#BABABA'
+
+    # Bright colors
+    bright:
+      black:    '#666666'
+      red:      '#E05A4F'
+      green:    '#77B869'
+      yellow:   '#EFD64B'
+      blue:     '#387CD3'
+      magenta:  '#957BBE'
+      cyan:     '#3D97E2'
+      white:    '#BABABA'
+
+  darktooth: &darktooth
+    # Default colors
+    primary:
+      background: '#282828'
+      foreground: '#fdf4c1'
+
+    # Normal colors
+    normal:
+      black:   '#282828'
+      red:     '#9d0006'
+      green:   '#79740e'
+      yellow:  '#b57614'
+      blue:    '#076678'
+      magenta: '#8f3f71'
+      cyan:    '#00a7af'
+      white:   '#fdf4c1'
+
+    # Bright colors
+    bright:
+      black:   '#32302f'
+      red:     '#fb4933'
+      green:   '#b8bb26'
+      yellow:  '#fabd2f'
+      blue:    '#83a598'
+      magenta: '#d3869b'
+      cyan:    '#3fd7e5'
+      white:   '#ffffc8'
+
+    # Dim colors (Optional)
+    dim:
+      black:   '#1d2021'
+      red:     '#421e1e'
+      green:   '#232b0f'
+      yellow:  '#4d3b27'
+      blue:    '#2b3c44'
+      magenta: '#4e3d45'
+      cyan:    '#205161'
+      white:   '#f4e8ba'
+
+  gnome-dark: &gnome-dark
+    primary:
+      foreground: '#d0cfcc'
+      background: '#171421'
+      bright_foreground: '#ffffff'
+
+    normal:
+      black:   '#171421'
+      red:     '#c01c28'
+      green:   '#26a269'
+      yellow:  '#a2734c'
+      blue:    '#12488b'
+      magenta: '#a347ba'
+      cyan:    '#2aa1b3'
+      white:   '#d0cfcc'
+
+    bright:
+      black:   '#5e5c64'
+      red:     '#f66151'
+      green:   '#33d17a'
+      yellow:  '#e9ad0c'
+      blue:    '#2a7bde'
+      magenta: '#c061cb'
+      cyan:    '#33c7de'
+      white:   '#ffffff'
+
+
+  hyper: &hyper
+    # Default colors
+    primary:
+      background: '#000000'
+      foreground: '#ffffff'
+    cursor:
+      text: '#F81CE5'
+      cursor: '#ffffff'
+
+    # Normal colors
+    normal:
+      black:   '#000000'
+      red:     '#fe0100'
+      green:   '#33ff00'
+      yellow:  '#feff00'
+      blue:    '#0066ff'
+      magenta: '#cc00ff'
+      cyan:    '#00ffff'
+      white:   '#d0d0d0'
+
+    # Bright colors
+    bright:
+      black:   '#808080'
+      red:     '#fe0100'
+      green:   '#33ff00'
+      yellow:  '#feff00'
+      blue:    '#0066ff'
+      magenta: '#cc00ff'
+      cyan:    '#00ffff'
+      white:   '#FFFFFF'
+
+  kitty: &kitty
+    # Default colors
+    primary:
+      background: '#000000'
+      foreground: '#dddddd'
+
+    # Normal colors
+    normal:
+      black:   '#000000'
+      red:     '#cc0403'
+      green:   '#19cb00'
+      yellow:  '#cecb00'
+      blue:    '#0d73cc'
+      magenta: '#cb1ed1'
+      cyan:    '#0dcdcd'
+      white:   '#dddddd'
+
+    # Bright colors
+    bright:
+      black:   '#767676'
+      red:     '#f2201f'
+      green:   '#23fd00'
+      yellow:  '#fffd00'
+      blue:    '#1a8fff'
+      magenta: '#fd28ff'
+      cyan:    '#14ffff'
+      white:   '#ffffff'
+
+  material: &material
+    # Default colors
+    primary:
+      background: '#263238'
+      foreground: '#eeffff'
+
+    # Normal colors
+    normal:
+      black:   '#000000'  # Arbitrary
+      red:     '#e53935'
+      green:   '#91b859'
+      yellow:  '#ffb62c'
+      blue:    '#6182b8'
+      magenta: '#ff5370'  # Dark pink of the original material theme
+      cyan:    '#39adb5'
+      white:   '#a0a0a0'  # Arbitrary
+
+    # Bright colors
+    bright:
+      black:   '#4e4e4e'  # Arbitrary
+      red:     '#ff5370'
+      green:   '#c3e88d'
+      yellow:  '#ffcb6b'
+      blue:    '#82aaff'
+      magenta: '#f07178'  # Pink of the original material theme
+      cyan:    '#89ddff'
+      white:   '#ffffff'  # Arbitrary
+
+  # Colors (Molokai Dark)
+  molokai-dark: &molokai-dark
+    # Default colors
+    primary:
+      background: '#1B1D1E'
+      foreground: '#F8F8F2'
+    # Normal colors
+    normal:
+      black:   '#333333'
+      red:     '#C4265E'
+      green:   '#86B42B'
+      yellow:  '#B3B42B'
+      blue:    '#6A7EC8'
+      magenta: '#8C6BC8'
+      cyan:    '#56ADBC'
+      white:   '#E3E3DD'
+    # Bright colors
+    bright:
+      black:   '#666666'
+      red:     '#F92672'
+      green:   '#A6E22E'
+      yellow:  '#E2E22E'
+      blue:    '#819AFF'
+      magenta: '#AE81FF'
+      cyan:    '#66D9EF'
+      white:   '#F8F8F2'
+
+  # Colors (Monokai Dark)
+  monokai: &monokai
+    # Default colors
+    primary:
+      background: '#272822'
+      foreground: '#F8F8F2'
+
+    # Normal colors
+    normal:
+     black:   '#272822'
+     red:     '#F92672'
+     green:   '#A6E22E'
+     yellow:  '#F4BF75'
+     blue:    '#66D9EF'
+     magenta: '#AE81FF'
+     cyan:    '#A1EFE4'
+     white:   '#F8F8F2'
+
+    # Bright colors
+    bright:
+     black:   '#75715E'
+     red:     '#F92672'
+     green:   '#A6E22E'
+     yellow:  '#F4BF75'
+     blue:    '#66D9EF'
+     magenta: '#AE81FF'
+     cyan:    '#A1EFE4'
+     white:   '#F9F8F5'
+
+  monokai-pro: &monokai-pro
+    # Default colors
+    primary:
+      background: '#2D2A2E'
+      foreground: '#FCFCFA'
+
+    # Normal colors
+    normal:
+      black:   '#403E41'
+      red:     '#FF6188'
+      green:   '#A9DC76'
+      yellow:  '#FFD866'
+      blue:    '#FC9867'
+      magenta: '#AB9DF2'
+      cyan:    '#78DCE8'
+      white:   '#FCFCFA'
+
+    # Bright colors
+    bright:
+      black:   '#727072'
+      red:     '#FF6188'
+      green:   '#A9DC76'
+      yellow:  '#FFD866'
+      blue:    '#FC9867'
+      magenta: '#AB9DF2'
+      cyan:    '#78DCE8'
+      white:   '#FCFCFA'
+
+  new-moon: &new-moon
+    # Default colors
+    primary:
+      background: '#2D2D2D'
+      foreground: '#B3B9C5'
+    # Normal colors
+    normal:
+      black: '#2D2D2D'
+      red: '#F2777A'
+      green: '#92D192'
+      yellow: '#FFD479'
+      blue: '#6AB0F3'
+      magenta: '#E1A6F2'
+      cyan: '#76D4D6'
+      white: '#B3B9C5'
+    # Bright colors
+    bright:
+      black: '#777C85'
+      red: '#F2777A'
+      green: '#76D4D6'
+      yellow: '#FFEEA6'
+      blue: '#6AB0F3'
+      magenta: '#E1A6F2'
+      cyan: '#76D4D6'
+      white: '#FFFFFF'
+
+  one-dark: &one-dark
+    primary:
+      background: '#282c34'
+      foreground: '#abb2bf'
+    cursor:
+      text:       CellBackground
+      cursor:     '#528bff' # syntax-cursor-color
+    selection:
+      text:       CellForeground
+      background: '#3e4451' # syntax-selection-color
+    normal:
+      black:      '#5c6370' # mono-3
+      red:        '#e06c75' # red 1
+      green:      '#98c379'
+      yellow:     '#e5c07b' # orange 2
+      blue:       '#61afef'
+      magenta:    '#c678dd'
+      cyan:       '#56b6c2'
+      white:      '#828997' # mono-2
+
+  sourcerer: &sourcerer
+    primary:
+      background: '#222222'
+      foreground: '#c2c2b0'
+
+    cursor:
+      text:   '#c2c2b0'
+      cursor: '#c2c2b0'
+
+    normal:
+      black:   '#111111'
+      red:     '#aa4450'
+      green:   '#719611'
+      yellow:  '#cc8800'
+      blue:    '#6688aa'
+      magenta: '#8f6f8f'
+      cyan:    '#528b8b'
+      white:   '#d3d3d3'
+
+    bright:
+      black:   '#181818'
+      red:     '#ff6a6a'
+      green:   '#b1d631'
+      yellow:  '#ff9800'
+      blue:    '#90b0d1'
+      magenta: '#8181a6'
+      cyan:    '#87ceeb'
+      white:   '#c1cdc1'
+
+  # Colors (Tango)
+  tango: &tango
+    primary:
+      background: '#000000'
+      foreground: '#00ff00'
+
+    # Normal colors
+    normal:
+        black:   '#2e3436'
+        red:     '#cc0000'
+        green:   '#73d216'
+        yellow:  '#edd400'
+        blue:    '#3465a4'
+        magenta: '#75507b'
+        cyan:    '#06989a'
+        white:   '#d3d7cf'
+
+    # Bright colors
+    bright:
+        black:   '#2e3436'
+        red:     '#ef2929'
+        green:   '#8ae234'
+        yellow:  '#fce94f'
+        blue:    '#729fcf'
+        magenta: '#ad7fa8'
+        cyan:    '#34e2e2'
+        white:   '#eeeeec'
+
+  # Colors (Tomorrow Night)
+  tomorrow-night: &tomorrow-night
+    # Default colors
+    primary:
+      background: '#1d1f21'
+      foreground: '#c5c8c6'
+
+    # Colors the cursor will use if `custom_cursor_colors` is true
+    cursor:
+      text: '#1d1f21'
+      cursor: '#ffffff'
+
+    # Normal colors
+    normal:
+      black:   '#1d1f21'
+      red:     '#cc6666'
+      green:   '#b5bd68'
+      yellow:  '#e6c547'
+      blue:    '#81a2be'
+      magenta: '#b294bb'
+      cyan:    '#70c0ba'
+      white:   '#373b41'
+
+    # Bright colors
+    bright:
+      black:   '#666666'
+      red:     '#ff3334'
+      green:   '#9ec400'
+      yellow:  '#f0c674'
+      blue:    '#81a2be'
+      magenta: '#b77ee0'
+      cyan:    '#54ced6'
+      white:   '#282a2e'
+
+  tomorrow-night-bright: &tomorrow-night-bright
+    # Default colors
+    primary:
+      background: '#000000'
+      foreground: '#eaeaea'
+
+    # Normal colors
+    normal:
+      black:   '#000000'
+      red:     '#d54e53'
+      green:   '#b9ca4a'
+      yellow:  '#e6c547'
+      blue:    '#7aa6da'
+      magenta: '#c397d8'
+      cyan:    '#70c0ba'
+      white:   '#424242'
+
+    # Bright colors
+    bright:
+      black:   '#666666'
+      red:     '#ff3334'
+      green:   '#9ec400'
+      yellow:  '#e7c547'
+      blue:    '#7aa6da'
+      magenta: '#b77ee0'
+      cyan:    '#54ced6'
+      white:   '#2a2a2a'
+
+  custom: &custom
+    # Default colors
+    primary:
+      background: '#000000'
+      foreground: '#eaeaea'
+
+    cursor:
+      text:       CellBackground
+      cursor:     '#528bff' # syntax-cursor-color
+    selection:
+      text:       CellForeground
+      background: '#3e4451' # syntax-selection-color
+
+    # Normal colors
+    normal:
+      black:   '#000000'
+      red:     '#d54e53'
+      green:   '#b9ca4a'
+      yellow:  '#e6c547'
+      blue:    '#7aa6da'
+      magenta: '#c397d8'
+      cyan:    '#70c0ba'
+      white:   '#F8F8F2' #'#424242'
+
+    # Bright colors
+    bright:
+      black:   '#666666'
+      red:     '#ff3334'
+      green:   '#9ec400'
+      yellow:  '#e7c547'
+      blue:    '#7aa6da'
+      magenta: '#b77ee0'
+      cyan:    '#54ced6'
+      white:   '#F9F8F5' #'#2a2a2a'
+
+# Favourites:
+# - hyper
+# - kitty
+# - monokai
+# - new-moon
+# - tango
+
+colors: *custom
