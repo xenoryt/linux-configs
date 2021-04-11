@@ -3,7 +3,7 @@ import:
   - ~/.config/alacritty/keybindings.yml
 
 font:
-  size: 8
+  size: 10
   normal:
     family: noto sans mono
 
