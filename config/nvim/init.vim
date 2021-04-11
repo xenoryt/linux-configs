@@ -26,6 +26,7 @@ Plug 'Yggdroot/indentLine'
 
 " Colour Schemes
 Plug 'crusoexia/vim-monokai'
+Plug 'rafi/awesome-vim-colorschemes'
 
 "Plug 'lervag/vimtex'
 "Plug 'iloginow/vim-stylus'
@@ -158,7 +159,7 @@ set splitright
 tab sall
 
 set colorcolumn=100
-colo monokai
+colo sonokai
 
 
 " Set smart homekey
