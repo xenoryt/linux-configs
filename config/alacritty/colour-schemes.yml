@@ -515,8 +515,6 @@ schemes:
   custom: &custom
     # Default colors
     primary:
-      #background: '#000000'
-      #foreground: '#eaeaea'
       background: '#222324'
       foreground: '#BABABA'
 
@@ -529,25 +527,26 @@ schemes:
 
     # Normal colors
     normal:
-      black:   '#000000'
-      red:     '#d54e53'
-      green:   '#A3F221' #'#b9ca4a'
-      yellow:  '#e6c547'
-      blue:    '#7187D6' #'#7aa6da'
-      magenta: '#c397d8'
-      cyan:    '#70c0ba'
-      white:   '#F8F8F2' #'#424242'
+      black:    '#000000'
+      red:      '#E8341C'
+      green:    '#68C256'
+      yellow:   '#F2D42C'
+      blue:     '#1C98E8'
+      magenta:  '#8E69C9'
+      cyan:     '#1C98E8'
+      white:    '#BABABA'
 
     # Bright colors
     bright:
-      black:   '#666666'
-      red:     '#ff3334'
-      green:   '#9ec400'
-      yellow:  '#e7c547'
-      blue:    '#7aa6da'
-      magenta: '#b77ee0'
-      cyan:    '#54ced6'
-      white:   '#F9F8F5' #'#2a2a2a'
+      black:    '#666666'
+      red:      '#E05A4F'
+      green:    '#77B869'
+      yellow:   '#EFD64B'
+      blue:     '#387CD3'
+      magenta:  '#957BBE'
+      cyan:     '#3D97E2'
+      white:    '#BABABA'
+
 
 # Favourites:
 # - darkside
