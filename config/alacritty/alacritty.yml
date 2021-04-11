@@ -2,8 +2,11 @@ import:
   - ~/.config/alacritty/colour-schemes.yml
   - ~/.config/alacritty/keybindings.yml
 
+env:
+  TERM: xterm-256color
+
 font:
-  size: 10
+  size: 9
   normal:
     family: noto sans mono
 
