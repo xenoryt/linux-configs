@@ -183,7 +183,8 @@ ctrl + alt + Delete
 
 #Terminal
 super + t
-  alacritty
+  kitty
+  #alacritty
   #tilix
 
 # #task manager
