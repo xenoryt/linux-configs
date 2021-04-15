@@ -13,7 +13,8 @@ if !exists('g:vscode')
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'DougBeney/pickachu'
-Plug 'lilydjwg/colorizer'
+"Plug 'lilydjwg/colorizer'
+Plug 'norcalli/nvim-terminal.lua'
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -125,6 +126,7 @@ end
 EOF
 
 
+lua require'terminal'.setup()
 
 "autocmd Filetype json :IndentLinesDisable
 autocmd Filetype json let g:indentLine_enabled = 0
