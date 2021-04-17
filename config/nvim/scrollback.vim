@@ -6,13 +6,15 @@ Plug 'norcalli/nvim-terminal.lua'
 Plug 'rafi/awesome-vim-colorschemes'
 
 Plug 'crusoexia/vim-monokai'
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 call plug#end()
 
 lua require'terminal'.setup()
 
 set mouse=a
 set clipboard=unnamedplus
+set concealcursor=nc
+set conceallevel=3
 
 colo sonokai
 
@@ -20,5 +22,3 @@ colo sonokai
 " Set smart homekey
 noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 imap <silent> <Home> <C-O><Home>
-
-
