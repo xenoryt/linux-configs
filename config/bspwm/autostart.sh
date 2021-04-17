@@ -30,7 +30,7 @@ feh --bg-fill --randomize ~/Pictures/wallpapers/**
 #conky -c $HOME/.config/bspwm/system-overview &
 #run variety &
 run nm-applet &
-run nextcloud &
+run nextcloud --background &
 #run pamac-tray &
 run xfce4-power-manager &
 #numlockx on &
