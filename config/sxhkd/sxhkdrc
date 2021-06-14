@@ -66,6 +66,10 @@ super + z
 super + shift + z
   bspc node any.hidden.local --flag hidden
 
+# Toggle sticky
+super + ctrl + s
+  bspc node -g sticky
+
 # Rotate the node from the parent
 super + {_,shift + }r
   bspc node @parent -R {90,270}
