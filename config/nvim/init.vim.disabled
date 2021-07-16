@@ -10,12 +10,15 @@ let enableLSP = 1
 call plug#begin('~/.vim/plugged')
 
 if !exists('g:vscode')
+Plug 'prettier/vim-prettier'
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'DougBeney/pickachu'
 "Plug 'lilydjwg/colorizer'
 Plug 'norcalli/nvim-terminal.lua'
 
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -31,6 +34,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 
 "Plug 'lervag/vimtex'
 "Plug 'iloginow/vim-stylus'
+Plug 'hashivim/vim-terraform'
 
 
 if autocompleteEngine ==? 'completion-nvim'
@@ -59,6 +63,7 @@ endif
 call plug#end()
 
 " Initialise NeoVim's lspconfig
+if enableLSP == 1
 lua <<EOF
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
@@ -124,6 +129,7 @@ require'lspinstall'.post_install_hook = function ()
 end
 
 EOF
+endif
 
 
 lua require'terminal'.setup()
@@ -135,8 +141,8 @@ autocmd Filetype json let g:indentLine_setConceal = 0
 autocmd Filetype json let g:indentLine_conceallevel = 0
 
 "" Auto close scratchspace for the function preview for ycm
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " " Set indent options for specific filetypes
 " filetype plugin on
@@ -177,10 +183,10 @@ inoremap <A-h> <C-\><C-N><C-w>h
 inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
-nnoremap <A-h> <C-w>h          
-nnoremap <A-j> <C-w>j          
-nnoremap <A-k> <C-w>k          
-nnoremap <A-l> <C-w>l  
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 " Set tab navigation
 "nnoremap <C-t> :tabnew<CR>
