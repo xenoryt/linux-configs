@@ -60,7 +60,7 @@ return packer.startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     requires = {
-      {'hrsh7th/nvim-compe', event = 'InsertEnter'},
+      {'hrsh7th/nvim-compe', config = [[require('plugin.nvim-compe')]], event = 'InsertEnter'},
       'kabouzeid/nvim-lspinstall',
       'glepnir/lspsaga.nvim',
       'folke/lsp-colors.nvim', -- for better colourschemes

@@ -38,7 +38,7 @@ require'compe'.setup {
   source = {
     path = { kind = '   (Path)', priority = 9 },
     buffer = { kind = '   (Buffer)', priority = 8 },
-    vsnip = { kind = '   (Snippet)', priority = 10 },
+    --vsnip = { kind = '   (Snippet)', priority = 10 },
     nvim_lsp = { kind = '   (LSP)', priority = 10 },
     treesitter = { kind = "  ", priority = 8 },
     calc = { kind = '   (Calc)' },
@@ -81,8 +81,8 @@ end
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-n>"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
+  --elseif vim.fn.call("vsnip#available", {1}) == 1 then
+  --  return t "<Plug>(vsnip-expand-or-jump)"
   elseif check_back_space() then
     return t "<Tab>"
   else
@@ -92,8 +92,8 @@ end
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
+  --elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+  --  return t "<Plug>(vsnip-jump-prev)"
   else
     return t "<S-Tab>"
   end
@@ -102,8 +102,8 @@ end
 imap("<C-Space>", "compe#complete()", {expr = true})
 imap("<CR>", "compe#confirm('<CR>')", {expr = true})
 imap("<C-e>", "compe#close('<C-e>')", {expr = true})
-imap("<C-f>", "compe#scroll({ 'delta': +4 })", {expr = true})
-imap("<C-d>", "compe#scroll({ 'delta': -4 })", {expr = true})
+imap("<C-d>", "compe#scroll({ 'delta': +4 })", {expr = true})
+imap("<C-u>", "compe#scroll({ 'delta': -4 })", {expr = true})
 
 imap("<Tab>", "v:lua.tab_complete()", {expr = true})
 imap("<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
