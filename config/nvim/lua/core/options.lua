@@ -105,9 +105,18 @@ set 'nofoldenable'
 vim.g.nvcode_termcolors = 256
 vim.cmd('syntax on')
 set 'termguicolors'
-vim.cmd('colorscheme sonokai')
--- Disable highlight current row
-set 'nocursorline'
+
+-- Set colorscheme
+-- Other great colorschemes:
+-- - focuspoint
+-- - materialbox
+-- - hybrid
+vim.cmd('colorscheme molokai')
+
+-- highlight current row
+set 'cursorline'
+set ('colorcolumn', '120')
+
 
 -- Dim inactive buffer
 -- highlight('ActiveWindow', { guibg = '#000000'})

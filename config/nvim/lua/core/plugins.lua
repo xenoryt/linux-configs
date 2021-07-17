@@ -63,6 +63,7 @@ return packer.startup(function(use)
       {'hrsh7th/nvim-compe', event = 'InsertEnter'},
       'kabouzeid/nvim-lspinstall',
       'glepnir/lspsaga.nvim',
+      'folke/lsp-colors.nvim', -- for better colourschemes
       'jose-elias-alvarez/nvim-lsp-ts-utils',
     },
     config = [[require('plugin.nvim-lspconfig.init')]],
