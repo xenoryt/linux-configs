@@ -105,7 +105,7 @@ set 'nofoldenable'
 vim.g.nvcode_termcolors = 256
 vim.cmd('syntax on')
 set 'termguicolors'
-vim.cmd('colorscheme focuspoint')
+vim.cmd('colorscheme sonokai')
 -- Disable highlight current row
 set 'nocursorline'
 
