@@ -105,7 +105,7 @@ set ('foldtext', 'NeatFoldText()')
 vim.g.nvcode_termcolors = 256
 vim.cmd('syntax on')
 set 'termguicolors'
-vim.cmd('colorscheme monokai')
+vim.cmd('colorscheme focuspoint')
 -- Disable highlight current row
 set 'nocursorline'
 

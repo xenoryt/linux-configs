@@ -69,22 +69,12 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 
 local function setup_servers()
   lspinstall.setup()
-  local installed = lspinstall.installed_servers()
-  for _, server in pairs(installed) do
-    local config = {root_dir = lspconfig.util.root_pattern({'.git/', '.'})}
-    capabilities = capabilities
-    config.on_attach = on_attach_common
-    lspconfig[server].setup(config)
-  end
 
+  local configs = {}
 
   -- Efm language server
   -- https://github.com/mattn/efm-langserver
-  lspconfig.efm.setup {
-    on_attach = function(client)
-      client.resolved_capabilities.document_formatting = true
-      on_attach_common(client)
-    end,
+  configs.efm = {
     init_options = {documentFormatting = true, codeAction = true, document_formatting = true},
     root_dir = lspconfig.util.root_pattern({'.git/', '.'}),
 
@@ -102,60 +92,10 @@ local function setup_servers()
     settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
   }
 
-  -- Lua language server
-  -- local system_name
-  if vim.fn.has("mac") == 1 then
-    system_name = "macOS"
-  elseif vim.fn.has("unix") == 1 then
-    system_name = "Linux"
-  elseif vim.fn.has('win32') == 1 then
-    system_name = "Windows"
-  else
-    print("Unsupported system for sumneko")
-  end
-
-  local sumneko_root_path = '/Users/jonwalstedt/repos/language-servers/lua/lua-language-server'
-  local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
-  lspconfig.sumneko_lua.setup({
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-    settings = {
-      Lua = {
-        diagnostics = {
-          enable = true,
-          globals = { "vim" },
-        },
-      }
-    },
-
-    on_attach = on_attach_common
-  })
-
-  -- Typescript languageserver
-  -- https://github.com/theia-ide/typescript-language-server
-  lspconfig.tsserver.setup {
-    capabilities = capabilities,
-    on_attach = function(client)
-      if client.config.flags then
-        client.config.flags.allow_incremental_sync = true
-      end
-      client.resolved_capabilities.document_formatting = false
-      on_attach_common(client)
-    end
-  }
-
-  -- Go languageserver
-  -- https://github.com/golang/tools/tree/master/gopls
-  lspconfig.gopls.setup {
-    on_attach = function(client)
-      client.resolved_capabilities.document_formatting = false
-      on_attach_common(client)
-    end
-  }
-
   -- Python languageserver
   -- https://github.com/palantir/python-language-server
-  lspconfig.pylsp.setup {
-    on_attach = on_attach_common,
+  configs.python = {
+    filetypes = { "python" },
     settings = {
       pyls = {
         plugins = {
@@ -170,40 +110,27 @@ local function setup_servers()
     }
   }
 
-  lspconfig.pyright.setup {on_attach = on_attach_common}
-
-  -- Vim languageserver
-  -- https://github.com/iamcco/vim-language-server
-  lspconfig.vimls.setup {on_attach = on_attach_common}
-
-  -- Docker languageserver
-  -- https://github.com/rcjsuen/dockerfile-language-server-nodejs
-  lspconfig.dockerls.setup {on_attach = on_attach_common}
-
   -- Terraform languageserver
   -- https://github.com/hashicorp/terraform-ls
-  lspconfig.terraformls.setup {
-    on_attach = on_attach_common,
+  configs.terraform = {
     cmd = {"terraform-ls", "serve"},
     filetypes = {"tf"}
   }
 
-  -- CSS languageserver
-  -- https://github.com/vscode-langservers/vscode-css-languageserver-bin
-  lspconfig.cssls.setup{
-    on_attach = on_attach_common,
-    capabilities = capabilities,
-    cmd = { "html-languageserver", "--stdio" },
-    filetypes = { "html" },
-    init_options = {
-      configurationSection = { "html", "css", "javascript" },
-      embeddedLanguages = {
-        css = true,
-        javascript = true
-      }
-    },
-    settings = {},
-  }
+  local installed = lspinstall.installed_servers()
+  for _, server in pairs(installed) do
+    local config = configs[server] or {}
+    config.root_dir = lspconfig.util.root_pattern({'.git/', '.'})
+    config.capabilities = capabilities
+    config.on_attach = function(client)
+      if server == "typescript" then
+        client.resolved_capabilities.document_formatting = false
+      end
+      on_attach_common(client)
+    end
+    lspconfig[server].setup(config)
+  end
+
 end
 
 setup_servers()

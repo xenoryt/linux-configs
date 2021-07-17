@@ -1,7 +1,6 @@
 local nmap = U.keymap.nmap
 local imap = U.keymap.imap
 
-
 nmap('<C-p>', ':FZF<CR>')
 nmap('<C-A-P>', ":call fzf#run(fzf#wrap({'source': 'find . -type f -not -path *.git/*'}))<CR>")
 nmap('<Leader>bb', ':History<CR>')

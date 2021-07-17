@@ -50,20 +50,21 @@ local function mappings()
   lua_nmap('<leader>ar', 'require("lspsaga.rename").rename()')
   -- lua_map('<leader>ar',  'vim.lsp.buf.rename()')
   -- Few language severs support these three
-  lua_nmap('<leader>=', 'vim.lsp.buf.formatting()')
+  lua_nmap('<space>f', 'vim.lsp.buf.formatting()')
   lua_nmap('<leader>ai', 'vim.lsp.buf.incoming_calls()')
   lua_nmap('<leader>ao', 'vim.lsp.buf.outgoing_calls()')
 
   -- Diagnostics mapping
-  lua_nmap('<leader>ed', 'vim.lsp.diagnostic.show_line_diagnostics()')
-  lua_nmap('<leader>en', 'vim.lsp.diagnostic.goto_next()')
-  lua_nmap('<leader>ep', 'vim.lsp.diagnostic.goto_prev()')
+  lua_nmap('<space>e', 'vim.lsp.diagnostic.show_line_diagnostics()')
+  lua_nmap('<space>d', 'vim.lsp.diagnostic.set_loclist()')
+  lua_nmap('<space>D', 'lclose')
+  lua_nmap(']d', 'vim.lsp.diagnostic.goto_next()')
+  lua_nmap('[d', 'vim.lsp.diagnostic.goto_prev()')
 end
 
 
 return function(client)
   print("LSP started.");
-  -- vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
   mappings()
 
   -- if client.name ~= 'efm' then client.resolved_capabilities.document_formatting = false end
