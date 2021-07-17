@@ -57,7 +57,6 @@ return packer.startup(function(use)
    'nvim-lua/plenary.nvim'
   }}
 
-  -- Lsp
   use {
     'neovim/nvim-lspconfig',
     requires = {
@@ -67,6 +66,13 @@ return packer.startup(function(use)
       'jose-elias-alvarez/nvim-lsp-ts-utils',
     },
     config = [[require('plugin.nvim-lspconfig.init')]],
+  }
+
+  -- TreeSitter
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = [[require('plugin.nvim-treesitter')]],
   }
 
   -- Autoinstall/compile plugins

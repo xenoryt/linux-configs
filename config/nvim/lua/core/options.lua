@@ -9,10 +9,6 @@ vim.g.python3_host_skip_check = 1
 vim.g.python2_host_prog = '/usr/local/bin/python2'
 vim.g.python3_host_prog = '/usr/local/bin/python3'
 
-
--- Include current directory in path
-set 'path=.'
-
 -- Case insensitive :search etc.
 set 'wildignorecase'
 set ('wildignore', '.git,**/node_modules/**')
@@ -74,7 +70,7 @@ set ('cmdheight', 2)
 -- don't give ins-completion-menu messages.
 -- set shortmess+=c
 set 'nomodeline'
-set ('scrolloff', 5)
+--set ('scrolloff', 5)
 
 
 
@@ -96,8 +92,12 @@ set ('undodir', '~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp')
 
 
 -- Folding
-set ('foldmethod', 'manual')
-set ('foldtext', 'NeatFoldText()')
+set ('foldmethod', 'expr')
+set ('foldexpr', 'nvim_treesitter#foldexpr()')
+-- This disables the folds when first opening the file
+set 'nofoldenable'
+--set ('foldlevelstart', '99')
+--set ('foldtext', 'NeatFoldText()')
 
 
 
@@ -126,8 +126,8 @@ highlight('Comment', { guifg = '#666666', gui = 'italic', cterm = 'italic' })
 
 -- Tabs (whitespace settings)
 -- Render Tabs using this many spaces.
-set ('tabstop', 4)
-set ('softtabstop', 0)
+set ('tabstop', 2)
+set ('softtabstop', 2)
 
 -- Insert spaces when TAB is pressed.
 set 'expandtab'
@@ -143,7 +143,7 @@ vim.cmd('set nrformats-=octal')
 
 set 'smartindent'
 
-
+set 'nowrap'
 
 -- Line numbers
 -- Show line numbers
