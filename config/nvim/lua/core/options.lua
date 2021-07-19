@@ -44,7 +44,9 @@ set ('completeopt','menu,menuone,noselect')
 set ('clipboard', 'unnamedplus')
 
 set 'list'
-set ('listchars', 'nbsp:¬,tab:>-,extends:»,precedes:«,trail:•')
+set ('listchars', 'nbsp:¬,tab:\\|\\ ,extends:»,precedes:«,trail:•')
+--set ('listchars', 'nbsp:¬,tab:>-,extends:»,precedes:«,trail:•')
+
 
 -- Show the cursor position all the time.
 set 'noruler'

@@ -6,6 +6,9 @@ local xmap = U.keymap.xmap
 local omap = U.keymap.omap
 local tmap = U.keymap.tmap
 
+--- Editing
+nmap('<Leader>d', '"_d')
+
 -- Save buffer
 nmap('<C-s>', ':w<CR>')
 imap('<C-s>', '<esc>:w<CR>a')

@@ -15,6 +15,8 @@ return packer.startup(function(use)
   -- Plugin Manager (manages itself)
   use 'wbthomason/packer.nvim'
 
+  --use 'Yggdroot/indentLine'
+
   -- FZF file/content search
   use { 'junegunn/fzf', dir = '~/.fzf', run = './install --all' }
   use { 'junegunn/fzf.vim',
@@ -25,7 +27,8 @@ return packer.startup(function(use)
   --  after = 'fzf',
   --  setup = [[require('plugin.fzf-checkout')]]
   --}
-  --use { 'chengzeyi/fzf-preview.vim', after = 'fzf'}
+  use { 'chengzeyi/fzf-preview.vim', after = 'fzf'}
+  --use { 'yuki-yano/fzf-preview.vim', after = 'fzf', branch = 'release/remote', run = ':UpdateRemotePlugins'}
   --use 'andymass/vim-matchup'
 
   -- Git
@@ -53,10 +56,6 @@ return packer.startup(function(use)
     config = [[require('plugin.nvim-lsputils')]],
   }
 
-  use { 'jose-elias-alvarez/null-ls.nvim', requires = {
-   'nvim-lua/plenary.nvim'
-  }}
-
   use {
     'neovim/nvim-lspconfig',
     requires = {
@@ -74,6 +73,18 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = [[require('plugin.nvim-treesitter')]],
+  }
+
+  -- Telescope
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    config = [[require('plugin.telescope')]]
+  }
+  use {'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
+    after = 'nvim-telescope/telescope.nvim',
+    config = [[require('plugin.telescope-fzf')]]
   }
 
   -- Autoinstall/compile plugins
