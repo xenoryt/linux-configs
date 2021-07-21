@@ -79,15 +79,16 @@ local function setup_servers()
     root_dir = lspconfig.util.root_pattern({'.git/', '.'}),
 
     filetypes = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescript.tsx",
-        "typescriptreact",
-        "less",
-        "scss",
-        "css"
+      "json",
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescript.tsx",
+      "typescriptreact",
+      "less",
+      "scss",
+      "css"
     },
     settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
   }

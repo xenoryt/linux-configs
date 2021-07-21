@@ -6,6 +6,9 @@ local xmap = U.keymap.xmap
 local omap = U.keymap.omap
 local tmap = U.keymap.tmap
 
+-- Edit vimrc
+nmap('<Leader>ev', ':lcd ~/.config/nvim/<CR>:e lua/core/plugins.lua<CR>')
+
 --- Editing
 nmap('<Leader>d', '"_d')
 
