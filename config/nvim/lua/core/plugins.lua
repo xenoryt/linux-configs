@@ -39,11 +39,25 @@ return packer.startup(function(use)
 
   -- File browser and quick fix list
   use 'francoiscabrol/ranger.vim'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = "kyazdani42/nvim-web-devicons",
+    config = [[require('plugin.nvim-tree')]]
+  }
+
+  use {
+    'lambdalisue/fern.vim',
+    requires = {
+      'lambdalisue/nerdfont.vim'
+    },
+    config = function()
+      vim.api.nvim_set_var('fern#renderer', 'nerdfont')
+    end
+  }
 
   -- Colorschemes
   use 'crusoexia/vim-monokai'
   use 'rafi/awesome-vim-colorschemes'
-
 
   -- LSP Setup
   use {
