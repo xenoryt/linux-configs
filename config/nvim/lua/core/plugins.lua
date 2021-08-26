@@ -20,8 +20,9 @@ return packer.startup(function(use)
   -- FZF file/content search
   use { 'junegunn/fzf', dir = '~/.fzf', run = './install --all' }
   use { 'junegunn/fzf.vim',
+    opt = false,
     after = 'fzf',
-    setup = [[require('plugin.fzf')]]
+    setup = {[[require('plugin.fzf')]]}
   }
   --use { 'stsewd/fzf-checkout.vim',
   --  after = 'fzf',
@@ -41,7 +42,7 @@ return packer.startup(function(use)
   use 'francoiscabrol/ranger.vim'
   use {
     'kyazdani42/nvim-tree.lua',
-    requires = "kyazdani42/nvim-web-devicons",
+    requires = {'kyazdani42/nvim-web-devicons'},
     config = [[require('plugin.nvim-tree')]]
   }
 
@@ -92,7 +93,7 @@ return packer.startup(function(use)
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
     config = [[require('plugin.telescope')]]
   }
   use {'nvim-telescope/telescope-fzf-native.nvim',
