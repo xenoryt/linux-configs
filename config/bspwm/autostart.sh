@@ -21,6 +21,7 @@ xrandr \
 #xfsettingsd &
 xfce4-panel &
 
+~/.config/bspwm/scripts/disable-touchscreen.sh &
 
 xsetroot -cursor_name left_ptr &
 sxhkd &
