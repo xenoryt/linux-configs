@@ -33,9 +33,16 @@ return packer.startup(function(use)
   --use 'andymass/vim-matchup'
 
   -- Git
-  use { 'airblade/vim-gitgutter' }
-  use { 'tpope/vim-fugitive' }
+  use { 'TimUntersberger/neogit', requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }, config = [[require('plugin.neogit')]] }
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = [[require('plugin.gitsigns')]]
+  }
   --use 'junegunn/gv.vim'
+  --use { 'tpope/vim-fugitive' }
 
 
   -- File browser and quick fix list
