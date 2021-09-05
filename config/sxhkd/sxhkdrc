@@ -179,7 +179,7 @@ super + Return
 
 #Thunar
 super + e
-  thunar
+  nautilus
 
 #Oblogout
 ctrl + alt + Delete
