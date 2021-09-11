@@ -8,7 +8,7 @@ require('gitsigns').setup {
   },
   signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
   numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
-  linehl     = true, -- Toggle with `:Gitsigns toggle_linehl`
+  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
   word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
   keymaps = {
     -- Default keymap options
@@ -58,7 +58,10 @@ require('gitsigns').setup {
     row = 0,
     col = 1
   },
-  use_internal_diff = true,  -- If vim.diff or luajit is present
+  diff_opts = {
+    -- If vim.diff or luajit is present
+    internal = true
+  },
   yadm = {
     enable = false
   },

@@ -1,9 +1,10 @@
 local packer_path = U.os.data .. '/site/pack/packer/opt/packer.nvim'
 if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
+  print('Cloning packer...')
   vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
 end
---vim.cmd 'packadd packer.nvim | au BufWritePost plugins.lua PackerCompile'
---vim.opt.rtp = vim.opt.rtp + '~/.local/share/nvim/site/pack/packer/opt/*'
+vim.cmd 'packadd packer.nvim | au BufWritePost plugins.lua PackerCompile'
+vim.opt.rtp = vim.opt.rtp + '~/.local/share/nvim/site/pack/packer/opt/*'
 
 local packer = require('packer')
 local plugin_path = U.os.data .. '/site/pack/packer/opt/'
@@ -14,6 +15,38 @@ return packer.startup(function(use)
 
   -- Plugin Manager (manages itself)
   use 'wbthomason/packer.nvim'
+
+  -- Colorschemes
+  use 'crusoexia/vim-monokai'
+  use 'rafi/awesome-vim-colorschemes'
+
+  use {
+    "nvim-neorg/neorg",
+    requires = {
+      --"nvim-neorg/neorg-telescope",
+      "nvim-lua/plenary.nvim"
+    },
+
+    config = function()
+      require('neorg').setup {
+        -- Tell Neorg what modules to load
+        load = {
+          ["core.defaults"] = {}, -- Load all the default modules
+          ["core.norg.concealer"] = {}, -- Allows for use of icons
+          ["core.norg.dirman"] = { -- Manage your directories with Neorg
+            config = {
+              workspaces = {
+                my_workspace = "~/neorg"
+              }
+            }
+          }
+        },
+      }
+    end,
+    --after = "nvim-treesitter",
+    --config = [[require('plugin.neorg')]],
+    branch = "main",
+  }
 
   --use 'Yggdroot/indentLine'
 
@@ -28,12 +61,16 @@ return packer.startup(function(use)
   --  after = 'fzf',
   --  setup = [[require('plugin.fzf-checkout')]]
   --}
-  use { 'chengzeyi/fzf-preview.vim', after = 'fzf'}
+  --use { 'chengzeyi/fzf-preview.vim', after = 'fzf'}
   --use { 'yuki-yano/fzf-preview.vim', after = 'fzf', branch = 'release/remote', run = ':UpdateRemotePlugins'}
   --use 'andymass/vim-matchup'
 
   -- Git
-  use { 'TimUntersberger/neogit', requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }, config = [[require('plugin.neogit')]] }
+  use {
+    'TimUntersberger/neogit',
+    requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
+    config = {[[require('plugin.neogit')]]}
+  }
   use {
     'lewis6991/gitsigns.nvim',
     requires = {
@@ -63,10 +100,6 @@ return packer.startup(function(use)
     end
   }
 
-  -- Colorschemes
-  use 'crusoexia/vim-monokai'
-  use 'rafi/awesome-vim-colorschemes'
-
   -- LSP Setup
   use {
     "folke/lsp-trouble.nvim",
@@ -81,7 +114,7 @@ return packer.startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     requires = {
-      {'hrsh7th/nvim-compe', config = [[require('plugin.nvim-compe')]], event = 'InsertEnter'},
+      {'hrsh7th/nvim-compe', config = [[require('plugin.nvim-compe')]], opt = false},
       'kabouzeid/nvim-lspinstall',
       'glepnir/lspsaga.nvim',
       'folke/lsp-colors.nvim', -- for better colourschemes
