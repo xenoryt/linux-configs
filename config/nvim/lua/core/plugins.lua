@@ -106,10 +106,10 @@ return packer.startup(function(use)
     requires = "kyazdani42/nvim-web-devicons",
     config = [[require('plugin.lsp-trouble')]]
   }
-  use { 'RishabhRD/nvim-lsputils',
-    requires = { 'RishabhRD/popfix' },
-    config = [[require('plugin.nvim-lsputils')]],
-  }
+  -- use { 'RishabhRD/nvim-lsputils',
+  --   requires = { 'RishabhRD/popfix' },
+  --   config = [[require('plugin.nvim-lsputils')]],
+  -- }
 
   use {
     'neovim/nvim-lspconfig',
