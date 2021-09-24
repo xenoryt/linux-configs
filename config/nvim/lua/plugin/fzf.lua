@@ -2,7 +2,7 @@ local nmap = U.keymap.nmap
 local imap = U.keymap.imap
 
 
-if vim.fn.executable('rg') then
+if vim.fn.executable('rg') == 1 then
   --vim.g['FZF_DEFAULT_COMMAND'] = "rg --files --hidden -g '!.git' "
   vim.cmd [[
     function! RipgrepFzf(query, fullscreen)
