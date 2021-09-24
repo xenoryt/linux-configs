@@ -1,3 +1,7 @@
+local nmap = U.keymap.nmap
+
+nmap('<Leader>n', ':lcd ~/neorg<CR>:echo "Directory set to ~/neorg"<CR>')
+
 require('neorg').setup {
   -- Tell Neorg what modules to load
   load = {
@@ -13,8 +17,7 @@ require('neorg').setup {
     ["core.norg.dirman"] = { -- Manage your directories with Neorg
       config = {
         workspaces = {
-          default = "~/neorg/docs",
-          work = "~/neorg/work",
+          workspace = "~/neorg",
         }
       }
     },
@@ -39,4 +42,3 @@ require('neorg').setup {
   --  level = "warn",
   --}
 }
-print("Loaded neorg")
