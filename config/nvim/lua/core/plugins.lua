@@ -126,6 +126,12 @@ return packer.startup(function(use)
     config = [[require('plugin.telescope-fzf')]]
   }
 
+  -- Vimpeccable
+  use {
+    'svermeulen/vimpeccable',
+    setup = [[require('plugin.vimpeccable.keymaps')]]
+  }
+
   -- Autoinstall/compile plugins
   if vim.fn.isdirectory(vim.fn.glob(plugin_path)) > 0 then packer.install() end
   if vim.fn.empty(vim.fn.glob(packer_compiled)) > 0 then packer.compile() end

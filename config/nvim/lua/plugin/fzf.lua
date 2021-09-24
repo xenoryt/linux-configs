@@ -1,8 +1,27 @@
 local nmap = U.keymap.nmap
 local imap = U.keymap.imap
 
-nmap('<C-p>', ':FZF<CR>')
-nmap('<C-A-P>', ":call fzf#run(fzf#wrap({'source': 'find . -type f -not -path *.git/*'}))<CR>")
+
+if vim.fn.executable('rg') then
+  --vim.g['FZF_DEFAULT_COMMAND'] = "rg --files --hidden -g '!.git' "
+  vim.cmd [[
+    function! RipgrepFzf(query, fullscreen)
+      let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+      let initial_command = printf(command_fmt, shellescape(a:query))
+      let reload_command = printf(command_fmt, '{q}')
+      let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+      call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+    endfunction
+
+    command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+    command! -nargs=* -bang Files call fzf#vim#files(<q-args>, {'source': "rg --files --hidden -g '!.git'"}, <bang>0)
+    command! -nargs=* -bang FilesNoIgnore call fzf#vim#files(<q-args>, {'source': "rg --no-ignore --files --hidden -g '!.git'"}, <bang>0)
+  ]]
+end
+
+nmap('<C-p>', ':Files<CR>')
+nmap('<C-A-p>', ":FilesNoIgnore<CR>")
+nmap('<Leader>F', ":RG<CR>")
 nmap('<Leader>bb', ':History<CR>')
 
 --nmap('<C-p>', ':call CustomFZF#FilesWithDevIcons()<CR>')
