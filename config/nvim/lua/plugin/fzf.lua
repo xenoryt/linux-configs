@@ -14,8 +14,8 @@ if vim.fn.executable('rg') then
     endfunction
 
     command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-    command! -nargs=* -bang Files call fzf#vim#files(<q-args>, {'source': "rg --files --hidden -g '!.git'"}, <bang>0)
-    command! -nargs=* -bang FilesNoIgnore call fzf#vim#files(<q-args>, {'source': "rg --no-ignore --files --hidden -g '!.git'"}, <bang>0)
+    command! -nargs=* -bang Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': "rg --files --hidden -g '!.git'"}), <bang>0)
+    command! -nargs=* -bang FilesNoIgnore call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': "rg --no-ignore --files --hidden -g '!.git'"}), <bang>0)
   ]]
 end
 
