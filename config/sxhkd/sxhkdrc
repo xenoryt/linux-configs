@@ -109,9 +109,9 @@ super + alt + Equal
   bspc node --equalize
 
 
-# Increase/decrease window gap on focused desktop
-super + bracket{left,right}
-	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+# # Increase/decrease window gap on focused desktop
+# super + bracket{left,right}
+# 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
 
 # Focus parent/brother for preselection
 ctrl + alt + {Up,Down,Left,Right}
@@ -124,6 +124,22 @@ super + ctrl + {h,j,k,l}
 # # Define splitting ratio for next window on leaf/parent
 # super + ctrl + {_,shift +}{1-9}
 # 	bspc node {_,@/} --presel-ratio 0.{1-9}
+
+
+# Move window to desktop
+super + shift + {1-9,0}
+  bspc node -d focused:^{1-9,10}
+
+
+### Floating windows
+
+# Move floating window
+super + alt + m : {_,shift + }{Left,Down,Up,Right}
+  ~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}
+
+# Resize floating window
+super + alt + r : {_,shift + }{Left,Down,Up,Right}
+  ~/.config/bspwm/scripts/resize-window {expand,contract} {west,south,north,east} 15
 
 
 #################################################################
@@ -293,10 +309,6 @@ super + alt + Return
 # SUPER + ALT KEYS
 #################################################################
 
-# Move floating window
-#super + alt + {_,shift + }{Left,Down,Up,Right}
-#  ~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}
-
 #################################################################
 # SUPER + CONTROL KEYS
 #################################################################
@@ -314,14 +326,15 @@ alt + {_,shift + } Tab
 # ALT + SHIFT KEYS
 #################################################################
 
-#Switch here between qwerty and azerty or make new one
-#Move window to selected desktop FOR QWERTY KEYBOARDS
-super + shift + {1-9,0}
-  bspc node -d focused:^{1-9,10}
-    #id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
+# #Switch here between qwerty and azerty or make new one
+# #Move window to selected desktop FOR QWERTY KEYBOARDS
+# super + shift + {1-9,0}
+#   id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
 
 #Move window to selected desktop FOR AZERTY KEYBOARDS
 #super + shift + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
 #    id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
 
 #################################################################
+
+
