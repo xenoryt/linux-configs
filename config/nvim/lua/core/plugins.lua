@@ -74,15 +74,15 @@ return packer.startup(function(use)
     config = [[require('plugin.nvim-tree')]]
   }
 
-  use {
-    'lambdalisue/fern.vim',
-    requires = {
-      'lambdalisue/nerdfont.vim'
-    },
-    config = function()
-      vim.api.nvim_set_var('fern#renderer', 'nerdfont')
-    end
-  }
+  -- use {
+  --   'lambdalisue/fern.vim',
+  --   requires = {
+  --     'lambdalisue/nerdfont.vim'
+  --   },
+  --   config = function()
+  --     vim.api.nvim_set_var('fern#renderer', 'nerdfont')
+  --   end
+  -- }
 
   -- LSP Setup
   use {
