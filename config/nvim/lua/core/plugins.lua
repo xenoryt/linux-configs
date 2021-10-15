@@ -23,7 +23,7 @@ return packer.startup(function(use)
   use {
     "nvim-neorg/neorg",
     requires = {
-      --"nvim-neorg/neorg-telescope",
+      "nvim-neorg/neorg-telescope",
       "nvim-lua/plenary.nvim"
     },
 

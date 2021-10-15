@@ -49,7 +49,7 @@ set ('listchars', 'nbsp:¬,tab:\\|\\ ,extends:»,precedes:«,trail:•')
 
 
 -- Show the cursor position all the time.
-set 'noruler'
+set 'ruler'
 
 -- Display incomplete commands.
 set 'noshowcmd'
