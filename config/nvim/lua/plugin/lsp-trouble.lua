@@ -25,4 +25,5 @@ require("trouble").setup {
     },
     indent_lines = true, -- add an indent guide below the fold icons
 }
-nmap('<leader>e', ':Trouble lsp_workspace_diagnostics<cr>')
+nmap('<leader>ee', '<cmd>Trouble lsp_document_diagnostics<cr>')
+nmap('<leader>ew', '<cmd>Trouble lsp_workspace_diagnostics<cr>')

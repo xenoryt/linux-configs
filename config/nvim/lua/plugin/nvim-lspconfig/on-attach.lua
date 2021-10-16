@@ -46,7 +46,8 @@ local function mappings()
   lua_nmap('<space>gh', 'vim.lsp.buf.signature_help()')
   lua_nmap('gi', 'vim.lsp.buf.implementation()')
   -- ACTION mappings
-  lua_nmap('<space>aa', 'vim.lsp.buf.code_action()')
+  lua_nmap('<space>aa', 'require("lspsaga.codeaction").code_action()')
+  -- lua_nmap('<space>aa', 'vim.lsp.buf.code_action()')
   lua_nmap('<space>ar', 'require("lspsaga.rename").rename()')
   -- lua_map('<leader>ar',  'vim.lsp.buf.rename()')
   -- Few language severs support these three

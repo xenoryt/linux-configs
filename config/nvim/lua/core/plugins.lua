@@ -107,6 +107,12 @@ return packer.startup(function(use)
     config = [[require('plugin.nvim-lspconfig.init')]],
   }
 
+  -- use {
+  --   'glepnir/lspsaga.nvim',
+  --   config = [[require('plugin.lspsaga')]],
+  -- }
+
+
   -- TreeSitter
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -114,22 +120,17 @@ return packer.startup(function(use)
     config = [[require('plugin.nvim-treesitter')]],
   }
 
-  -- Telescope
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
-    config = [[require('plugin.telescope')]]
-  }
-  use {'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make',
-    after = 'telescope.nvim',
-    config = [[require('plugin.telescope-fzf')]]
-  }
-
   -- Vimpeccable
   use {
     'svermeulen/vimpeccable',
     setup = [[require('plugin.vimpeccable.keymaps')]]
+  }
+
+  -- Go
+  use {
+    'ray-x/go.nvim',
+    after = {'nvim-lspconfig'},
+    config = [[require('plugin.go')]]
   }
 
   -- Autoinstall/compile plugins
