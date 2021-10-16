@@ -36,11 +36,21 @@ return packer.startup(function(use)
 
   -- FZF file/content search
   use { 'junegunn/fzf', dir = '~/.fzf', run = './install --all' }
-  use { 'junegunn/fzf.vim',
-    opt = false,
+  -- use { 'junegunn/fzf.vim',
+  --   opt = false,
+  --   after = 'fzf',
+  --   setup = {[[require('plugin.fzf')]]}
+  -- }
+
+  use { 'ibhagwan/fzf-lua',
     after = 'fzf',
-    setup = {[[require('plugin.fzf')]]}
+    requires = {
+      'vijaymarupudi/nvim-fzf',
+      'kyazdani42/nvim-web-devicons' -- optional for icons
+    },
+    setup = [[require('plugin.fzf-lua')]]
   }
+
   --use { 'stsewd/fzf-checkout.vim',
   --  after = 'fzf',
   --  setup = [[require('plugin.fzf-checkout')]]
