@@ -2,6 +2,11 @@ local nmap = U.keymap.nmap
 local imap = U.keymap.imap
 local vmap = U.keymap.vmap
 
+local filesCmd = nil
+if vim.fn.executable('rg') == 1 then
+  filesCmd = 'rg --files --column --line-number --no-heading --color=always --smart-case --hidden -L -g "!.git"'
+end
+
 local actions = require "fzf-lua.actions"
 require'fzf-lua'.setup {
   winopts = {
@@ -157,7 +162,7 @@ require'fzf-lua'.setup {
   files = {
     -- previewer         = "cat",       -- uncomment to override previewer
     prompt            = 'Files❯ ',
-    cmd               = 'rg --files --column --line-number --no-heading --color=always --smart-case --hidden -L -g "!.git"',
+    cmd               = filesCmd,
     git_icons         = true,           -- show git icons?
     file_icons        = true,           -- show file icons?
     color_icons       = true,           -- colorize file|git icons
