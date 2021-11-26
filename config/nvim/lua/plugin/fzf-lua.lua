@@ -346,5 +346,6 @@ nmap('<C-p>', '<cmd>lua require("fzf-lua").files()<cr>')
 nmap('<C-f>', '<cmd>lua require("fzf-lua").grep()<cr>')
 vmap('<C-f>', '<cmd>lua require("fzf-lua").grep_visual()<cr>')
 nmap('<A-f>', '<cmd>lua require("fzf-lua").grep_curbuf()<cr>')
+nmap('<C-BS>', '<cmd>lua require("fzf-lua").grep_last()<cr>')
 
 nmap('<C-o>', '<cmd>lua require("fzf-lua").builtin()<cr>')
