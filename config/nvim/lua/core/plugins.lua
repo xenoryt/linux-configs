@@ -37,10 +37,16 @@ local pluginCategories = {
   files = {
     {'francoiscabrol/ranger.vim'},
     {
-      'kyazdani42/nvim-tree.lua',
-      requires = {'kyazdani42/nvim-web-devicons'},
-      config = [[require('plugin.nvim-tree')]]
+      'ms-jpq/chadtree',
+      branch = 'chad',
+      run = 'python3 -m chadtree deps',
+      config = [[require('plugin.chadtree')]],
     },
+    --{
+    --  'kyazdani42/nvim-tree.lua',
+    --  requires = {'kyazdani42/nvim-web-devicons'},
+    --  config = [[require('plugin.nvim-tree')]]
+    --},
   },
 
 
@@ -57,6 +63,7 @@ local pluginCategories = {
 
     {
       'neovim/nvim-lspconfig',
+      commit = '414af1b02aad0bc106967f75ed8defb1e29cb538',
       requires = {
         {'hrsh7th/nvim-compe', config = [[require('plugin.nvim-compe')]], opt = false},
         'kabouzeid/nvim-lspinstall',

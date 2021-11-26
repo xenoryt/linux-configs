@@ -6,8 +6,8 @@ local o = vim.opt
 -- Misc
 vim.g.python_host_skip_check = 1
 vim.g.python3_host_skip_check = 1
-vim.g.python2_host_prog = '/usr/local/bin/python2'
-vim.g.python3_host_prog = '/usr/local/bin/python3'
+vim.g.python2_host_prog = '/usr/bin/python2'
+vim.g.python3_host_prog = '/usr/bin/python3'
 
 -- Case insensitive :search etc.
 set 'wildignorecase'
