@@ -1,0 +1,236 @@
+[control-center]
+last-panel='keyboard'
+
+[desktop/applications/terminal]
+exec='kitty'
+
+[desktop/background]
+picture-uri='file:///usr/share/endeavouros/backgrounds/eos_wallpapers_community/flval_eos_amour.jpeg'
+
+[desktop/input-sources]
+per-window=false
+sources=[('xkb', 'us')]
+xkb-options=@as []
+
+[desktop/interface]
+clock-format='12h'
+clock-show-seconds=true
+cursor-theme='Adwaita'
+font-antialiasing='grayscale'
+font-hinting='slight'
+gtk-im-module='gtk-im-context-simple'
+gtk-theme='Arc'
+icon-theme='Arc-X-D'
+locate-pointer=false
+show-battery-percentage=false
+
+[desktop/notifications]
+application-children=['firefox', 'org-gnome-nautilus', 'discord', 'rhythmbox', 'gnome-power-panel', 'org-gnome-shell-extensions', 'steam', 'kitty', 'net-lutris-lutris', 'wine']
+
+[desktop/notifications/application/discord]
+application-id='discord.desktop'
+
+[desktop/notifications/application/firefox]
+application-id='firefox.desktop'
+
+[desktop/notifications/application/gnome-power-panel]
+application-id='gnome-power-panel.desktop'
+
+[desktop/notifications/application/kitty]
+application-id='kitty.desktop'
+
+[desktop/notifications/application/net-lutris-lutris]
+application-id='net.lutris.Lutris.desktop'
+
+[desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
+[desktop/notifications/application/org-gnome-shell-extensions]
+application-id='org.gnome.Shell.Extensions.desktop'
+
+[desktop/notifications/application/rhythmbox]
+application-id='rhythmbox.desktop'
+
+[desktop/notifications/application/steam]
+application-id='steam.desktop'
+
+[desktop/notifications/application/wine]
+application-id='wine.desktop'
+
+[desktop/peripherals/keyboard]
+numlock-state=true
+
+[desktop/wm/keybindings]
+close=['<Shift><Super>q']
+minimize=['<Super>z']
+move-to-workspace-1=['<Shift><Super>exclam']
+move-to-workspace-2=['<Shift><Super>at']
+move-to-workspace-3=['<Shift><Super>numbersign']
+move-to-workspace-4=['<Shift><Super>dollar']
+move-to-workspace-left=['<Primary><Shift><Super>Tab']
+move-to-workspace-right=['<Primary><Super>Tab']
+switch-applications=['<Alt>grave']
+switch-applications-backward=['<Shift><Alt>grave']
+switch-to-workspace-1=['<Super>1']
+switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
+switch-to-workspace-left=['<Shift><Super>Tab']
+switch-to-workspace-right=['<Super>Tab']
+switch-windows=['<Alt>Tab']
+switch-windows-backward=['<Shift><Alt>Tab']
+
+[desktop/wm/preferences]
+resize-with-right-button=true
+
+[file-roller/listing]
+list-mode='as-folder'
+name-column-width=250
+show-path=false
+sort-method='name'
+sort-type='ascending'
+
+[file-roller/ui]
+sidebar-width=200
+window-height=480
+window-width=600
+
+[nautilus/icon-view]
+default-zoom-level='standard'
+
+[nautilus/list-view]
+default-zoom-level='small'
+
+[nautilus/preferences]
+default-folder-viewer='icon-view'
+search-filter-time-type='last_modified'
+search-view='list-view'
+
+[nautilus/window-state]
+initial-size=(890, 550)
+maximized=false
+
+[rhythmbox]
+position=(1003, 468)
+size=(897, 585)
+
+[rhythmbox/library]
+layout-filename='%tN - %tt'
+layout-path='%aa/%at'
+
+[rhythmbox/library/encoding]
+media-type='audio/x-vorbis'
+
+[rhythmbox/library/source]
+show-browser=true
+
+[rhythmbox/player]
+play-order='shuffle'
+volume=1.0
+
+[rhythmbox/plugins]
+active-plugins=['power-manager', 'rb', 'mpris', 'dbus-media-server', 'audiocd', 'generic-player', 'iradio', 'android', 'mmkeys']
+seen-plugins=['daap', 'grilo', 'rb', 'mpris', 'lyrics', 'artsearch', 'dbus-media-server', 'listenbrainz', 'audioscrobbler', 'magnatune', 'rbzeitgeist', 'webremote', 'pythonconsole', 'im-status', 'notification', 'rblirc', 'fmradio', 'mtpdevice', 'soundcloud', 'ipod', 'cd-recorder', 'replaygain']
+
+[rhythmbox/plugins/audioscrobbler/Last.fm]
+scrobbling-enabled=true
+
+[rhythmbox/plugins/audioscrobbler/Libre.fm]
+scrobbling-enabled=true
+
+[rhythmbox/plugins/iradio]
+initial-stations-loaded=true
+
+[rhythmbox/plugins/iradio/source]
+show-browser=true
+
+[rhythmbox/podcast]
+download-location='file:///home/xenoryt/Music'
+
+[rhythmbox/podcast/source]
+show-browser=true
+
+[rhythmbox/rhythmdb]
+locations=['file:///home/xenoryt/Music']
+monitor-library=true
+
+[rhythmbox/sources]
+visible-columns=['post-time', 'duration', 'track-number', 'album', 'genre', 'artist']
+
+[settings-daemon/plugins/media-keys]
+area-screenshot-clip=['<Super>Print']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+home=['<Super>e']
+mic-mute=['<Super>v']
+next=['<Alt><Super>Right']
+play=['<Alt><Super>Down']
+previous=['<Alt><Super>Left']
+screenshot=@as []
+screenshot-clip=['Print']
+stop=['<Alt><Super>Up']
+volume-down=['AudioLowerVolume']
+volume-mute=['AudioMute']
+volume-up=['AudioRaiseVolume']
+window-screenshot=@as []
+window-screenshot-clip=['<Alt>Print']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Super>t'
+command='kitty'
+name='Terminal'
+
+[shell]
+command-history=['r']
+enabled-extensions=['mprisindicatorbutton@JasonLG1979.github.io', 'dash-to-dock@micxgx.gmail.com', 'alttab-mod@leleat-on-github', 'switcher@landau.fi', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'clear-top-bar@superterran.net', 'focus-changer@heartmire', 'trayIconsReloaded@selfmade.pl']
+favorite-apps=['firefox.desktop', 'steam.desktop', 'discord.desktop']
+had-bluetooth-devices-setup=true
+welcome-dialog-last-shown-version='41.1'
+
+[shell/extensions/dash-to-dock]
+background-opacity=0.80000000000000004
+custom-theme-shrink=false
+dash-max-icon-size=48
+dock-position='BOTTOM'
+height-fraction=0.90000000000000002
+hot-keys=false
+isolate-workspaces=false
+max-alpha=0.80000000000000004
+scroll-action='switch-workspace'
+show-mounts=false
+show-show-apps-button=false
+show-trash=false
+transparency-mode='DYNAMIC'
+
+[shell/extensions/forge]
+tiling-mode-enabled=false
+
+[shell/extensions/forge/keybindings]
+mod-mask-mouse-tile='Ctrl'
+
+[shell/extensions/gtile]
+show-toggle-tiling=['<Shift><Super>w']
+theme='Default'
+
+[shell/extensions/switcher]
+activate-by-key=uint32 2
+launcher-stats='{"eos-update-notifier-configure.desktop":1,"org.keepassxc.KeePassXC.desktop":3}'
+show-switcher=['<Super>s']
+
+[shell/extensions/trayIconsReloaded]
+invoke-to-workspace=false
+
+[shell/keybindings]
+shift-overview-down=['<Super><Shift>d']
+shift-overview-up=['<Super>d']
+switch-to-application-1=@as []
+switch-to-application-2=@as []
+switch-to-application-3=@as []
+switch-to-application-4=@as []
+switch-to-application-5=@as []
+switch-to-application-6=@as []
+switch-to-application-7=@as []
+toggle-message-tray=@as []
+toggle-overview=@as []
+
+[tweaks]
+show-extensions-notice=false
