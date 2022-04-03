@@ -1,0 +1,29 @@
+" General Settings
+set configversion 1.8
+js tri.config.set("update", {"lastchecktime": 1581276075218})
+set theme shydactyl
+set editorcmd kitty nvim %f -c 'normal %lG%cl'
+
+unbind d
+unbind u
+unbind <C-f>
+unbind '
+
+bind d scrollline 20
+bind u scrollline -20
+bind j scrollline 5
+bind k scrollline -5
+bind s scrollline 5
+bind w scrollline -5
+bind x tabclose
+
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+
+bind '' jumpprev
+bind [q jumpprev
+bind ]q jumpnext
+
+" vim: set filetype=vim:
