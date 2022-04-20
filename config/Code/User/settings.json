@@ -1,0 +1,9 @@
+{
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+  "editor.tabSize": 2,
+  "workbench.editor.tabCloseButton": "off",
+  "workbench.editor.showTabs": false,
+  "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/vscode/init.vim",
+  "workbench.startupEditor": "none",
+  "editor.selectionClipboard": false
+}
