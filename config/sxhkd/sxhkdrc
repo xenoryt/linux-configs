@@ -248,7 +248,8 @@ alt + Print
 #   pactl -- set-source-mute 1 toggle
 
 super + v
-  pactl -- set-source-mute 1 toggle
+  pactl set-source-mute $(pactl list short sources | grep RUNNING | cut -f1) toggle
+  #pactl -- set-source-mute 1 toggle
 
 #Playerctl works for Pragha, Spotify and others
 #Delete the line for playerctl if you want to use mpc
