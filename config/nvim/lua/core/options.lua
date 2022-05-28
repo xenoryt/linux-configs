@@ -156,6 +156,8 @@ set 'smartindent'
 
 set 'nowrap'
 
+set ('pastetoggle', '<F10>')
+
 -- Line numbers
 -- Show line numbers
 set 'number'
