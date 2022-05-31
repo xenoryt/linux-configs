@@ -1,2 +1,7 @@
-nnoremap <leader>v <Cmd>call <SID>split('v')<CR>
-nnoremap <leader>s <Cmd>call <SID>split('h')<CR>
+nnoremap <leader>v :vsplit<CR>
+nnoremap <leader>s :split<CR>
+
+nnoremap <leader>t :tabnew<CR>
+
+nnoremap <Leader>d "_d
+nnoremap Y y$

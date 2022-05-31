@@ -36,12 +36,12 @@ local pluginCategories = {
   -- File browser and quick fix list
   files = {
     {'francoiscabrol/ranger.vim'},
-    {
-      'ms-jpq/chadtree',
-      branch = 'chad',
-      run = 'python3 -m chadtree deps',
-      config = [[require('plugin.chadtree')]],
-    },
+    --{
+    --  'ms-jpq/chadtree',
+    --  branch = 'chad',
+    --  run = 'python3 -m chadtree deps',
+    --  config = [[require('plugin.chadtree')]],
+    --},
     --{
     --  'kyazdani42/nvim-tree.lua',
     --  requires = {'kyazdani42/nvim-web-devicons'},
