@@ -28,7 +28,7 @@ require'nvim-treesitter.configs'.setup {
     'html',
     'javascript',
     'jsdoc',
-    'json',
+    --'json',
     'lua',
     'python',
     'toml',
