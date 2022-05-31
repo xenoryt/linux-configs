@@ -310,6 +310,10 @@ super + alt + Return
 # SUPER + ALT KEYS
 #################################################################
 
+super + alt + p : ~{super,alt} + {_,shift,alt} + {Tab,e,r,d,Left,Right,Up,Down}
+  #~{_,super,alt,ctrl +} {_,super,alt,ctrl +} {_,Tab,Left,Right,Up,Down}
+  echo
+
 #################################################################
 # SUPER + CONTROL KEYS
 #################################################################
@@ -320,8 +324,8 @@ super + alt + Return
 # ALT KEYS
 #################################################################
 #Next window
-alt + {_,shift + } Tab
-	bspc node -f {next,prev}.local
+alt + {_,shift + } + Tab
+  bspc node -f {next,prev}.local
 
 #################################################################
 # ALT + SHIFT KEYS
