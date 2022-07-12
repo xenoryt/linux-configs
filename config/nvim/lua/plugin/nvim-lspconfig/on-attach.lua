@@ -49,19 +49,19 @@ local function mappings()
   -- ACTION mappings
   lua_nmap('<space>aa', 'require("lspsaga.codeaction").code_action()')
   -- lua_nmap('<space>aa', 'vim.lsp.buf.code_action()')
-  lua_nmap('<space>ar', 'require("lspsaga.rename").rename()')
-  -- lua_map('<leader>ar',  'vim.lsp.buf.rename()')
+  -- lua_nmap('<space>ar', 'require("lspsaga.rename").rename()')
+  lua_nmap('<space>ar',  'vim.lsp.buf.rename()')
   -- Few language severs support these three
   lua_nmap('<space>f', 'vim.lsp.buf.formatting()')
   lua_nmap('<leader>ai', 'vim.lsp.buf.incoming_calls()')
   lua_nmap('<leader>ao', 'vim.lsp.buf.outgoing_calls()')
 
   -- Diagnostics mapping
-  lua_nmap('<space>e', 'vim.lsp.diagnostic.show_line_diagnostics()')
-  lua_nmap('<space>d', 'vim.lsp.diagnostic.set_loclist()')
-  lua_nmap('<space>D', 'lclose')
-  lua_nmap(']d', 'vim.lsp.diagnostic.goto_next()')
-  lua_nmap('[d', 'vim.lsp.diagnostic.goto_prev()')
+  lua_nmap('<space>e', 'vim.diagnostic.open_float()')
+  lua_nmap('<space>d', 'vim.diagnostic.setloclist()')
+  buf_nmap('<space>D', 'lclose')
+  lua_nmap(']d', 'vim.diagnostic.goto_next()')
+  lua_nmap('[d', 'vim.diagnostic.goto_prev()')
 end
 
 

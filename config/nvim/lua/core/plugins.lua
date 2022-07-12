@@ -42,6 +42,38 @@ local pluginCategories = {
     --  run = 'python3 -m chadtree deps',
     --  config = [[require('plugin.chadtree')]],
     --},
+    {
+      "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+        {
+          -- only needed if you want to use the commands with "_with_window_picker" suffix
+          's1n7ax/nvim-window-picker',
+          tag = "1.*",
+          config = function()
+            require'window-picker'.setup({
+              autoselect_one = true,
+              include_current = false,
+              filter_rules = {
+                -- filter using buffer options
+                bo = {
+                  -- if the file type is one of following, the window will be ignored
+                  filetype = { 'neo-tree', "neo-tree-popup", "notify", "quickfix" },
+
+                  -- if the buffer type is one of following, the window will be ignored
+                  buftype = { 'terminal' },
+                },
+              },
+              other_win_hl_color = '#e35e4f',
+            })
+          end,
+        }
+      },
+      config = [[require('plugin.neo-tree')]]
+    },
     --{
     --  'kyazdani42/nvim-tree.lua',
     --  requires = {'kyazdani42/nvim-web-devicons'},
@@ -63,11 +95,10 @@ local pluginCategories = {
 
     {
       'neovim/nvim-lspconfig',
-      commit = '414af1b02aad0bc106967f75ed8defb1e29cb538',
       requires = {
         {'hrsh7th/nvim-compe', config = [[require('plugin.nvim-compe')]], opt = false},
-        'kabouzeid/nvim-lspinstall',
-        'glepnir/lspsaga.nvim',
+        'williamboman/nvim-lsp-installer',
+        --'glepnir/lspsaga.nvim',
         'folke/lsp-colors.nvim', -- for better colourschemes
         'jose-elias-alvarez/nvim-lsp-ts-utils',
       },
@@ -116,7 +147,6 @@ local pluginCategories = {
 
       after = "nvim-treesitter",
       config = [[require('plugin.neorg')]],
-      branch = "main",
     },
 
     -- TreeSitter
