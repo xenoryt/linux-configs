@@ -11,5 +11,11 @@
   "go.autocompleteUnimportedPackages": true,
   "go.formatTool": "goimports",
   "terminal.integrated.enableMultiLinePasteWarning": false,
-  "remote.SSH.connectTimeout": 60
+  "remote.SSH.connectTimeout": 60,
+  "editor.selectionClipboard": false,
+  "workbench.editorAssociations": {
+    "*.html": "default"
+  },
+  "explorer.confirmDelete": false,
+  "vscode-neovim.mouseSelectionStartVisualMode": true
 }
