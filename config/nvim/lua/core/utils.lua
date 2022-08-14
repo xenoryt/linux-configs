@@ -72,6 +72,9 @@ end
 local function buf_nmap(lhs, rhs, opts)
   return map_keys('n', lhs, rhs, opts, 'buffer')
 end
+local function buf_imap(lhs, rhs, opts)
+  return map_keys('i', lhs, rhs, opts, 'buffer')
+end
 
 
 U.keymap = {
@@ -85,6 +88,7 @@ U.keymap = {
   omap = omap,
   smap = smap,
   buf_nmap = buf_nmap,
+  buf_imap = buf_imap,
 }
 
 local function isempty(s)

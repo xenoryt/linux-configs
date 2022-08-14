@@ -1,6 +1,10 @@
 local buf_nmap = U.keymap.buf_nmap
+local buf_imap = U.keymap.buf_imap
 local function lua_nmap(lhs, rhs, opts)
   buf_nmap(lhs, '<cmd>lua  ' .. rhs .. '<CR>', opts)
+end
+local function lua_imap(lhs, rhs, opts)
+  buf_imap(lhs, '<cmd>lua  ' .. rhs .. '<CR>', opts)
 end
 
 -- Prettier
@@ -47,6 +51,7 @@ local function mappings()
   lua_nmap('<space>gh', 'vim.lsp.buf.signature_help()')
   lua_nmap('gi', 'vim.lsp.buf.implementation()')
   -- ACTION mappings
+  lua_imap('<C-space>', 'vim.lsp.buf.completion()')
   lua_nmap('<space>aa', 'require("lspsaga.codeaction").code_action()')
   -- lua_nmap('<space>aa', 'vim.lsp.buf.code_action()')
   -- lua_nmap('<space>ar', 'require("lspsaga.rename").rename()')

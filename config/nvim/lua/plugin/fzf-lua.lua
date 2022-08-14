@@ -25,7 +25,7 @@ require'fzf-lua'.setup {
     -- to manually draw the border characters around the preview
     -- window, can be set to 'false' to remove all borders or to
     -- 'none', 'single', 'double' or 'rounded' (default)
-    border           = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+    border           = 'rounded', --{ '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
     fullscreen       = false,           -- start fullscreen?
     hl = {
       normal         = 'Normal',        -- window normal color (fg+bg)

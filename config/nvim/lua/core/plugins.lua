@@ -138,16 +138,16 @@ local pluginCategories = {
     },
 
     -- Note taking
-    {
-      "nvim-neorg/neorg",
-      requires = {
-        "nvim-neorg/neorg-telescope",
-        "nvim-lua/plenary.nvim"
-      },
+    --{
+    --  "nvim-neorg/neorg",
+    --  requires = {
+    --    "nvim-neorg/neorg-telescope",
+    --    "nvim-lua/plenary.nvim"
+    --  },
 
-      after = "nvim-treesitter",
-      config = [[require('plugin.neorg')]],
-    },
+    --  after = "nvim-treesitter",
+    --  config = [[require('plugin.neorg')]],
+    --},
 
     -- TreeSitter
     {
