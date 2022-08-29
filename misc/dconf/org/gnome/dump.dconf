@@ -1,5 +1,12 @@
 [control-center]
 last-panel='keyboard'
+window-state=(1920, 1152, true)
+
+[desktop/a11y/applications]
+screen-reader-enabled=false
+
+[desktop/app-folders]
+folder-children=['Utilities', 'YaST']
 
 [desktop/applications/terminal]
 exec='kitty'
@@ -15,17 +22,36 @@ xkb-options=@as []
 [desktop/interface]
 clock-format='12h'
 clock-show-seconds=true
-cursor-theme='Adwaita'
+cursor-size=24
+cursor-theme='Yaru-remix'
+enable-animations=true
 font-antialiasing='grayscale'
 font-hinting='slight'
-gtk-im-module='gtk-im-context-simple'
+font-name='Noto Sans,  10'
 gtk-theme='Arc'
-icon-theme='Arc-X-D'
+icon-theme='Paper'
 locate-pointer=false
 show-battery-percentage=false
+toolbar-style='text'
 
 [desktop/notifications]
-application-children=['firefox', 'org-gnome-nautilus', 'discord', 'rhythmbox', 'gnome-power-panel', 'org-gnome-shell-extensions', 'steam', 'kitty', 'net-lutris-lutris', 'wine']
+application-children=['firefox', 'org-gnome-nautilus', 'discord', 'rhythmbox', 'gnome-power-panel', 'org-gnome-shell-extensions', 'steam', 'kitty', 'net-lutris-lutris', 'wine', 'pavucontrol', 'nm-applet', 'blueman-adapters', 'org-gnome-chromegnomeshell', 'org-gnome-extensions-desktop', 'gnome-network-panel', 'steam-native', 'peony', 'musique', 'gimp', 'slack', 'com-nextcloud-desktopclient-nextcloud', 'code-oss', 'visual-studio-code', 'speedcrunch', 'minecraft-launcher', 'deluge', 'org-gnome-fileroller', 'ca-desrt-dconf-editor', 'multimc']
+show-banners=true
+
+[desktop/notifications/application/blueman-adapters]
+application-id='blueman-adapters.desktop'
+
+[desktop/notifications/application/ca-desrt-dconf-editor]
+application-id='ca.desrt.dconf-editor.desktop'
+
+[desktop/notifications/application/code-oss]
+application-id='code-oss.desktop'
+
+[desktop/notifications/application/com-nextcloud-desktopclient-nextcloud]
+application-id='com.nextcloud.desktopclient.nextcloud.desktop'
+
+[desktop/notifications/application/deluge]
+application-id='deluge.desktop'
 
 [desktop/notifications/application/discord]
 application-id='discord.desktop'
@@ -33,14 +59,41 @@ application-id='discord.desktop'
 [desktop/notifications/application/firefox]
 application-id='firefox.desktop'
 
+[desktop/notifications/application/gimp]
+application-id='gimp.desktop'
+
+[desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
+
 [desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
 
 [desktop/notifications/application/kitty]
 application-id='kitty.desktop'
 
+[desktop/notifications/application/minecraft-launcher]
+application-id='minecraft-launcher.desktop'
+
+[desktop/notifications/application/multimc]
+application-id='multimc.desktop'
+
+[desktop/notifications/application/musique]
+application-id='musique.desktop'
+
 [desktop/notifications/application/net-lutris-lutris]
 application-id='net.lutris.Lutris.desktop'
+
+[desktop/notifications/application/nm-applet]
+application-id='nm-applet.desktop'
+
+[desktop/notifications/application/org-gnome-chromegnomeshell]
+application-id='org.gnome.ChromeGnomeShell.desktop'
+
+[desktop/notifications/application/org-gnome-extensions-desktop]
+application-id='org.gnome.Extensions.desktop.desktop'
+
+[desktop/notifications/application/org-gnome-fileroller]
+application-id='org.gnome.FileRoller.desktop'
 
 [desktop/notifications/application/org-gnome-nautilus]
 application-id='org.gnome.Nautilus.desktop'
@@ -48,11 +101,29 @@ application-id='org.gnome.Nautilus.desktop'
 [desktop/notifications/application/org-gnome-shell-extensions]
 application-id='org.gnome.Shell.Extensions.desktop'
 
+[desktop/notifications/application/pavucontrol]
+application-id='pavucontrol.desktop'
+
+[desktop/notifications/application/peony]
+application-id='peony.desktop'
+
 [desktop/notifications/application/rhythmbox]
 application-id='rhythmbox.desktop'
 
+[desktop/notifications/application/slack]
+application-id='slack.desktop'
+
+[desktop/notifications/application/speedcrunch]
+application-id='speedcrunch.desktop'
+
+[desktop/notifications/application/steam-native]
+application-id='steam-native.desktop'
+
 [desktop/notifications/application/steam]
 application-id='steam.desktop'
+
+[desktop/notifications/application/visual-studio-code]
+application-id='visual-studio-code.desktop'
 
 [desktop/notifications/application/wine]
 application-id='wine.desktop'
@@ -62,26 +133,42 @@ numlock-state=true
 
 [desktop/wm/keybindings]
 close=['<Shift><Super>q']
-minimize=['<Super>z']
+maximize=['']
+minimize=['']
 move-to-workspace-1=['<Shift><Super>exclam']
 move-to-workspace-2=['<Shift><Super>at']
 move-to-workspace-3=['<Shift><Super>numbersign']
 move-to-workspace-4=['<Shift><Super>dollar']
 move-to-workspace-left=['<Primary><Shift><Super>Tab']
 move-to-workspace-right=['<Primary><Super>Tab']
-switch-applications=['<Alt>grave']
-switch-applications-backward=['<Shift><Alt>grave']
-switch-to-workspace-1=['<Super>1']
-switch-to-workspace-2=['<Super>2']
-switch-to-workspace-3=['<Super>3']
-switch-to-workspace-4=['<Super>4']
-switch-to-workspace-left=['<Shift><Super>Tab']
-switch-to-workspace-right=['<Super>Tab']
+switch-applications=['<Super>grave']
+switch-applications-backward=['<Shift><Super>grave']
+switch-group=['<Alt>grave']
+switch-group-backward=['<Shift><Alt>grave']
+switch-to-workspace-1=['']
+switch-to-workspace-2=['']
+switch-to-workspace-3=['']
+switch-to-workspace-4=['']
+switch-to-workspace-left=['<Shift><Super>Tab', '<Ctrl><Alt>h']
+switch-to-workspace-right=['<Super>Tab', '<Ctrl><Alt>l']
 switch-windows=['<Alt>Tab']
 switch-windows-backward=['<Shift><Alt>Tab']
+unmaximize=['']
 
 [desktop/wm/preferences]
+button-layout='appmenu:close'
 resize-with-right-button=true
+
+[eog/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
+
+[evince/default]
+window-ratio=(0.98039215686274506, 0.75757575757575757)
+
+[file-roller/dialogs/extract]
+recreate-folders=true
+skip-newer=false
 
 [file-roller/listing]
 list-mode='as-folder'
@@ -95,6 +182,22 @@ sidebar-width=200
 window-height=480
 window-width=600
 
+[mutter]
+center-new-windows=false
+dynamic-workspaces=true
+edge-tiling=true
+workspaces-only-on-primary=true
+
+[mutter/keybindings]
+toggle-tiled-left=['']
+toggle-tiled-right=['']
+
+[mutter/wayland/keybindings]
+restore-shortcuts=['']
+
+[nautilus/compression]
+default-compression-format='zip'
+
 [nautilus/icon-view]
 default-zoom-level='standard'
 
@@ -102,13 +205,13 @@ default-zoom-level='standard'
 default-zoom-level='small'
 
 [nautilus/preferences]
-default-folder-viewer='icon-view'
+default-folder-viewer='list-view'
 search-filter-time-type='last_modified'
 search-view='list-view'
 
 [nautilus/window-state]
-initial-size=(890, 550)
-maximized=false
+initial-size=(1031, 550)
+maximized=true
 
 [rhythmbox]
 position=(1003, 468)
@@ -179,10 +282,16 @@ binding='<Super>t'
 command='kitty'
 name='Terminal'
 
+[settings-daemon/plugins/power]
+sleep-inactive-ac-timeout=7200
+sleep-inactive-ac-type='suspend'
+
 [shell]
-command-history=['r']
-enabled-extensions=['mprisindicatorbutton@JasonLG1979.github.io', 'dash-to-dock@micxgx.gmail.com', 'alttab-mod@leleat-on-github', 'switcher@landau.fi', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'clear-top-bar@superterran.net', 'focus-changer@heartmire', 'trayIconsReloaded@selfmade.pl']
-favorite-apps=['firefox.desktop', 'steam.desktop', 'discord.desktop']
+command-history=['picard', 'gnome-terminal', 'logout', 'r']
+disable-user-extensions=false
+disabled-extensions=['dock-from-dash@fthx', 'dash-to-dock@micxgx.gmail.com']
+enabled-extensions=['asdf', 'mprisindicatorbutton@JasonLG1979.github.io', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'material-shell@papyelgringo']
+favorite-apps=['firefox.desktop', 'discord.desktop']
 had-bluetooth-devices-setup=true
 welcome-dialog-last-shown-version='41.1'
 
@@ -195,11 +304,17 @@ height-fraction=0.90000000000000002
 hot-keys=false
 isolate-workspaces=false
 max-alpha=0.80000000000000004
+preferred-monitor=-2
+preferred-monitor-by-connector='DP-0'
 scroll-action='switch-workspace'
 show-mounts=false
 show-show-apps-button=false
 show-trash=false
 transparency-mode='DYNAMIC'
+
+[shell/extensions/dock-from-dash]
+always-show=false
+show-in-full-screen=false
 
 [shell/extensions/forge]
 tiling-mode-enabled=false
@@ -211,17 +326,68 @@ mod-mask-mouse-tile='Ctrl'
 show-toggle-tiling=['<Shift><Super>w']
 theme='Default'
 
+[shell/extensions/materialshell/bindings]
+app-launcher=['']
+focus-monitor-down=['']
+focus-monitor-left=['<Super>z']
+focus-monitor-right=['<Super>x']
+focus-monitor-up=['']
+kill-focused-window=['']
+last-workspace=['']
+move-window-monitor-left=['<Shift><Super>z']
+move-window-monitor-right=['<Shift><Super>x']
+use-float-layout=['<Control><Alt>f']
+use-grid-layout=['']
+use-half-layout=['<Control><Alt>v']
+use-maximize-layout=['<Control><Alt>m']
+use-ratio-layout=['']
+use-simple-layout=['']
+use-split-layout=['<Control><Alt>s']
+
+[shell/extensions/materialshell/layouts]
+gap=0
+simple=false
+
+[shell/extensions/materialshell/theme]
+clock-horizontal=true
+focus-effect='default'
+panel-icon-color=false
+panel-opacity=80
+panel-size=32
+surface-opacity=100
+theme='dark'
+
+[shell/extensions/materialshell/tweaks]
+cycle-through-windows=true
+cycle-through-workspaces=false
+enable-persistence=false
+
 [shell/extensions/switcher]
 activate-by-key=uint32 2
-launcher-stats='{"eos-update-notifier-configure.desktop":1,"org.keepassxc.KeePassXC.desktop":3}'
+launcher-stats='{"eos-update-notifier-configure.desktop":1,"org.keepassxc.KeePassXC.desktop":3,"org.gnome.Terminal.desktop":1,"net.lutris.Lutris.desktop":1}'
 show-switcher=['<Super>s']
 
 [shell/extensions/trayIconsReloaded]
+applications='[]'
+icon-brightness=0
+icon-contrast=0
+icon-margin-horizontal=4
+icon-padding-horizontal=10
+icon-saturation=0
+icon-size=24
+icons-limit=10
 invoke-to-workspace=false
+tray-margin-left=6
+tray-margin-right=6
+
+[shell/extensions/user-theme]
+name='Yaru-remix-dark'
 
 [shell/keybindings]
+screenshot=['Print']
 shift-overview-down=['<Super><Shift>d']
-shift-overview-up=['<Super>d']
+shift-overview-up=['']
+show-screenshot-ui=['<Super>Print']
 switch-to-application-1=@as []
 switch-to-application-2=@as []
 switch-to-application-3=@as []
@@ -229,8 +395,14 @@ switch-to-application-4=@as []
 switch-to-application-5=@as []
 switch-to-application-6=@as []
 switch-to-application-7=@as []
+switch-to-application-8=['']
+switch-to-application-9=['']
+toggle-application-view=['']
 toggle-message-tray=@as []
 toggle-overview=@as []
+
+[shell/overrides]
+attach-modal-dialogs=false
 
 [tweaks]
 show-extensions-notice=false

@@ -8,4 +8,4 @@ name="$(basename "$file")"
 path="$(dirname "$file")"
 
 echo "Dumping /$path to '$file'"
-#dconf dump "/$path" > "${path}/${name}.dconf"
+dconf dump "/$path/" > "${file}"
