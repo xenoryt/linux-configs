@@ -348,4 +348,4 @@ vmap('<C-f>', '<cmd>lua require("fzf-lua").grep_visual()<cr>')
 nmap('<A-f>', '<cmd>lua require("fzf-lua").grep_curbuf()<cr>')
 nmap('<C-BS>', '<cmd>lua require("fzf-lua").grep_last()<cr>')
 
-nmap('<C-o>', '<cmd>lua require("fzf-lua").builtin()<cr>')
+nmap('<A-p>', '<cmd>lua require("fzf-lua").builtin()<cr>')

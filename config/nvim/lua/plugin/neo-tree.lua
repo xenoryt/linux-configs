@@ -98,16 +98,20 @@ require("neo-tree").setup({
       },
       ["<2-LeftMouse>"] = "open",
       ["<cr>"] = "open",
+      ["<esc>"] = "revert_preview",
+      ["P"] = { "toggle_preview", config = { use_float = true } },
       ["o"] = "open",
+      ["O"] = "open_with_window_picker",
       -- ["S"] = "open_split",
       -- ["s"] = "open_vsplit",
       ["S"] = "split_with_window_picker",
-      ["s"] = "vsplit_with_window_picker",
+      ["s"] = "open_split",
+      ["V"] = "vsplit_with_window_picker",
+      ["v"] = "open_vsplit",
       ["t"] = "open_tabnew",
-      ["w"] = "open_with_window_picker",
       ["C"] = "close_node",
-      ["z"] = "close_all_nodes",
-      --["Z"] = "expand_all_nodes",
+      ["-"] = "close_all_nodes",
+      ["+"] = "expand_all_nodes",
       ["a"] = {
         "add",
         -- some commands may take optional config options, see `:h neo-tree-mappings` for details
@@ -137,6 +141,8 @@ require("neo-tree").setup({
       ["q"] = "close_window",
       ["R"] = "refresh",
       ["?"] = "show_help",
+      ["<"] = "prev_source",
+      [">"] = "next_source",
     }
   },
   nesting_rules = {},
@@ -144,7 +150,7 @@ require("neo-tree").setup({
     filtered_items = {
       visible = false, -- when true, they will just be displayed differently than normal items
       hide_dotfiles = true,
-      hide_gitignored = true,
+      hide_gitignored = false,
       hide_hidden = true, -- only works on Windows for hidden files/directories
       hide_by_name = {
         --"node_modules"
@@ -172,6 +178,7 @@ require("neo-tree").setup({
         ["<bs>"] = "navigate_up",
         ["."] = "set_root",
         ["Z"] = "toggle_hidden",
+        ["z"] = "",
         ["/"] = "fuzzy_finder",
         ["D"] = "fuzzy_finder_directory",
         ["f"] = "filter_on_submit",

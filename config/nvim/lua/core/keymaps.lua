@@ -33,10 +33,13 @@ nmap('<esc>', ':nohlsearch<return><esc>')
 nmap('<leader>t', ':tabedit ')
 
 -- Previous tab (override unimpaired jump to next tag)
-nmap('<S-tab>', ':tabp<CR>')
+nmap('T', ':tabp<CR>', { noremap = true })
 
 -- Next tab (override unimpaired jump to previous tag)
-nmap('<tab>', ':tabn<CR>')
+nmap('t', ':tabn<CR>', { noremap = true })
+
+
+nmap('<A-o>', '<C-i>', { noremap = true })
 
 -- Yank to end of line
 nmap('Y', 'y$')
