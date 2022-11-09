@@ -78,7 +78,7 @@ return function(client)
 
   -- if client.name == 'typescript' then require('nvim-lsp-ts-utils').setup {} end
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
   end
 end

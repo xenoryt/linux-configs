@@ -125,7 +125,7 @@ local function setup_servers()
     config.capabilities = capabilities
     config.on_attach = function(client)
       if server.name == "typescript" then
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
       end
       on_attach_common(client)
     end
