@@ -125,6 +125,15 @@ local pluginCategories = {
   extra = {
     -- GIT plugins
     {
+      'dinhhuy258/git.nvim',
+      config = {[[require('plugin.git')]]}
+    },
+    --{
+    --  'ldelossa/gh.nvim',
+    --  requires = { 'ldelossa/litee.nvim', 'folke/which-key.nvim' },
+    --  config = {[[require('plugin.gh')]]}
+    --},
+    {
       'TimUntersberger/neogit',
       requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
       config = {[[require('plugin.neogit')]]}
@@ -135,6 +144,16 @@ local pluginCategories = {
         'nvim-lua/plenary.nvim'
       },
       config = {[[require('plugin.gitsigns')]]}
+    },
+    {
+      'sindrets/diffview.nvim',
+      requires = 'nvim-lua/plenary.nvim',
+    },
+
+    -- Keybinding
+    {
+      'folke/which-key.nvim',
+      config = {[[require('plugin.which-key')]]}
     },
 
     -- Note taking
