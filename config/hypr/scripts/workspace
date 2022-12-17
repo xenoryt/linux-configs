@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [ "$#" -lt 1 ]; then
+  echo "Usage: $0 cmd [args]"
+  exit 1
+fi
+
+cmd="$1"
+args=( "${@:2}" )
+
+monObj="$(hyprctl monitors -j | jq -r '.[] | select(.focused)')"
+
+case "$cmd" in
+  current)
+    hyprctl monitors -j | jq -r '.[] | select(.focused) | .activeWorkspace.name' | sed 's/m[0-9]-w//'
+    ;;
+  list)
+    mon="$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')"
+    hyprctl workspaces -j | jq -r ".[] | select(.monitor == \"$mon\") | .name" | sed 's/m[0-9]-w//' | sort -u
+    ;;
+  set|use)
+    w="${args[0]}"
+    if ! grep "^m[0-9]-w" <<<"$w"; then
+      monid="$(jq '.id' <<<"$monObj")"
+      w="m${monid}-w${w}"
+    fi
+    echo "using $w"
+    hyprctl dispatch workspace "name:$w"
+    ;;
+esac
+
