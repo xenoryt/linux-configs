@@ -1,67 +1,70 @@
-/*
-Arc-Dark Color Scheme
-*/
-
-@define-color highlight #5294e2;
-@define-color base1  #404552;
-@define-color base2 #40455;
-@define-color base3  #4b5160;
-
-
-*{
-    font-family: UbuntuMono;
-}
-
 window {
-	/*border: 1px solid @highlight;*/
-  padding: 8px;
-  border: 3px solid #61afef;
-  border-radius: 8px;
-  background-color: rgba(16, 16, 32, 1);
+  margin: 0px;
+  border: 5px solid #111019;
+  background-color: rgba(11, 10, 16, 0.9);
+  border-radius: 15px;
 }
 
 #input {
-  margin-bottom: 15px;
-  padding:3px;
-  border-radius: 5px;
-  border:none;
-  color: white;
+  all: unset;
+  min-height: 36px;
+  padding: 4px 10px;
+  margin: 4px;
+  border: none;
+  color: #e2e0ec;
+  font-weight: bold;
+  background-color: #161420;
+  outline: none;
+  border-radius: 15px;
+  margin: 10px;
+  margin-bottom: 2px;
 }
 
 #inner-box {
-  background-color: @base3;
-  margin: 2px;
+  margin: 4px;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 15px;
 }
 
 #outer-box {
-  margin: 5px;
-  padding:15px;
-  background-color: @base2;
+  margin: 0px;
+  padding: 3px;
+  border: none;
+  border-radius: 15px;
+  border: 5px solid #111019;
 }
 
 #scroll {
-}
-
-#text {
-padding: 5px;
-color: white;
-}
-
-#entry {
-    border-radius: 4px;
-    margin: 2px;
-    padding: 4px;
-    border: 2px solid #4040a9;
-    background-color: rgba(16, 16, 32, 0.5);
-}
-
-#entry:nth-child(even){
-    background-color: @base1;
-}
-
-#entry:selected {
-    background-color: @highlight;
+  margin-top: 5px;
+  border: none;
+  border-radius: 15px;
+  margin-bottom: 5px;
 }
 
 #text:selected {
+  color: #f1f0f5;
+  margin: 0px 0px;
+  border: none;
+  border-radius: 15px;
+}
+
+#entry {
+  margin: 0px 0px;
+  border: none;
+  border-radius: 15px;
+  background-color: transparent;
+
+  font-size: 1.5rem;
+}
+
+#entry #img {
+  margin-right: 10px;
+}
+
+#entry:selected {
+  margin: 0px 0px;
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(90deg, #E97193 0%, #f09db5 100%);
 }
