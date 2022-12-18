@@ -6,19 +6,22 @@
 (include "yuck/sidebar/sys-tray.yuck")
 (include "yuck/sidebar/clipboard.yuck")
 (include "yuck/sidebar/sidebar.yuck")
+(include "yuck/widgets/system.yuck")
 
 ;; Variables
 (defpoll clock_time :interval "5s" "date '+%I:%M %p'")
 (defpoll clock_date :interval "1h" "date '+%b %d, %Y'")
 (defpoll calendar_day :interval "2h" "date '+%d'")
 (defpoll calendar_year :interval "2h" "date '+%Y'")
-(defpoll volume_percent :interval "1s"  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2")
-; (defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%' | head -n 1")
-(defpoll mic_percent :interval "3s" "wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | cut -d' ' -f2")
+(defpoll volume_percent :interval "5s"  "pamixer --get-volume")
+(defpoll mic_percent :interval "3s" "wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | cut -d' ' -f2 | xargs echo 100 \* | bc")
 (defpoll COL_WLAN :interval "1m" "scripts/wifi --COL")
 (defpoll ESSID_WLAN :interval "1m" "scripts/wifi --ESSID")
 (defpoll WLAN_ICON :interval "1m" "scripts/wifi --ICON")
-(deflisten workspace "scripts/workspace")
+(deflisten workspace0 "scripts/workspace 0")
+(deflisten workspace1 "scripts/workspace 1")
+(deflisten workspace2 "scripts/workspace 2")
+(deflisten workspace_data :initial "[]" "scripts/workspace-data")
 (deflisten appname "scripts/appname")
 
 ; https://github.com/elkowar/eww/issues/382#issuecomment-1281693594
@@ -46,10 +49,18 @@
       :image-width 28))
   ))
 
-(defwidget workspaces []
-  (literal
-    :content workspace
-  :valign "center"))
+(defwidget workspaces [monitor]
+  (eventbox :onscroll "echo {} | sed -e 's/up/-1/g' -e 's/down/+1/g' | xargs hyprctl dispatch workspace"
+    (box  :class "workspaces"  :orientation "h" :spacing 5 :space-evenly "false" :valign "center"
+      (for w in {workspace_data[monitor]}
+        (button :onclick "~/.config/hypr/scripts/workspace use ${w.index}"
+                :class "ws-btn ${w.focused ? 'focused' : ''} ${w.occupied ? 'occupied' : ''}" 
+          '${w.icon}')
+        ))))
+
+  ;(literal
+  ;  :content workspace1
+  ;:valign "center"))
 
 (defwidget appnames []
   (eventbox
@@ -99,8 +110,9 @@
           :class "volbar"
           :value volume_percent
           :orientation "h"
+          :round-digits 2
           :tooltip "${volume_percent}%"
-          :max 1
+          :max 100
           :min 0
         :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%" ))
       (button
@@ -228,7 +240,7 @@
 
 
 ;;define widget groups
-(defwidget left []
+(defwidget left [monitor]
   (box
     :orientation "h"
     :space-evenly false
@@ -236,7 +248,7 @@
     :class "left_modules"
     (launcher)
     (sep)
-    (workspaces)))
+    (workspaces :monitor monitor)))
 (defwidget center []
   (box
     :orientation "h"
@@ -264,11 +276,11 @@
     ;(sys-tray)
   ))
 
-(defwidget bar_layout []
+(defwidget bar_layout [monitor]
   (centerbox
     :class "bar_class"
     :orientation "h"
-    (left)
+    (left :monitor monitor)
     (center)
     (right)
   ))
@@ -284,18 +296,18 @@
   :stacking "fg"
   :windowtype "dock"
   :reserve (struts :distance "40px" :side "top")
-  (bar_layout))
+  (bar_layout :monitor 0))
 (defwindow bar1
   :monitor 1
   :exclusive false
   :geometry (geometry
     :width "100%"
-    :height "22px"
+    :height "30px"
     :anchor "top center")
   :stacking "fg"
   :windowtype "dock"
-  :reserve (struts :distance "25px" :side "top")
-  (bar_layout)
+  :reserve (struts :distance "40px" :side "top")
+  (bar_layout :monitor 1)
   )
 (defwindow bar2
   :monitor 2
@@ -307,7 +319,7 @@
   :stacking "fg"
   :windowtype "dock"
   :reserve (struts :distance "40px" :side "top")
-  (bar_layout))
+  (bar_layout :monitor 2))
 
 (defwidget audio []
   (box
@@ -377,9 +389,11 @@
             :value mic_percent
             :orientation "h"
             :tooltip "mic on ${mic_percent}%"
-            :onchange "amixer -D pulse sset Capture {}%"
+            :onchange "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ {}%"
+            :round-digits 2
             :max 100
-          :min 0))))))
+            :min 0
+          ))))))
 
   (defwindow audio_ctl0
     :stacking "fg"
@@ -419,94 +433,6 @@
     :width "280px"
   :height "60px")
   (audio))
-
-;;Define System widget
-(defwidget system []
-  (box
-    :class "sys_win"
-    :orientation "v"
-    :space-evenly "false"
-    :hexpand "false"
-    :vexpand "false"
-    :spacing 0
-    (box
-      :class "sys_bat_box"
-      :orientation "h"
-      :space-evenly "false"
-      (circular-progress
-        :value {EWW_BATTERY["BAT0"].capacity}
-        :class "sys_bat"
-        :thickness 9
-        (label :text ""
-          :class "sys_icon_bat"
-          :limit-width 2
-        :wrap false))
-      (box
-        :orientation "v"
-        :space-evenly "false"
-        :spacing 0
-        :hexpand "false"
-        :vexpand "false"
-        (label
-          :text "battery"
-          :halign "start"
-          :class "sys_text_bat"
-          :limit-width 9
-        :wrap false)
-        (label
-          :text "${EWW_BATTERY["BAT0"].capacity}%"
-          :halign "start"
-          :class "sys_text_bat_sub"
-          :limit-width 22
-        :wrap false)
-        (label :text "${EWW_BATTERY["BAT0"].status}"
-          :halign "start"
-          :class "sys_text_bat_sub"
-          :limit-width 22
-        :wrap false)))
-    (label
-      :text "____________________________________"
-      :class "sys_sep"
-    :halign "center")
-    (box
-      :class "sys_mem_box"
-      :orientation "h"
-      :space-evenly "false"
-      :halign "start"
-      (circular-progress
-        :value {EWW_RAM.used_mem_perc}
-        :class "sys_mem"
-        :thickness 9
-        (label
-          :text ""
-          :class "sys_icon_mem"
-          :limit-width 2
-          :wrap false
-        :angle 0.0))
-      (box
-        :orientation "v"
-        :space-evenly "false"
-        :spacing 0
-        :hexpand "false"
-        :vexpand "false"
-        (label
-          :text "memory"
-          :halign "start"
-          :class "sys_text_mem"
-          :limit-width 9
-        :wrap false)
-        (label
-          :text "${round((EWW_RAM.used_mem/(1024*1024*1024)), 2)} | ${round((EWW_RAM.total_mem/(1024*1024*1024)), 2)}gb"
-          :halign "start"
-          :class "sys_text_mem_sub"
-          :limit-width 22
-        :wrap false)
-        (label :text "${round((EWW_RAM.available_mem/(1024*1024*1024)), 2)}gb free"
-          :halign "start"
-          :class "sys_text_mem_sub"
-          :limit-width 22
-        :wrap false)
-      ))))
 
 (defwindow system0
   :stacking "fg"

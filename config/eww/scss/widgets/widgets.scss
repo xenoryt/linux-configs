@@ -167,7 +167,7 @@ tooltip label {
     margin: 0px 10px 0px 5px;
 }
 
-.works {
+.workspaces {
     //font-size: 28px;
     font-weight: normal;
     // margin: 10px 0px 0px 10px;
@@ -175,40 +175,20 @@ tooltip label {
 
 .ws-btn{
     margin: 0px 7px 0px 0px;
-}
-
-/* Unoccupied */
-.w-- {
     color: $grey;
+
+    /* Occupied */
+    &.occupied {
+      color: $white;
+    }
+
+    /* Focused */
+    &.focused {
+      color: $red;
+    }
 }
 
-/* Occupied */
-.w-1-,
-.w-2-,
-.w-3-,
-.w-4-,
-.w-5-,
-.w-6-,
-.w-7-,
-.w-8-,
-.w-9-, 
-.w-10- {
-    color: $white;
-}
 
-/* Focused */
-.w-1-1,
-.w-2-2,
-.w-3-3,
-.w-4-4,
-.w-5-5,
-.w-6-6,
-.w-7-7,
-.w-8-8,
-.w-9-9,
-.w-10-10 {
-    color: $red;
-}
 
 
 // Calendar
@@ -263,69 +243,50 @@ calendar:indeterminate {
 }
 
 
+.widget_system {
+  background-color: $background;
+  border-radius: 25px;
+  padding: 15px;
 
-.sys_sep {
-    color: $widget-background;
-    font-size: 18;
-    margin: 0px 10px 0px 10px;
-}
+  .sys_sep {
+    color: lighten($widget-background, 40%);
+    font-size: 1.5em;
+  }
 
-.sys_text_bat_sub,
-.sys_text_mem_sub {
-    font-size: 16;
+  .subtext {
+    font-size: 1.25em;
     color: $white;
     margin: 2px 0px 0px 25px;
-}
+  }
 
-.sys_text_bat,
-.sys_text_mem {
-    font-size: 21;
+  .text {
+    font-size: 1.6em;
     font-weight: bold;
     margin: 0px 0px 0px 25px;
-}
+  }
 
-.sys_icon_bat,
-.sys_icon_mem {
-    font-size: 30;
+  .icon {
+    font-size: 2.3em;
     margin: 30px;
+  }
+
+  .row {
+    margin: 15px 0 0 0;
+    &.bat .sys_col {
+      color: $green;
+    }
+
+    &.cpu .sys_col {
+      color: $orange;
+    }
+
+    &.mem .sys_col {
+      color: $orange;
+    }
+  }
 }
 
-.sys_win {
-    background-color: $background;
-    border-radius: 25px;
-}
 
-.sys_bat {
-    color: $green;
-    background-color: $widget-background;
-    border-radius: 10px;
-}
-
-.sys_mem {
-    color: $orange;
-    background-color: $widget-background;
-    border-radius: 10px;
-}
-
-.sys_icon_bat,
-.sys_text_bat {
-    color: $green;
-}
-
-.sys_icon_mem,
-.sys_text_mem {
-    color: $orange;
-}
-
-.sys_bat_box {
-    border-radius: 16px;
-    margin: 15px 10px 0px 20px;
-}
-
-.sys_mem_box {
-    border-radius: 16px;
-    margin: 10px 10px 15px 20px;
-}
 
 
 .app-name {
