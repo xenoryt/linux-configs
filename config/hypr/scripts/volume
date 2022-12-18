@@ -27,8 +27,20 @@ mute() {
   fi
 }
 
+mute-mic() {
+muted="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | cut -d' ' -f3)"
+if [ -z "$muted" ]; then
+  wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
+  dunstify -a "MIC" "MUTED" -i microphone-sensitivity-muted-symbolic -r 2593 -u normal
+else
+  wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0
+  dunstify -a "MIC" "UNMUTED" -i microphone-sensitivity-high-symbolic -r 2593 -u normal
+fi
+}
+
 case "$1" in
   up) up;;
   down) down;;
   mute) mute;;
+  mute-mic) mute-mic;;
 esac
