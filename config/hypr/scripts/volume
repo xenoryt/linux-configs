@@ -1,5 +1,12 @@
 #!/bin/bash
 
+set-volume() {
+  volume="$1"
+  wpctl set-volume @DEFAULT_AUDIO_SINK@ "${volume}%"
+  dunstify -a "VOLUME" "Set to $volume%" -h int:value:"$volume" -i audio-volume-low-symbolic -r 2593 -u normal
+  canberra-gtk-play -i audio-volume-change -d "changevolume"
+}
+
 down() {
   pamixer -d 5
   volume=$(pamixer --get-volume)
@@ -43,4 +50,5 @@ case "$1" in
   down) down;;
   mute) mute;;
   mute-mic) mute-mic;;
+  set) set-volume $2;;
 esac
