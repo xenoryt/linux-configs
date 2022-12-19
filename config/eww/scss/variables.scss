@@ -1,11 +1,6 @@
 $root-font-size: 14px;
 
-$background-bar: rgba(11, 10, 16, 1);
-$background: rgba(11, 10, 16, 1);
-$widget-background: rgba(17, 16, 25, 1);
-$shadow: rgba(0, 0, 0, 0.3);
 $grey: rgba(105, 101, 124, 0.7);
-
 $black:     #282A36;
 $red:     #E97193; // #F37F97;
 $green:   #AAC5A0; // #5ADECD;
@@ -21,3 +16,13 @@ $white:   #eae9f0; // #FDFDFD;
 $primary:   #eacded; // #F37F97;
 $secondary: #71e9c2; // #F37F97;
 $tertiary:  #f0db93;
+
+/* - - - */
+
+$background-bar: rgba(11, 10, 16, 1);
+$background: rgba(11, 10, 16, 1);
+$widget-background: rgba(17, 16, 25, 1);
+$shadow: rgba(0, 0, 0, 0.3);
+
+$scale-trough: lighten($widget-background, 25%);
+$scale-highlight: linear-gradient(to right, darken($secondary, 30%), darken($secondary, 15%));

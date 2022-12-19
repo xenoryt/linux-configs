@@ -7,6 +7,7 @@
 (include "yuck/sidebar/clipboard.yuck")
 (include "yuck/sidebar/sidebar.yuck")
 (include "yuck/widgets/system.yuck")
+(include "yuck/widgets/audio.yuck")
 
 ;; Variables
 (defpoll clock_time :interval "5s" "date '+%I:%M %p'")
@@ -14,7 +15,7 @@
 (defpoll calendar_day :interval "2h" "date '+%d'")
 (defpoll calendar_year :interval "2h" "date '+%Y'")
 (defpoll volume_percent :interval "5s"  "pamixer --get-volume")
-(defpoll mic_percent :interval "3s" "wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | cut -d' ' -f2 | xargs echo 100 \* | bc")
+(defpoll mic_percent :interval "3s" "pamixer --get-volume --default-source")
 (defpoll COL_WLAN :interval "1m" "scripts/wifi --COL")
 (defpoll ESSID_WLAN :interval "1m" "scripts/wifi --ESSID")
 (defpoll WLAN_ICON :interval "1m" "scripts/wifi --ICON")
@@ -98,7 +99,7 @@
     :onhover "${EWW_CMD} update vol_reveal=true"
     :onhoverlost "${EWW_CMD} update vol_reveal=false"
     (box
-      :space-evenly "false"
+      :space-evenly false
       :orientation "h"
       :spacing "3"
       (revealer
@@ -109,15 +110,15 @@
           :class "volbar"
           :value volume_percent
           :orientation "h"
-          :round-digits 2
+          :round-digits 0
           :tooltip "${volume_percent}%"
           :max 100
           :min 0
-        :onchange "~/.config/hypr/scripts/volume set {}" ))
+          :onchange "~/.config/hypr/scripts/volume set {}" ))
       (button
         :onclick "scripts/pop audio_ctl"
         :class "volume_icon"
-      "墳"))))
+        ""))))
 
 (defwidget wifi []
   (eventbox
@@ -224,7 +225,7 @@
     :hexpand "false"
     :valign "center"
     (label
-      :class "separ"
+      :class "bar-separator"
       :valign "center"
       :text "|"
     )))
@@ -318,80 +319,6 @@
   :windowtype "dock"
   :reserve (struts :distance "40px" :side "top")
   (bar_layout :monitor 2))
-
-(defwidget audio []
-  (box
-    :class "audio-box"
-    :orientation "v"
-    :space-evenly "false"
-    :vexpand "false"
-    :hexpand "false"
-    (box
-      :halign "v"
-      :space-evenly "false"
-      :hexpand "false"
-      :vexpand "false"
-      (box
-        :class "speaker_icon"
-      :orientation "v")
-      (box
-        :orientation "v"
-        :halign "center"
-        :vexpand "false"
-        :hexpand "false"
-        (label
-          :class "speaker_text"
-          :text "speaker"
-          :valign "center"
-        :halign "left" )
-        (box
-          :class "speaker_bar"
-          :halign "center"
-          :vexpand "false"
-          :hexpand "false"
-          (scale
-            :value volume_percent
-            :orientation "h"
-            :onchange "~/.config/hypr/scripts/volume set {}"
-            :tooltip "volume on ${volume_percent}%"
-            :max 100
-          :min 0))))
-    (label
-      :text "_____________________________________"
-      :class "audio_sep"
-    :halign "center")
-    (box
-      :halign "v"
-      :space-evenly "false"
-      :hexpand "false"
-      :vexpand "false"
-      (box
-        :class "mic_icon"
-      :orientation "v")
-      (box
-        :orientation "v"
-        :halign "center"
-        :vexpand "false"
-        :hexpand "false"
-        (label
-          :class "mic_text"
-          :text "mic"
-          :valign "center"
-        :halign "left" )
-        (box
-          :class "mic_bar"
-          :halign "center"
-          :vexpand "false"
-          :hexpand "false"
-          (scale
-            :value mic_percent
-            :orientation "h"
-            :tooltip "mic on ${mic_percent}%"
-            :onchange "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ {}%"
-            :round-digits 2
-            :max 100
-            :min 0
-          ))))))
 
   (defwindow audio_ctl0
     :stacking "fg"

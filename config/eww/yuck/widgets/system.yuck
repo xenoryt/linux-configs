@@ -88,10 +88,10 @@
           :limit-width 22
           :wrap false)
       ))
-    (label
-      :text "____________________________________"
-      :class "sys_sep"
-    :halign "center")
+    (box
+      ;:text "____________________________________"
+      :class "widget-separator"
+      :hexpand true)
 
     (box
       :class "row mem"
