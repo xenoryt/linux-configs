@@ -118,6 +118,14 @@ local function setup_servers()
     filetypes = {"tf"}
   }
 
+  configs.volar = {
+    init_options = {
+      typescript = {
+        tsdk = os.getenv('HOME')..'/.npm-global/lib/node_modules/typescript/lib/',
+      }
+    }
+  }
+
   local installed = lspinstall.get_installed_servers()
   for _, server in pairs(installed) do
     local config = configs[server.name] or {}
@@ -125,6 +133,7 @@ local function setup_servers()
     config.capabilities = capabilities
     config.on_attach = function(client)
       if server.name == "typescript" then
+        --client.resolved_capabilities.document_formatting = false
         client.server_capabilities.documentFormattingProvider = false
       end
       on_attach_common(client)

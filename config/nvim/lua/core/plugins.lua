@@ -119,6 +119,9 @@ local pluginCategories = {
       config = [[require('plugin.go')]]
     },
 
+    {
+      'elkowar/yuck.vim'
+    }
   },
 
   -- EXTRA: plugins that provide extra functionality
