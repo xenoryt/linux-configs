@@ -324,10 +324,10 @@
     :stacking "fg"
     :focusable "false"
     ;:screen 1
-    ;:monitor 0
+    :monitor 0
     :geometry (geometry
       :x "20"
-      :y "7%"
+      :y "5%"
       :anchor "top right"
       :width "280px"
     :height "60px")
@@ -340,12 +340,12 @@
   :monitor 1
   :geometry (geometry
     :x "20"
-    :y "7%"
+    :y "5%"
     :anchor "top right"
     :width "280px"
   :height "60px")
   (audio))
-    
+
 (defwindow audio_ctl2
   :stacking "fg"
   :focusable "false"
@@ -353,7 +353,7 @@
   :monitor 2
   :geometry (geometry
     :x "20"
-    :y "7%"
+    :y "5%"
     :anchor "top right"
     :width "280px"
   :height "60px")
@@ -367,7 +367,7 @@
   :geometry
   (geometry
     :x "20"
-    :y "65px"
+    :y "5%"
     :anchor "top right"
     :width "290px"
   :height "120px")
@@ -381,7 +381,7 @@
   :geometry
   (geometry
     :x "20"
-    :y "65px"
+    :y "5%"
     :anchor "top right"
     :width "290px"
   :height "120px")
@@ -395,7 +395,7 @@
   :geometry
   (geometry
     :x "20"
-    :y "65px"
+    :y "5%"
     :anchor "top right"
     :width "290px"
   :height "120px")
@@ -419,7 +419,7 @@
   :monitor 0
   :geometry (geometry
     :x "20"
-    :y "44px"
+    :y "5%"
     :anchor "top right"
     :width "270px"
   :height "60px")
@@ -432,12 +432,12 @@
   :monitor 1
   :geometry (geometry
     :x "20"
-    :y "44px"
+    :y "5%"
     :anchor "top right"
     :width "270px"
   :height "60px")
   (cal))
-    
+
 (defwindow calendar2
   :stacking "fg"
   :focusable "false"
@@ -445,7 +445,7 @@
   :monitor 2
   :geometry (geometry
     :x "20"
-    :y "44px"
+    :y "5%"
     :anchor "top right"
     :width "270px"
   :height "60px")

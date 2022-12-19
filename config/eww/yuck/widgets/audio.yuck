@@ -1,4 +1,3 @@
-
 (defwidget audio []
   (box
     :class "widget-audio-box"
