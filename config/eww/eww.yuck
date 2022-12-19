@@ -98,7 +98,6 @@
     :onhover "${EWW_CMD} update vol_reveal=true"
     :onhoverlost "${EWW_CMD} update vol_reveal=false"
     (box
-      :class "module-2"
       :space-evenly "false"
       :orientation "h"
       :spacing "3"
@@ -114,7 +113,7 @@
           :tooltip "${volume_percent}%"
           :max 100
           :min 0
-        :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%" ))
+        :onchange "~/.config/hypr/scripts/volume set {}" ))
       (button
         :onclick "scripts/pop audio_ctl"
         :class "volume_icon"
@@ -143,7 +142,7 @@
 
 (defwidget bat []
   (box
-    :class "bat_module"
+    :class "bat module"
     :vexpand "false"
     :hexpand "false"
     (circular-progress
@@ -152,30 +151,30 @@
       :thickness 4
       (button
         :onclick "scripts/pop system"
-        :class "iconbat"
+        :class "icon"
         :tooltip "battery on ${EWW_BATTERY["BAT0"].capacity}%"
       ""))))
 
 (defwidget cpu []
   (box
-    :class "cpu_module"
+    :class "cpu module"
     :vexpand "false"
     :hexpand "false"
     (circular-progress
       :value {EWW_CPU.avg}
-      :class "membar"
+      ;:class "membar"
       :thickness 4
       (button
         :onclick "scripts/pop system"
-        :class "iconcpu"
-        :tooltip "using ${EWW_CPU.avg}% cpu"
+        :class "icon"
+        :tooltip "using ${round(EWW_CPU.avg, 2)}% cpu"
         :show_truncated false
         :wrap false
-      ""))))
+      ""))))
 
 (defwidget mem []
   (box
-    :class "mem_module"
+    :class "mem module"
     :vexpand "false"
     :hexpand "false"
     (circular-progress
@@ -184,11 +183,11 @@
       :thickness 4
       (button
         :onclick "scripts/pop system"
-        :class "iconmem"
+        :class "icon"
         :tooltip "using ${EWW_RAM.used_mem_perc}% ram"
         :show_truncated false
         :wrap false
-      ""))))
+      ""))))
 
 (defwidget clock_module []
   (eventbox
@@ -221,7 +220,6 @@
 
 (defwidget sep []
   (box
-    :class "module-2"
     :vexpand "false"
     :hexpand "false"
     :valign "center"
@@ -354,7 +352,7 @@
           (scale
             :value volume_percent
             :orientation "h"
-            :onchange "amixer -D pulse sset Master {}%"
+            :onchange "~/.config/hypr/scripts/volume set {}"
             :tooltip "volume on ${volume_percent}%"
             :max 100
           :min 0))))

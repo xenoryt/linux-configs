@@ -47,43 +47,46 @@
     ;  :class "sys_sep"
     ;:halign "center")
     (box
-      :class "sys_cpu_box"
+      :class "row cpu"
       :orientation "h"
       :space-evenly "false"
       :halign "start"
+      ;:valign "center"
       (graph
-        :value {EWW_RAM.used_mem_perc}
-        :class "sys_cpu sys_col"
-        :thickness 9
-        (label
-          :text ""
-          :class "sys_icon"
-          :limit-width 2
-          :wrap false
-        :angle 0.0))
+        :value {EWW_CPU.avg}
+        :class "cpu_chart sys_col"
+        :hexpand true
+        :thickness 2
+        :time-range "15s"
+        :min 0
+        :max 100
+        :dynamic "true"
+        :line-style "round"
+        :width 82
+        )
       (box
         :orientation "v"
         :space-evenly "false"
         :spacing 0
-        :hexpand "false"
-        :vexpand "false"
+        :hexpand false
+        :vexpand false
         (label
           :text "CPU"
           :halign "start"
-          :class "sys_text"
+          :class "text sys_col"
           :limit-width 9
-        :wrap false)
+          :wrap false)
         (label
-          :text "${round((EWW_RAM.used_mem/(1024*1024*1024)), 2)} | ${round((EWW_RAM.total_mem/(1024*1024*1024)), 2)}gb"
+          :text "${round(EWW_CPU.avg, 2)}%"
           :halign "start"
-          :class "sys_subtext"
+          :class "subtext"
           :limit-width 22
-        :wrap false)
-        (label :text "${round((EWW_RAM.available_mem/(1024*1024*1024)), 2)}gb free"
+          :wrap false)
+        (label :text "${arraylength(EWW_CPU.cores)} cores"
           :halign "start"
-          :class "sys_subtext"
+          :class "subtext"
           :limit-width 22
-        :wrap false)
+          :wrap false)
       ))
     (label
       :text "____________________________________"
