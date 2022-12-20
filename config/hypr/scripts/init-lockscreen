@@ -1,0 +1,10 @@
+#!/bin/sh
+
+IDLE_TIMEOUT=${1:-900}
+
+lockcmd='swaylock --screenshots --clock --effect-blur 20x3'
+
+swayidle -w \
+  timeout $IDLE_TIMEOUT "$lockcmd --fade-in 2 --grace 2" \
+  before-sleep "$lockcmd"
+
