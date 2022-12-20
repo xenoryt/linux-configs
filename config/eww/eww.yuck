@@ -163,7 +163,6 @@
     :hexpand "false"
     (circular-progress
       :value {EWW_CPU.avg}
-      ;:class "membar"
       :thickness 4
       (button
         :onclick "scripts/pop system"

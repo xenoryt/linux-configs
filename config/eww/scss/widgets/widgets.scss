@@ -123,10 +123,7 @@ tooltip label {
 
 box.module {
   background-color: $widget-background;
-  .icon {
-    font-size: 1em;
-    margin: 8px 15px;
-  }
+  padding: 0 2px;
 
   &.cpu {
     color: $orange;
@@ -138,6 +135,12 @@ box.module {
 
   &.bat {
     color: $green;
+  }
+
+  .icon {
+    font-size: 1em;
+    padding: 5px;
+    margin: 3px 10px;
   }
 }
 
