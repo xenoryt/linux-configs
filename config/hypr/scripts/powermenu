@@ -1,0 +1,24 @@
+#!/bin/sh
+
+sel=$(echo -e "Lock\nLogout\nShutdown\nReboot" | wofi --dmenu -i)
+[ -z "$sel" ] && exit 0
+
+case "${sel,,}" in
+  lock)
+    # Wait a bit to allow wofi window to close
+    sleep 0.25 && "$HOME/.config/hypr/scripts/lock"
+    ;;
+  logout)
+    hyprctl dispatch exit
+    ;;
+  shutdown)
+    #systectl poweroff
+    shutdown -h now
+    ;;
+  reboot)
+    systectl reboot
+    ;;
+  *)
+    notify-send ERROR "Invalid input: ${sel,,}"
+    ;;
+esac
