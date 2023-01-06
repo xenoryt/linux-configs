@@ -9,7 +9,7 @@ case "${sel,,}" in
     sleep 0.25 && "$HOME/.config/hypr/scripts/lock"
     ;;
   logout)
-    hyprctl dispatch exit
+    hyprctl dispatch exit ""
     ;;
   shutdown)
     #systectl poweroff
