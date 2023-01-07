@@ -12,8 +12,7 @@ case "${sel,,}" in
     hyprctl dispatch exit ""
     ;;
   shutdown)
-    #systectl poweroff
-    shutdown -h now
+    systemctl poweroff
     ;;
   reboot)
     systectl reboot
