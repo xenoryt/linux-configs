@@ -1,8 +1,5 @@
 " General Settings
 set configversion 1.8
-js tri.config.set("update", {"lastchecktime": 1581276075218})
-set theme shydactyl
-set editorcmd kitty nvim %f -c 'normal %lG%cl'
 
 unbind d
 unbind u
@@ -25,5 +22,8 @@ bind N findnext -1
 bind '' jumpprev
 bind [q jumpprev
 bind ]q jumpnext
+
+set theme shydactyl
+set editorcmd kitty nvim %f -c 'normal %lG%cl'
 
 " vim: set filetype=vim:
