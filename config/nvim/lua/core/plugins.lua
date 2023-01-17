@@ -17,8 +17,8 @@ local pluginCategories = {
   -- BASIC PLUGINS: Provides basic keymaps/navigation
   basic = {
     -- Colorschemes
-    {'crusoexia/vim-monokai'},
-    {'rafi/awesome-vim-colorschemes'},
+    { 'crusoexia/vim-monokai' },
+    { 'rafi/awesome-vim-colorschemes' },
 
     -- FZF file/content search
     { 'junegunn/fzf', dir = '~/.fzf', run = './install --all' },
@@ -30,12 +30,13 @@ local pluginCategories = {
       },
       setup = [[require('plugin.fzf-lua')]]
     },
+    { 'ojroques/nvim-osc52', config = [[require('plugin.nvim-osc52')]] }
   },
 
 
   -- File browser and quick fix list
   files = {
-    {'francoiscabrol/ranger.vim'},
+    { 'francoiscabrol/ranger.vim' },
     --{
     --  'ms-jpq/chadtree',
     --  branch = 'chad',
@@ -54,7 +55,7 @@ local pluginCategories = {
           's1n7ax/nvim-window-picker',
           tag = "1.*",
           config = function()
-            require'window-picker'.setup({
+            require 'window-picker'.setup({
               autoselect_one = true,
               include_current = false,
               filter_rules = {
@@ -93,10 +94,11 @@ local pluginCategories = {
     --   config = [[require('plugin.nvim-lsputils')]],
     -- },
 
+    { "lukas-reineke/lsp-format.nvim" },
     {
       'neovim/nvim-lspconfig',
       requires = {
-        {'hrsh7th/nvim-compe', config = [[require('plugin.nvim-compe')]], opt = false},
+        { 'hrsh7th/nvim-compe', config = [[require('plugin.nvim-compe')]], opt = false },
         'williamboman/nvim-lsp-installer',
         --'glepnir/lspsaga.nvim',
         'folke/lsp-colors.nvim', -- for better colourschemes
@@ -115,7 +117,7 @@ local pluginCategories = {
     -- Go
     {
       'ray-x/go.nvim',
-      after = {'nvim-lspconfig'},
+      after = { 'nvim-lspconfig' },
       config = [[require('plugin.go')]]
     },
 
@@ -126,7 +128,7 @@ local pluginCategories = {
     -- GIT plugins
     {
       'dinhhuy258/git.nvim',
-      config = {[[require('plugin.git')]]}
+      config = { [[require('plugin.git')]] }
     },
     --{
     --  'ldelossa/gh.nvim',
@@ -136,14 +138,14 @@ local pluginCategories = {
     {
       'TimUntersberger/neogit',
       requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
-      config = {[[require('plugin.neogit')]]}
+      config = { [[require('plugin.neogit')]] }
     },
     {
       'lewis6991/gitsigns.nvim',
       requires = {
         'nvim-lua/plenary.nvim'
       },
-      config = {[[require('plugin.gitsigns')]]}
+      config = { [[require('plugin.gitsigns')]] }
     },
     {
       'sindrets/diffview.nvim',
@@ -153,7 +155,7 @@ local pluginCategories = {
     -- Keybinding
     {
       'folke/which-key.nvim',
-      config = {[[require('plugin.which-key')]]}
+      config = { [[require('plugin.which-key')]] }
     },
 
     -- Note taking
@@ -192,13 +194,13 @@ local loadPlugins = {
 }
 
 return packer.startup(function(use)
-  packer.init({compile_path = packer_compiled})
+  packer.init({ compile_path = packer_compiled })
 
   -- Plugin Manager (manages itself)
   use 'wbthomason/packer.nvim'
 
-  for _,pluginList in ipairs(loadPlugins) do
-    for _,plugin in ipairs(pluginList) do
+  for _, pluginList in ipairs(loadPlugins) do
+    for _, plugin in ipairs(pluginList) do
       use(plugin)
     end
   end
