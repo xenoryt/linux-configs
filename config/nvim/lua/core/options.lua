@@ -9,6 +9,9 @@ vim.g.python3_host_skip_check = 1
 vim.g.python2_host_prog = '/usr/bin/python2'
 vim.g.python3_host_prog = '/usr/bin/python3'
 
+-- Disable mouse 
+set ('mousemodel', 'extend')
+
 -- Case insensitive :search etc.
 set 'wildignorecase'
 set ('wildignore', '.git,**/node_modules/**')
@@ -218,3 +221,10 @@ vim.cmd('set diffopt+=algorithm:patience')
 
 -- highlight('MyActiveSignColumn', { guibg = '#0000ff' })
 -- highlight('MyInactiveSignColumn', { guibg = '#ff0000' })
+
+
+-- Files & Languages
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+  pattern = {"Jenkinsfile"},
+  command = "setf groovy",
+})
