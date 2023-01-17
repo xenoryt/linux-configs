@@ -1,3 +1,4 @@
+local map = U.keymap.map
 local nmap = U.keymap.nmap
 local imap = U.keymap.imap
 local cmap = U.keymap.cmap
@@ -5,6 +6,10 @@ local vmap = U.keymap.vmap
 local xmap = U.keymap.xmap
 local omap = U.keymap.omap
 local tmap = U.keymap.tmap
+
+imap('<C-S-v>', '<C-r>+', { noremap = true })
+cmap('<C-S-v>', '<C-r>+', { noremap = true })
+tmap('<C-S-v>', '<C-\\><C-n>pa', { noremap = true })
 
 -- Edit vimrc
 nmap('<Leader>ev', ':lcd ~/.config/nvim/<CR>:e lua/core/plugins.lua<CR>')
