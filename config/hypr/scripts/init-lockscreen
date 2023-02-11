@@ -7,8 +7,8 @@ lockcmd='swaylock --screenshots --clock --effect-blur 20x3'
 
 swayidle -w \
   timeout $IDLE_TIMEOUT "$HOME/.config/hypr/scripts/lock 5" \
-  timeout $IDLE_TIMEOUT_2 "hyprctl dispatch dpms off" \
+  lock "hyprctl dispatch dpms off" \
   before-sleep "$HOME/.config/hypr/scripts/lock" \
-  resume "hyprctl dispatch dpms on"
+  after-resume "hyprctl dispatch dpms on"
 
 

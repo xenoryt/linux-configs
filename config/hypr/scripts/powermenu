@@ -15,7 +15,7 @@ case "${sel,,}" in
     systemctl poweroff
     ;;
   reboot)
-    systectl reboot
+    systemctl reboot
     ;;
   *)
     notify-send ERROR "Invalid input: ${sel,,}"
