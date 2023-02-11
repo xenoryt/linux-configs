@@ -19,6 +19,7 @@
 (defpoll COL_WLAN :interval "1m" "scripts/wifi --COL")
 (defpoll ESSID_WLAN :interval "1m" "scripts/wifi --ESSID")
 (defpoll WLAN_ICON :interval "1m" "scripts/wifi --ICON")
+(defpoll MIC_ICON :interval "3s" "scripts/mic-icon")
 (deflisten workspace0 "scripts/workspace 0")
 (deflisten workspace1 "scripts/workspace 1")
 (deflisten workspace2 "scripts/workspace 2")
@@ -119,6 +120,13 @@
         :onclick "scripts/pop audio_ctl"
         :class "volume_icon"
         ""))))
+
+(defwidget mic []
+  (box
+    :spacing 3
+    (button
+      :class "volume_icon"
+      MIC_ICON)))
 
 (defwidget wifi []
   (eventbox
@@ -263,6 +271,7 @@
     (sep)
     ;(bright)
     (volume)
+    (mic)
     (wifi)
     (sep)
     ;(bat)
