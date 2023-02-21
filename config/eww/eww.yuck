@@ -118,14 +118,14 @@
           :onchange "~/.config/hypr/scripts/volume set {}" ))
       (button
         :onclick "scripts/pop audio_ctl"
-        :class "volume_icon"
+        :class "bar_icon volume_icon"
         ""))))
 
 (defwidget mic []
   (box
     :spacing 3
     (button
-      :class "volume_icon"
+      :class "bar_icon volume_icon"
       MIC_ICON)))
 
 (defwidget wifi []
@@ -145,9 +145,9 @@
           :text ESSID_WLAN
         ))
       (button
-        :class "module-wifi"
+        :class "bar_icon module-wifi"
         :onclick "~/.config/hypr/scripts/exec_wofi wifi"
-      WLAN_ICON))))
+        WLAN_ICON))))
 
 (defwidget bat []
   (box
@@ -252,8 +252,8 @@
     :space-evenly false
     :halign "start"
     :class "left_modules"
-    (launcher)
-    (sep)
+    ;(launcher)
+    ;(sep)
     (workspaces :monitor monitor)))
 (defwidget center []
   (box
