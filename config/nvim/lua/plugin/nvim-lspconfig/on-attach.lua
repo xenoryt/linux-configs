@@ -3,17 +3,18 @@ local buf_imap = U.keymap.buf_imap
 local function lua_nmap(lhs, rhs, opts)
   buf_nmap(lhs, '<cmd>lua  ' .. rhs .. '<CR>', opts)
 end
+
 local function lua_imap(lhs, rhs, opts)
   buf_imap(lhs, '<cmd>lua  ' .. rhs .. '<CR>', opts)
 end
 
 -- Prettier
 local format_options_prettier = {
-    tabWidth = 2,
-    useTabs = false,
-    singleQuote = true,
-    trailingComma = "all",
-    configPrecedence = "prefer-file"
+  tabWidth = 2,
+  useTabs = false,
+  singleQuote = true,
+  trailingComma = "all",
+  configPrecedence = "prefer-file"
 }
 
 vim.g.format_options_typescript = format_options_prettier
@@ -52,10 +53,10 @@ local function mappings()
   lua_nmap('gi', 'vim.lsp.buf.implementation()')
   -- ACTION mappings
   lua_imap('<C-space>', 'vim.lsp.buf.completion()')
-  lua_nmap('<space>aa', 'require("lspsaga.codeaction").code_action()')
+  lua_nmap('<space>aa', 'vim.lsp.buf.code_action()')
   -- lua_nmap('<space>aa', 'vim.lsp.buf.code_action()')
   -- lua_nmap('<space>ar', 'require("lspsaga.rename").rename()')
-  lua_nmap('<space>ar',  'vim.lsp.buf.rename()')
+  lua_nmap('<space>ar', 'vim.lsp.buf.rename()')
   -- Few language severs support these three
   lua_nmap('<space>f', 'vim.lsp.buf.formatting()')
   lua_nmap('<leader>ai', 'vim.lsp.buf.incoming_calls()')
@@ -69,7 +70,6 @@ local function mappings()
   lua_nmap('[d', 'vim.diagnostic.goto_prev()')
 end
 
-
 return function(client)
   print("LSP started.");
   mappings()
@@ -79,6 +79,6 @@ return function(client)
   -- if client.name == 'typescript' then require('nvim-lsp-ts-utils').setup {} end
 
   if client.server_capabilities.documentFormattingProvider then
-    vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+    vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.format({async = false})]]
   end
 end

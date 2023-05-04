@@ -149,11 +149,15 @@ require("neo-tree").setup({
   filesystem = {
     filtered_items = {
       visible = false, -- when true, they will just be displayed differently than normal items
-      hide_dotfiles = true,
+      hide_dotfiles = false,
       hide_gitignored = false,
       hide_hidden = true, -- only works on Windows for hidden files/directories
       hide_by_name = {
         --"node_modules"
+        ".vscode",
+        "yarn.lock",
+        "package-lock.json",
+        ".gitkeep",
       },
       hide_by_pattern = { -- uses glob style patterns
         --"*.meta"

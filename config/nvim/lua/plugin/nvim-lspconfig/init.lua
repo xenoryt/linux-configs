@@ -1,5 +1,5 @@
 local lspconfig = require('lspconfig')
-local lspinstall = require("nvim-lsp-installer")
+--local lspinstall = require("nvim-lsp-installer")
 local languages = require('plugin.nvim-lspconfig.format')
 local on_attach_common = require('plugin.nvim-lspconfig.on-attach')
 local palette = U.palette
@@ -68,7 +68,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 
 
 local function setup_servers()
-  lspinstall.setup()
+  --lspinstall.setup()
 
   local configs = {}
 
@@ -118,19 +118,20 @@ local function setup_servers()
     filetypes = {"tf"}
   }
 
-  local installed = lspinstall.get_installed_servers()
-  for _, server in pairs(installed) do
-    local config = configs[server.name] or {}
-    config.root_dir = lspconfig.util.root_pattern({'.git/', '.'})
-    config.capabilities = capabilities
-    config.on_attach = function(client)
-      if server.name == "typescript" then
-        client.server_capabilities.documentFormattingProvider = false
-      end
-      on_attach_common(client)
-    end
-    lspconfig[server.name].setup(config)
-  end
+  -- local installed = lspinstall.get_installed_servers()
+  -- for _, server in pairs(installed) do
+  --   local config = configs[server.name] or {}
+  --   config.root_dir = lspconfig.util.root_pattern({'.git/', '.'})
+  --   config.capabilities = capabilities
+  --   config.on_attach = function(client)
+  --     require("lsp-format").on_attach(client)
+  --     if server.name == "typescript" then
+  --       client.server_capabilities.documentFormattingProvider = false
+  --     end
+  --     on_attach_common(client)
+  --   end
+  --   lspconfig[server.name].setup(config)
+  -- end
 
 end
 

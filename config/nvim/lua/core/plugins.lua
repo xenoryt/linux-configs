@@ -99,13 +99,22 @@ local pluginCategories = {
       'neovim/nvim-lspconfig',
       requires = {
         { 'hrsh7th/nvim-compe', config = [[require('plugin.nvim-compe')]], opt = false },
-        'williamboman/nvim-lsp-installer',
+        --'williamboman/nvim-lsp-installer',
         --'glepnir/lspsaga.nvim',
         'folke/lsp-colors.nvim', -- for better colourschemes
         'jose-elias-alvarez/nvim-lsp-ts-utils',
       },
       config = [[require('plugin.nvim-lspconfig.init')]],
     },
+    {
+      'williamboman/mason.nvim',
+      setup = [[require('plugin.mason')]],
+      run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+    },
+    {
+      'williamboman/mason-lspconfig.nvim',
+      setup = [[require('plugin.mason-lspconfig')]],
+    }
 
     -- {
     --   'glepnir/lspsaga.nvim',
@@ -120,7 +129,7 @@ local pluginCategories = {
       after = { 'nvim-lspconfig' },
       config = [[require('plugin.go')]]
     },
-
+    { 'sebdah/vim-delve' },
   },
 
   -- EXTRA: plugins that provide extra functionality
@@ -130,10 +139,14 @@ local pluginCategories = {
       'dinhhuy258/git.nvim',
       config = { [[require('plugin.git')]] }
     },
+    {
+      'github/copilot.vim'
+    },
     --{
     --  'ldelossa/gh.nvim',
-    --  requires = { 'ldelossa/litee.nvim', 'folke/which-key.nvim' },
-    --  config = {[[require('plugin.gh')]]}
+    --  after = 'folke/which-key.nvim',
+    --  requires = { 'ldelossa/litee.nvim' },
+    --  config = { [[require('plugin.gh')]] }
     --},
     {
       'TimUntersberger/neogit',

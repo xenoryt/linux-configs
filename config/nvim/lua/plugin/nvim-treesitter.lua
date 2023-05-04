@@ -71,4 +71,5 @@ require 'nvim-treesitter.configs'.setup {
     },
   },
 }
-require("nvim-treesitter.parsers").filetype_to_parsername["terraform-vars"] = "hcl"
+vim.treesitter.language.register("terraform-vars", "hcl")
+vim.treesitter.language.register("terraform", "hcl")
