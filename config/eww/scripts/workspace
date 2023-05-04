@@ -1,0 +1,56 @@
+#! /bin/bash
+
+MAX_WORKSPACES=6
+
+if [ "$#" -lt 1 ]; then
+  echo "Usage: $0 MONITOR_ID"
+  exit 1
+fi
+
+MONITOR="$1"
+
+#define icons for workspaces 1-9
+# ic=(0     輸  " " " " )
+# ic=(0 1 2 3 4 5 6 7 8 9)
+ic=(0 一 二 三 四 五 六 七 八 九 〇)
+
+hyprscripts="$HOME/.config/hypr/scripts"
+workspaceScript="$hyprscripts/workspace"
+
+module() {
+  focusedWorkspace=$($workspaceScript -m $MONITOR current)
+  existingWorkspaces=( $($workspaceScript -m $MONITOR list) )
+
+  buttons=()
+  for i in `seq 1 $MAX_WORKSPACES`; do
+    focused=
+    occupied=
+    if [ "$focusedWorkspace" -eq "$i" ]; then
+      focused=focused
+    fi
+    if grep "\b$i\b" <<<"${existingWorkspaces[*]}" >/dev/null; then
+      occupied=occupied
+    fi
+    buttons+=(
+      "(button :onclick '$hyprscripts/workspace use $i'  :class 'ws-btn $focused $occupied' '${ic[i]}')"
+    )
+  done
+
+  cat <<EOF | tr -d '\n'
+(eventbox :onscroll "echo {} | sed -e 's/up/-1/g' -e 's/down/+1/g' | xargs hyprctl dispatch workspace"
+  (box  :class "works"  :orientation "h" :spacing 5 :space-evenly "false" :valign "center"
+    ${buttons[@]}
+  )
+)
+EOF
+echo "" # add new line (important!)
+}
+
+module
+
+socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r event; do
+  # Check event type. Do nothing if event doesn't correspond with workspace changes.
+  if grep -E "workspace|createworkspace|destroyworkspace|moveworkspace" <<<"$event" >/dev/null; then
+    module
+  fi
+done

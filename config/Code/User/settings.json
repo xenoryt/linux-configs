@@ -17,5 +17,8 @@
     "*.html": "default"
   },
   "explorer.confirmDelete": false,
-  "vscode-neovim.mouseSelectionStartVisualMode": true
+  "vscode-neovim.mouseSelectionStartVisualMode": true,
+  "terminal.external.linuxExec": "kitty",
+  "terminal.integrated.allowChords": false,
+  "terminal.integrated.enablePersistentSessions": false
 }

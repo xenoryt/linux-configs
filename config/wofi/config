@@ -1,0 +1,17 @@
+hide_scroll=true
+show=drun
+width=35%
+lines=12
+line_wrap=word
+term=kitty
+allow_markup=true
+always_parse_args=true
+show_all=false
+print_command=true
+layer=overlay
+allow_images=true
+insensitive=true
+prompt=
+image_size=32
+display_generic=true
+location=center

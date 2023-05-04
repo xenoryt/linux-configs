@@ -1,0 +1,9 @@
+#!/bin/sh
+
+muted="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | cut -d' ' -f3)"
+
+if $muted; then
+  echo ""
+else
+  echo ""
+fi

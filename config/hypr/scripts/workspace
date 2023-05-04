@@ -1,0 +1,72 @@
+#!/bin/bash
+
+POSITIONAL_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -m|--monitor)
+      MONITOR="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    -w|--workspace)
+      WORKSPACE="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    --default)
+      DEFAULT=YES
+      shift # past argument
+      ;;
+    --)
+      POSITIONAL_ARGS+=$@
+      break
+      ;;
+    -*|--*)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1") # save positional arg
+      shift # past argument
+      ;;
+  esac
+done
+
+cmd="${POSITIONAL_ARGS[0]}"
+args=( "${POSITIONAL_ARGS[@]:1}" )
+
+if [ -z "$MONITOR" ]; then
+  monObj="$(hyprctl monitors -j | jq -r '.[] | select(.focused)')"
+else
+  monObj="$(hyprctl monitors -j | jq -r ".[] | select(.id == $MONITOR )")"
+fi
+
+toHumanID() {
+  while read i; do
+    expr $i % 10
+  done
+}
+
+case "$cmd" in
+  current)
+    jq -r '.activeWorkspace.name' <<<"$monObj" | toHumanID
+    ;;
+  list)
+    mon="$(jq -r '.name' <<<"$monObj")"
+    hyprctl workspaces -j | jq -r ".[] | select(.monitor == \"$mon\") | .name" | toHumanID | sort -u
+    ;;
+  set|use)
+    WORKSPACE=${WORKSPACE:-${args[0]}}
+    echo "$WORKSPACE | ${args[0]}"
+    monid="$(jq '.id' <<<"$monObj")"
+    w="$(expr "${WORKSPACE}" + 10 \* $monid)"
+    hyprctl dispatch workspace "$w"
+    ;;
+  *)
+    monid="$(jq '.id' <<<"$monObj")"
+    w="$(expr "${WORKSPACE}" + 10 \* $monid)"
+    hyprctl dispatch "$cmd" "$w"
+    ;;
+esac
+

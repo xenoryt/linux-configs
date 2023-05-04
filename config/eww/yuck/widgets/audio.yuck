@@ -1,0 +1,47 @@
+(defwidget audio []
+  (box
+    :class "widget-audio-box"
+    :orientation "v"
+    :space-evenly "false"
+    :vexpand "false"
+    :hexpand "false"
+    (box
+      :halign "v"
+      :space-evenly false
+      :hexpand "false"
+      :vexpand "false"
+      (label
+        :class "icon"
+        :text "")
+      (scale
+        :vexpand false
+        :hexpand true
+        :value volume_percent
+        :orientation "h"
+        :onchange "~/.config/hypr/scripts/volume set {}"
+        :tooltip "volume on ${volume_percent}%"
+        :max 100
+        :min 0))
+    (box
+      :class "widget-separator"
+      :hexpand "true")
+    (box
+      :halign "v"
+      :space-evenly false
+      :hexpand false
+      :vexpand false
+      (label
+        :class "icon"
+        :text "")
+      (scale
+        :vexpand false
+        :hexpand true
+        :value mic_percent
+        :orientation "h"
+        :tooltip "mic on ${mic_percent}%"
+        :onchange "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ {}%"
+        :round-digits 2
+        :max 120
+        :min 0
+        ))))
+

@@ -8,7 +8,7 @@ local palette = U.palette
 local function set_sign(type, icon)
   local sign = string.format("LspDiagnosticsSign%s", type)
   local texthl = string.format("LspDiagnosticsDefault%s", type)
-  vim.fn.sign_define(sign, {text = icon, texthl = texthl})
+  vim.fn.sign_define(sign, { text = icon, texthl = texthl })
 end
 
 -- Customize diagnostics highlights
@@ -52,7 +52,7 @@ set_highlight("Error", palette.red)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {'documentation', 'detail', 'additionalTextEdits'},
+  properties = { 'documentation', 'detail', 'additionalTextEdits' },
 }
 
 
@@ -75,8 +75,8 @@ local function setup_servers()
   -- Efm language server
   -- https://github.com/mattn/efm-langserver
   configs.efm = {
-    init_options = {documentFormatting = true, codeAction = true, document_formatting = true},
-    root_dir = lspconfig.util.root_pattern({'.git/', '.'}),
+    init_options = { documentFormatting = true, codeAction = true, document_formatting = true },
+    root_dir = lspconfig.util.root_pattern({ '.git/', '.' }),
 
     filetypes = {
       "json",
@@ -90,7 +90,7 @@ local function setup_servers()
       "scss",
       "css"
     },
-    settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
+    settings = { languages = languages, log_level = 1, log_file = '~/efm.log' },
   }
 
   -- Python languageserver
@@ -114,25 +114,32 @@ local function setup_servers()
   -- Terraform languageserver
   -- https://github.com/hashicorp/terraform-ls
   configs.terraform = {
-    cmd = {"terraform-ls", "serve"},
-    filetypes = {"tf"}
+    cmd = { "terraform-ls", "serve" },
+    filetypes = { "tf" }
   }
 
-  -- local installed = lspinstall.get_installed_servers()
-  -- for _, server in pairs(installed) do
-  --   local config = configs[server.name] or {}
-  --   config.root_dir = lspconfig.util.root_pattern({'.git/', '.'})
-  --   config.capabilities = capabilities
-  --   config.on_attach = function(client)
-  --     require("lsp-format").on_attach(client)
-  --     if server.name == "typescript" then
-  --       client.server_capabilities.documentFormattingProvider = false
-  --     end
-  --     on_attach_common(client)
-  --   end
-  --   lspconfig[server.name].setup(config)
-  -- end
+  configs.volar = {
+    init_options = {
+      typescript = {
+        tsdk = os.getenv('HOME') .. '/.npm-global/lib/node_modules/typescript/lib/',
+      }
+    }
+  }
 
+  --local installed = lspinstall.get_installed_servers()
+  --for _, server in pairs(installed) do
+  --  local config = configs[server.name] or {}
+  --  config.root_dir = lspconfig.util.root_pattern({'.git/', '.'})
+  --  config.capabilities = capabilities
+  --  config.on_attach = function(client)
+  --    if server.name == "typescript" then
+  --      --client.resolved_capabilities.document_formatting = false
+  --      client.server_capabilities.documentFormattingProvider = false
+  --    end
+  --    on_attach_common(client)
+  --  end
+  --  lspconfig[server.name].setup(config)
+  --end
 end
 
 setup_servers()

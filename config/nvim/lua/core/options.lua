@@ -29,6 +29,7 @@ set ('spelllang', 'en_gb')
 
 -- Enable mouse.
 set ('mouse','a')
+set ('mousemodel', 'extend')
 
 -- set 'wildmenu'
 set ('wildoptions', 'pum')

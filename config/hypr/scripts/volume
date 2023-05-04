@@ -1,0 +1,54 @@
+#!/bin/bash
+
+set-volume() {
+  volume="$1"
+  wpctl set-volume @DEFAULT_AUDIO_SINK@ "${volume}%"
+  dunstify -a "VOLUME" "Set to $volume%" -h int:value:"$volume" -i audio-volume-low-symbolic -r 2593 -u normal
+  canberra-gtk-play -i audio-volume-change -d "changevolume"
+}
+
+down() {
+  pamixer -d 5
+  volume=$(pamixer --get-volume)
+  [$volume -gt 0 ] && volume=`expr $volume`
+  dunstify -a "VOLUME" "Decreasing to $volume%" -h int:value:"$volume" -i audio-volume-low-symbolic -r 2593 -u normal
+  canberra-gtk-play -i audio-volume-change -d "changevolume"
+}
+
+up() {
+  pamixer -i 5
+  volume=$(pamixer --get-volume)
+  [ $volume -lt 100 ] && volume=`expr $volume`
+  dunstify -a "VOLUME" "Increasing to $volume%" -h int:value:"$volume" -i audio-volume-high-symbolic -r 2593 -u normal
+  canberra-gtk-play -i audio-volume-change -d "changevolume"
+}
+
+mute() {
+  muted="$(pamixer --get-mute)"
+  if $muted; then
+    pamixer -u
+    dunstify -a "VOLUME" "UNMUTED" -i audio-volume-high-symbolic -r 2593 -u normal
+  else
+    pamixer -m
+    dunstify -a "VOLUME" "MUTED" -i audio-volume-muted-symbolic -r 2593 -u normal
+  fi
+}
+
+mute-mic() {
+muted="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | cut -d' ' -f3)"
+if [ -z "$muted" ]; then
+  wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
+  dunstify -a "MIC" "MUTED" -i microphone-sensitivity-muted-symbolic -r 2593 -u normal
+else
+  wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0
+  dunstify -a "MIC" "UNMUTED" -i microphone-sensitivity-high-symbolic -r 2593 -u normal
+fi
+}
+
+case "$1" in
+  up) up;;
+  down) down;;
+  mute) mute;;
+  mute-mic) mute-mic;;
+  set) set-volume $2;;
+esac

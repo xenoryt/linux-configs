@@ -130,6 +130,9 @@ local pluginCategories = {
       config = [[require('plugin.go')]]
     },
     { 'sebdah/vim-delve' },
+    {
+      'elkowar/yuck.vim'
+    }
   },
 
   -- EXTRA: plugins that provide extra functionality
