@@ -13,7 +13,6 @@ local packer_compiled = U.os.data .. '/site/plugin/packer_compiled.vim'
 -- Split the plugins into different categories to make it simpler to select which plugins to install on each system
 -- The list of plugins to install are set in the loadPlugins variable
 local pluginCategories = {
-
   -- BASIC PLUGINS: Provides basic keymaps/navigation
   basic = {
     -- Colorschemes
@@ -21,8 +20,9 @@ local pluginCategories = {
     { 'rafi/awesome-vim-colorschemes' },
 
     -- FZF file/content search
-    { 'junegunn/fzf', dir = '~/.fzf', run = './install --all' },
-    { 'ibhagwan/fzf-lua',
+    { 'junegunn/fzf',                 dir = '~/.fzf', run = './install --all' },
+    {
+      'ibhagwan/fzf-lua',
       after = 'fzf',
       requires = {
         'vijaymarupudi/nvim-fzf',
@@ -158,6 +158,7 @@ local pluginCategories = {
     },
     {
       'lewis6991/gitsigns.nvim',
+      after = 'folke/which-key.nvim',
       requires = {
         'nvim-lua/plenary.nvim'
       },

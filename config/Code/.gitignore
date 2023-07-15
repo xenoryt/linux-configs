@@ -1,9 +1,0 @@
-# Ignore all folders in Code
-# Except these .gitignore and User/ directory
-/*
-!.gitignore
-!User/
-
-# Ignore all files in User folder, except for *.json files
-User/*
-!User/*.json
