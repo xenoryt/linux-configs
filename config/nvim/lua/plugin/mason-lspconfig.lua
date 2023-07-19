@@ -1,5 +1,6 @@
 local on_attach_common = require('plugin.nvim-lspconfig.on-attach')
 
+print('mason-lspconfig init')
 require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",

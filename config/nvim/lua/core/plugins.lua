@@ -108,13 +108,14 @@ local pluginCategories = {
     },
     {
       'williamboman/mason.nvim',
-      setup = [[require('plugin.mason')]],
-      run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+      config = [[require('plugin.mason')]],
+      build = ":MasonUpdate" -- :MasonUpdate updates registry contents
     },
     {
       'williamboman/mason-lspconfig.nvim',
-      setup = [[require('plugin.mason-lspconfig')]],
-    }
+      after = 'williamboman/mason.nvim',
+      config = [[require('plugin.mason-lspconfig')]],
+    },
 
     -- {
     --   'glepnir/lspsaga.nvim',
