@@ -7,5 +7,5 @@ if [ -n "$DELAY" ]; then
   LOCK_ARGS="--fade-in $DELAY --grace $DELAY"
 fi
 
-swaylock --screenshots --clock --effect-blur 20x3 $LOCK_ARGS
+#swaylock --screenshots --clock --effect-blur 20x3 $LOCK_ARGS
 
