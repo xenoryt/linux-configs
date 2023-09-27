@@ -1,37 +1,56 @@
 #! /bin/bash
 
-#define icons for workspaces 1-9
-#icontheme=$(geticons -U)
+tmpfile="$(mktemp -t "appnames.XXX.json")"
 icontheme=$(grep "gtk-icon-theme-name" "$HOME"/.config/gtk-3.0/settings.ini | cut --delimiter="=" -f 2)
 
-workspaces() {
-if [[ ${1:0:14} == "activewindow>>" ]]; then #set focused workspace
-    string=${1:14}
-    class="${string/,*/}"
-    export title=${string/,/, }
-    [[ $title == ", " ]] && unset title
-    export iconpath=$(geticons "$class" -s 24 -c 1 -t "$icontheme" | head -n 1)
-fi
+# Initialize the data as empty array
+echo "[]" > "$tmpfile"
+
+update() {
+  # Check for new focus window event and check if the new window is on the monitor specified
+  [ "${1:0:14}" == "activewindow>>" ] || return 1
+  #[ "" -eq "$MONITOR" ] || return 1
+  #monitorLen="$(hyprctl monitors -j | jq length)"
+
+  monitor=$(hyprctl activewindow -j | jq .monitor)
+
+  string=${1:14}
+  class="${string/,*/}"
+  title=${string/,/, }
+  [[ $title == ", " ]] && unset title
+  #iconpath=$(geticons "$class" -s 24 -c 1 -t "$icontheme" | head -n 1)
+
+  obj="$(cat <<EOF
+  {
+    "icon": "$iconpath",
+    "title": "$title"
+  }
+EOF
+  )"
+
+  arr="$(cat "$tmpfile")"
+  jq -c ".[$monitor] |= $obj" <<<"$arr" | tee "$tmpfile"
 }
 
 module() {
 #output eww widget
-echo 	"(box \
-                :orientation \"h\" \
-                :halign \"start\" \
-                :space-evenly false \
-                (image \
-                    :class \"app-icon\" \
-                    :path \"$iconpath\" \
-                    :image-width \"36\") \
-                (label \
-                    :class \"app-name\" \
-                    :limit-width \"35\" \
-                    :text \"$title\" \
-                    :tooltip \"$title\"))"
+cat <<EOF
+(box
+  :orientation "h"
+  :halign "start"
+  :space-evenly false
+  (image
+      :class "app-icon"
+      :path "$iconpath"
+      :image-width "36")
+  (label
+      :class "app-name"
+      :limit-width "35"
+      :text "$title"
+      :tooltip "$title"))
+EOF
 }
 
 socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r event; do 
-workspaces "$event"
-module
+  update "$event"
 done

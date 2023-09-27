@@ -15,7 +15,6 @@ getInfo() {
   focusedWorkspace="$($workspaceScript -m $MONITOR current)"
   existingWorkspaces="$($workspaceScript -m $MONITOR list)"
 
-  workspaces=()
   for i in `seq 1 $MAX_WORKSPACES`; do
     occupied=false
     if grep "\b$i\b" <<<"${existingWorkspaces[*]}" >/dev/null; then
