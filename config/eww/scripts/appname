@@ -18,7 +18,7 @@ update() {
   class="${string/,*/}"
   title=${string/,/, }
   [[ $title == ", " ]] && unset title
-  #iconpath=$(geticons "$class" -s 24 -c 1 -t "$icontheme" | head -n 1)
+  iconpath=$(geticons "$class" -s 24 -c 1 -t "$icontheme" | head -n 1)
 
   obj="$(cat <<EOF
   {

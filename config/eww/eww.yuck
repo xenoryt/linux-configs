@@ -69,11 +69,13 @@
       (box
         :orientation "h"
         :halign "start"
+        :valign "center"
         :space-evenly false
         (image
             :class "app-icon"
             :path "${appnameList[monitor].icon}"
-            :image-width "36")
+            :height 24
+            :image-width 24)
         (label
             :class "app-name"
             :limit-width "35"
