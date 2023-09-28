@@ -3,6 +3,8 @@
 tmpfile="$(mktemp -t "appnames.XXX.json")"
 icontheme=$(grep "gtk-icon-theme-name" "$HOME"/.config/gtk-3.0/settings.ini | cut --delimiter="=" -f 2)
 
+echo "Using tmpfile: $tmpfile" >&2
+
 # Initialize the data as empty array
 echo "[]" > "$tmpfile"
 
@@ -20,16 +22,20 @@ update() {
   [[ $title == ", " ]] && unset title
   iconpath=$(geticons "$class" -s 24 -c 1 -t "$icontheme" | head -n 1)
 
-  obj="$(cat <<EOF
-  {
-    "icon": "$iconpath",
-    "title": "$title"
-  }
+  # Escape special chars
+  title="$(echo "$title" | sed 's/\\/\\\\/g' | sed 's/\"/\\\"/g')"
+  obj="$(cat <<EOF 
+{
+  "icon": "$iconpath",
+  "title": "${title}"
+}
 EOF
-  )"
+)"
+
+  echo "OBJ: $obj" >&2
 
   arr="$(cat "$tmpfile")"
-  jq -c ".[$monitor] |= $obj" <<<"$arr" | tee "$tmpfile"
+  jq -c --argjson obj "$obj" --argjson monitor "$monitor" '.[$monitor] |= $obj' <<<"$arr" | tee "$tmpfile"
 }
 
 module() {
