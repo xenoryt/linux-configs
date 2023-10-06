@@ -3,8 +3,6 @@
 tmpfile="$(mktemp -t "appnames.XXX.json")"
 icontheme=$(grep "gtk-icon-theme-name" "$HOME"/.config/gtk-3.0/settings.ini | cut --delimiter="=" -f 2)
 
-echo "Using tmpfile: $tmpfile" >&2
-
 # Initialize the data as empty array
 echo "[]" > "$tmpfile"
 
@@ -17,6 +15,7 @@ update() {
   monitor=$(hyprctl activewindow -j | jq .monitor)
 
   string=${1:14}
+  [ -z "$string" -o "$string" == "," ] && return 0
   class="${string/,*/}"
   title=${string/,/, }
   [[ $title == ", " ]] && unset title
@@ -31,8 +30,6 @@ update() {
 }
 EOF
 )"
-
-  echo "OBJ: $obj" >&2
 
   arr="$(cat "$tmpfile")"
   jq -c --argjson obj "$obj" --argjson monitor "$monitor" '.[$monitor] |= $obj' <<<"$arr" | tee "$tmpfile"
