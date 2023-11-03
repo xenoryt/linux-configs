@@ -1,3 +1,7 @@
+local lsp_enabled = false
+local formatting_enabled = false
+
+
 local buf_nmap = U.keymap.buf_nmap
 local buf_imap = U.keymap.buf_imap
 local function lua_nmap(lhs, rhs, opts)
@@ -71,14 +75,15 @@ local function mappings()
 end
 
 return function(client)
-  print("LSP started.");
-  mappings()
+  if not lsp_enabled then
+    print("LSP started.");
+    mappings()
+  end
 
   -- if client.name ~= 'efm' then client.resolved_capabilities.document_formatting = false end
 
-  -- if client.name == 'typescript' then require('nvim-lsp-ts-utils').setup {} end
-
-  if client.server_capabilities.documentFormattingProvider then
+  if not formatting_enabled and client.server_capabilities.documentFormattingProvider then
+    print("Formatting enabled.", client.name);
     vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.format({async = false})]]
   end
 end

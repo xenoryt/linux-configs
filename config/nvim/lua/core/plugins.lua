@@ -94,7 +94,11 @@ local pluginCategories = {
     --   config = [[require('plugin.nvim-lsputils')]],
     -- },
 
-    { "lukas-reineke/lsp-format.nvim" },
+    {
+      "jose-elias-alvarez/null-ls.nvim",
+      setup = [[require('plugin.null-ls')]]
+    },
+    --{ "lukas-reineke/lsp-format.nvim" },
     {
       'neovim/nvim-lspconfig',
       requires = {
