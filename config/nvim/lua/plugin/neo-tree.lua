@@ -1,20 +1,21 @@
 local nmap = U.keymap.nmap
 nmap('<C-\\>', ':Neotree reveal<CR>')
-nmap('<C-S-\\>g', ':Neotree git_status<CR>')
-nmap('<C-S-\\>b', ':Neotree buffers<CR>')
+nmap('<C-A-\\>\\', ':Neotree float reveal<CR>')
+nmap('<C-A-\\>g', ':Neotree git_status<CR>')
+nmap('<C-A-\\>b', ':Neotree buffers<CR>')
 
 -- Unless you are still migrating, remove the deprecated commands from v1.x
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
 -- If you want icons for diagnostic errors, you'll need to define them somewhere:
 vim.fn.sign_define("DiagnosticSignError",
-  {text = " ", texthl = "DiagnosticSignError"})
+  { text = " ", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn",
-  {text = " ", texthl = "DiagnosticSignWarn"})
+  { text = " ", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo",
-  {text = " ", texthl = "DiagnosticSignInfo"})
+  { text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint",
-  {text = "", texthl = "DiagnosticSignHint"})
+  { text = "", texthl = "DiagnosticSignHint" })
 -- NOTE: this is changed from v1.x, which used the old style of highlight groups
 -- in the form "LspDiagnosticsSignWarning"
 
@@ -24,7 +25,7 @@ require("neo-tree").setup({
   enable_git_status = true,
   enable_diagnostics = true,
   sort_case_insensitive = false, -- used when sorting files and directories in the tree
-  sort_function = nil , -- use a custom function for sorting files and directories in the tree
+  sort_function = nil,           -- use a custom function for sorting files and directories in the tree
   -- sort_function = function (a,b)
   --       if a.type == b.type then
   --           return a.path > b.path
@@ -32,6 +33,9 @@ require("neo-tree").setup({
   --           return a.type > b.type
   --       end
   --   end , -- this sorts files and directories descendantly
+
+  open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
+
   default_component_configs = {
     container = {
       enable_character_fade = true
@@ -71,10 +75,10 @@ require("neo-tree").setup({
     git_status = {
       symbols = {
         -- Change type
-        added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-        modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-        deleted   = "✖",-- this can only be used in the git_status source
-        renamed   = "",-- this can only be used in the git_status source
+        added     = "",  -- or "✚", but this is redundant info if you use git_status_colors on the name
+        modified  = "",  -- or "", but this is redundant info if you use git_status_colors on the name
+        deleted   = "✖", -- this can only be used in the git_status source
+        renamed   = "", -- this can only be used in the git_status source
         -- Status type
         untracked = "",
         ignored   = "",
@@ -92,9 +96,9 @@ require("neo-tree").setup({
       nowait = true,
     },
     mappings = {
-      ["<space>"] = { 
-          "toggle_node", 
-          nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use 
+      ["<space>"] = {
+        "toggle_node",
+        nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
       },
       ["<2-LeftMouse>"] = "open",
       ["<cr>"] = "open",
@@ -133,7 +137,7 @@ require("neo-tree").setup({
       --  }
       --}
       ["m"] = {
-        "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
+        "move",                  -- takes text input for destination, also accepts the optional config.show_path option like "add".
         config = {
           show_path = "relative" -- "none", "relative", "absolute"
         }
@@ -169,16 +173,16 @@ require("neo-tree").setup({
         "thumbs.db"
       },
     },
-    follow_current_file = false, -- This will find and focus the file in the active buffer every
-                                 -- time the current file is changed while the tree is open.
-    group_empty_dirs = false, -- when true, empty folders will be grouped together
+    follow_current_file = false,            -- This will find and focus the file in the active buffer every
+    -- time the current file is changed while the tree is open.
+    group_empty_dirs = false,               -- when true, empty folders will be grouped together
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-                                            -- in whatever position is specified in window.position
-                          -- "open_current",  -- netrw disabled, opening a directory opens within the
-                                            -- window like netrw would, regardless of window.position
-                          -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
+    -- in whatever position is specified in window.position
+    -- "open_current",  -- netrw disabled, opening a directory opens within the
+    -- window like netrw would, regardless of window.position
+    -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
     use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
-                                    -- instead of relying on nvim autocmd events.
+    -- instead of relying on nvim autocmd events.
     window = {
       mappings = {
         ["<bs>"] = "navigate_up",
@@ -196,8 +200,8 @@ require("neo-tree").setup({
   },
   buffers = {
     follow_current_file = true, -- This will find and focus the file in the active buffer every
-                                 -- time the current file is changed while the tree is open.
-    group_empty_dirs = true, -- when true, empty folders will be grouped together
+    -- time the current file is changed while the tree is open.
+    group_empty_dirs = true,    -- when true, empty folders will be grouped together
     show_unloaded = true,
     window = {
       mappings = {
