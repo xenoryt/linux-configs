@@ -20,11 +20,8 @@
 (defpoll ESSID_WLAN :interval "1m" "scripts/wifi --ESSID")
 (defpoll WLAN_ICON :interval "1m" "scripts/wifi --ICON")
 (defpoll MIC_ICON :interval "3s" "scripts/mic-icon")
-(deflisten workspace0 "scripts/workspace 0")
-(deflisten workspace1 "scripts/workspace 1")
-(deflisten workspace2 "scripts/workspace 2")
 (deflisten workspace_data :initial "[]" "scripts/workspace-data")
-(deflisten appname "scripts/appname")
+(deflisten appnameList :initial "[]" "scripts/appname")
 
 ; https://github.com/elkowar/eww/issues/382#issuecomment-1281693594
 
@@ -60,11 +57,7 @@
           '${w.icon}')
         ))))
 
-  ;(literal
-  ;  :content workspace1
-  ;:valign "center"))
-
-(defwidget appnames []
+(defwidget appnames [monitor]
   (eventbox
     :onhover "${EWW_CMD} update control_reveal=true"
     :onhoverlost "${EWW_CMD} update control_reveal=false"
@@ -73,27 +66,22 @@
       :space-evenly "false"
       :vexpand "false"
       :hexpand "false"
-      (literal
-      :content appname)
-      (revealer
-        :transition "slideright"
-        :reveal control_reveal
-        :duration "350ms"
-        (box
-          :vexpand "false"
-          :hexpand "false"
-          :orientation "h"
-          :space-evenly "true"
-          (button
-            :class "app-button"
-          :onclick "hyprctl dispatch togglefloating 1" "")
-          (button
-            :class "app-button"
-          :onclick "hyprctl dispatch fullscreen 1" "")
-          (button ; use "eventbox" with : ":cursor pointer" for poiner cursor
-            :class "app-button color-var3"
-            :cursor "pointer"
-          :onclick "hyprctl dispatch killactive 1" ""))))))
+      (box
+        :orientation "h"
+        :halign "start"
+        :valign "center"
+        :space-evenly false
+        (image
+            :class "app-icon"
+            :path "${appnameList[monitor].icon}"
+            :height 24
+            :image-width 24)
+        (label
+            :class "app-name"
+            :limit-width "35"
+            :text "${appnameList[monitor].title}"
+            :tooltip "${appnameList[monitor].title}"))
+      )))
 
 (defwidget volume []
   (eventbox
@@ -255,13 +243,13 @@
     ;(launcher)
     ;(sep)
     (workspaces :monitor monitor)))
-(defwidget center []
+(defwidget center [monitor]
   (box
     :orientation "h"
     :space-evenly false
     :halign "center"
     :class "center_modules"
-    (appnames)))
+    (appnames :monitor monitor)))
 (defwidget right []
   (box
     :orientation "h"
@@ -288,7 +276,7 @@
     :class "bar_class"
     :orientation "h"
     (left :monitor monitor)
-    (center)
+    (center :monitor monitor)
     (right)
   ))
 

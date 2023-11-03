@@ -1,29 +1,28 @@
 " General Settings
-set configversion 1.8
+set update.lastchecktime 1694013226479
+set configversion 2.0
+set theme shydactyl
+set editorcmd kitty nvim %f -c 'normal %lG%cl'
+set newtab about:blank
 
-unbind d
-unbind u
+" Binds
+bind / fillcmdline find
 unbind <C-f>
-unbind '
-
-bind d scrollline 20
-bind u scrollline -20
+bind ? fillcmdline find -?
+bind N findnext -?
+unbind d
 bind j scrollline 5
 bind k scrollline -5
+bind n findnext 1
 bind s scrollline 5
+unbind u
 bind w scrollline -5
 bind x tabclose
-
-bind / fillcmdline find
-bind ? fillcmdline find -?
-bind n findnext 1
-bind N findnext -1
-
-bind '' jumpprev
+unbind '
+bind , gobble 1 markjump
+bind '' markjumpbefore
 bind [q jumpprev
 bind ]q jumpnext
 
-set theme shydactyl
-set editorcmd kitty nvim %f -c 'normal %lG%cl'
-
-" vim: set filetype=vim:
+" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" vim: set filetype=tridactyl
