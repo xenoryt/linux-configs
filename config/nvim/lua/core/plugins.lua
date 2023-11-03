@@ -153,8 +153,13 @@ local pluginCategories = {
     --  config = { [[require('plugin.gh')]] }
     --},
     {
-      'TimUntersberger/neogit',
-      requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
+      "NeogitOrg/neogit",
+      requires = {
+        "nvim-lua/plenary.nvim",         -- required
+        "nvim-telescope/telescope.nvim", -- optional
+        "sindrets/diffview.nvim",        -- optional
+        "ibhagwan/fzf-lua",              -- optional
+      },
       config = { [[require('plugin.neogit')]] }
     },
     {
@@ -187,6 +192,10 @@ local pluginCategories = {
     --  after = "nvim-treesitter",
     --  config = [[require('plugin.neorg')]],
     --},
+    {
+      'mickael-menu/zk-nvim',
+      config = [[require('plugin.zk')]],
+    },
 
     -- TreeSitter
     {
