@@ -1,6 +1,6 @@
 [control-center]
 last-panel='keyboard'
-window-state=(1920, 1152, true)
+window-state=(1920, 1393, false)
 
 [desktop/a11y/applications]
 screen-reader-enabled=false
@@ -8,11 +8,27 @@ screen-reader-enabled=false
 [desktop/app-folders]
 folder-children=['Utilities', 'YaST']
 
+[desktop/app-folders/folders/Utilities]
+apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
+categories=['X-GNOME-Utilities']
+name='X-GNOME-Utilities.directory'
+translate=true
+
+[desktop/app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
 [desktop/applications/terminal]
 exec='kitty'
 
 [desktop/background]
-picture-uri='file:///usr/share/endeavouros/backgrounds/eos_wallpapers_community/flval_eos_amour.jpeg'
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///usr/share/backgrounds/Dynamic_Wallpapers/Lakeside.xml'
+picture-uri-dark='file:///usr/share/backgrounds/Dynamic_Wallpapers/Lakeside.xml'
+primary-color='#3465a4'
+secondary-color='#000000'
 
 [desktop/input-sources]
 per-window=false
@@ -22,20 +38,26 @@ xkb-options=@as []
 [desktop/interface]
 clock-format='12h'
 clock-show-seconds=true
+color-scheme='default'
 cursor-size=24
-cursor-theme='Yaru-remix'
+cursor-theme='breeze_cursors'
 enable-animations=true
+enable-hot-corners=false
 font-antialiasing='grayscale'
 font-hinting='slight'
 font-name='Noto Sans,  10'
+gtk-im-module='gtk-im-context-simple'
 gtk-theme='Arc'
-icon-theme='Paper'
-locate-pointer=false
+icon-theme='Qogir'
+locate-pointer=true
+scaling-factor=uint32 1
 show-battery-percentage=false
+text-scaling-factor=1.0
 toolbar-style='text'
+toolkit-accessibility=false
 
 [desktop/notifications]
-application-children=['firefox', 'org-gnome-nautilus', 'discord', 'rhythmbox', 'gnome-power-panel', 'org-gnome-shell-extensions', 'steam', 'kitty', 'net-lutris-lutris', 'wine', 'pavucontrol', 'nm-applet', 'blueman-adapters', 'org-gnome-chromegnomeshell', 'org-gnome-extensions-desktop', 'gnome-network-panel', 'steam-native', 'peony', 'musique', 'gimp', 'slack', 'com-nextcloud-desktopclient-nextcloud', 'code-oss', 'visual-studio-code', 'speedcrunch', 'minecraft-launcher', 'deluge', 'org-gnome-fileroller', 'ca-desrt-dconf-editor', 'multimc']
+application-children=['firefox', 'org-gnome-nautilus', 'discord', 'rhythmbox', 'gnome-power-panel', 'org-gnome-shell-extensions', 'steam', 'kitty', 'net-lutris-lutris', 'wine', 'pavucontrol', 'nm-applet', 'blueman-adapters', 'org-gnome-chromegnomeshell', 'org-gnome-extensions-desktop', 'gnome-network-panel', 'steam-native', 'peony', 'musique', 'gimp', 'slack', 'com-nextcloud-desktopclient-nextcloud', 'code-oss', 'visual-studio-code', 'speedcrunch', 'minecraft-launcher', 'deluge', 'org-gnome-fileroller', 'ca-desrt-dconf-editor', 'multimc', 'zoom', 'org-keepassxc-keepassxc', 'chromium']
 show-banners=true
 
 [desktop/notifications/application/blueman-adapters]
@@ -43,6 +65,9 @@ application-id='blueman-adapters.desktop'
 
 [desktop/notifications/application/ca-desrt-dconf-editor]
 application-id='ca.desrt.dconf-editor.desktop'
+
+[desktop/notifications/application/chromium]
+application-id='chromium.desktop'
 
 [desktop/notifications/application/code-oss]
 application-id='code-oss.desktop'
@@ -101,6 +126,9 @@ application-id='org.gnome.Nautilus.desktop'
 [desktop/notifications/application/org-gnome-shell-extensions]
 application-id='org.gnome.Shell.Extensions.desktop'
 
+[desktop/notifications/application/org-keepassxc-keepassxc]
+application-id='org.keepassxc.KeePassXC.desktop'
+
 [desktop/notifications/application/pavucontrol]
 application-id='pavucontrol.desktop'
 
@@ -128,69 +156,125 @@ application-id='visual-studio-code.desktop'
 [desktop/notifications/application/wine]
 application-id='wine.desktop'
 
+[desktop/notifications/application/zoom]
+application-id='Zoom.desktop'
+
 [desktop/peripherals/keyboard]
 numlock-state=true
 
+[desktop/peripherals/mouse]
+accel-profile='flat'
+
+[desktop/peripherals/touchpad]
+two-finger-scrolling-enabled=true
+
+[desktop/screensaver]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///usr/share/backgrounds/Dynamic_Wallpapers/Lakeside.xml'
+primary-color='#3465a4'
+secondary-color='#000000'
+
+[desktop/search-providers]
+sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop']
+
+[desktop/sound]
+event-sounds=true
+theme-name='__custom'
+
 [desktop/wm/keybindings]
+activate-window-menu=@as []
 close=['<Shift><Super>q']
-maximize=['']
+maximize=@as []
 minimize=['']
 move-to-workspace-1=['<Shift><Super>exclam']
 move-to-workspace-2=['<Shift><Super>at']
 move-to-workspace-3=['<Shift><Super>numbersign']
 move-to-workspace-4=['<Shift><Super>dollar']
-move-to-workspace-left=['<Primary><Shift><Super>Tab']
-move-to-workspace-right=['<Primary><Super>Tab']
-switch-applications=['<Super>grave']
-switch-applications-backward=['<Shift><Super>grave']
+switch-applications=@as []
+switch-applications-backward=@as []
 switch-group=['<Alt>grave']
 switch-group-backward=['<Shift><Alt>grave']
-switch-to-workspace-1=['']
-switch-to-workspace-2=['']
-switch-to-workspace-3=['']
-switch-to-workspace-4=['']
-switch-to-workspace-left=['<Shift><Super>Tab', '<Ctrl><Alt>h']
-switch-to-workspace-right=['<Super>Tab', '<Ctrl><Alt>l']
-switch-windows=['<Alt>Tab']
-switch-windows-backward=['<Shift><Alt>Tab']
+switch-input-source=['']
+switch-input-source-backward=['']
+switch-to-workspace-1=['<Super>1']
+switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
+switch-to-workspace-down=@as []
+switch-to-workspace-last=@as []
+switch-to-workspace-left=@as []
+switch-to-workspace-right=@as []
+switch-to-workspace-up=@as []
+switch-windows=@as []
+switch-windows-backward=@as []
 unmaximize=['']
 
 [desktop/wm/preferences]
-button-layout='appmenu:close'
+button-layout='icon:minimize,maximize,close'
+focus-mode='click'
+num-workspaces=7
 resize-with-right-button=true
+workspace-names=['', '', '', '', 'Workspace 5', 'Workspace 6', 'Workspace 7']
 
 [eog/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
 
+[evince]
+document-directory=@ms 'file:///home/tyrone/Downloads'
+
 [evince/default]
-window-ratio=(0.98039215686274506, 0.75757575757575757)
+window-ratio=(0.78431372549019607, 0.32702020202020204)
 
 [file-roller/dialogs/extract]
 recreate-folders=true
 skip-newer=false
 
+[file-roller/dialogs/new]
+default-extension='.zip'
+encrypt-header=false
+expand-options=false
+volume-size=0
+
 [file-roller/listing]
 list-mode='as-folder'
-name-column-width=250
+name-column-width=477
 show-path=false
 sort-method='name'
 sort-type='ascending'
 
 [file-roller/ui]
 sidebar-width=200
-window-height=480
-window-width=600
+window-height=640
+window-width=1263
+
+[gedit/preferences/editor]
+scheme='oblivion'
+wrap-last-split-mode='word'
+wrap-mode='none'
+
+[gedit/state/file-chooser]
+open-recent=false
+
+[gedit/state/window]
+bottom-panel-size=140
+side-panel-active-page='GeditWindowDocumentsPanel'
+side-panel-size=200
+size=(1900, 977)
+state=132
 
 [mutter]
+attach-modal-dialogs=false
 center-new-windows=false
 dynamic-workspaces=true
-edge-tiling=true
-workspaces-only-on-primary=true
+edge-tiling=false
+workspaces-only-on-primary=false
 
 [mutter/keybindings]
-toggle-tiled-left=['']
-toggle-tiled-right=['']
+cancel-input-capture=@as []
+toggle-tiled-left=@as []
+toggle-tiled-right=@as []
 
 [mutter/wayland/keybindings]
 restore-shortcuts=['']
@@ -203,15 +287,22 @@ default-zoom-level='standard'
 
 [nautilus/list-view]
 default-zoom-level='small'
+use-tree-view=true
 
 [nautilus/preferences]
 default-folder-viewer='list-view'
+migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 search-view='list-view'
+show-create-link=true
 
 [nautilus/window-state]
 initial-size=(1031, 550)
 maximized=true
+
+[nm-applet/eap/b7db75a9-2636-4fd0-89f5-f11319e60791]
+ignore-ca-cert=false
+ignore-phase2-ca-cert=false
 
 [rhythmbox]
 position=(1003, 468)
@@ -265,12 +356,14 @@ area-screenshot-clip=['<Super>Print']
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
 home=['<Super>e']
 mic-mute=['<Super>v']
-next=['<Alt><Super>Right']
-play=['<Alt><Super>Down']
-previous=['<Alt><Super>Left']
+next=@as []
+pause=@as []
+play=@as []
+previous=@as []
+screensaver=@as []
 screenshot=@as []
 screenshot-clip=['Print']
-stop=['<Alt><Super>Up']
+stop=@as []
 volume-down=['AudioLowerVolume']
 volume-mute=['AudioMute']
 volume-up=['AudioRaiseVolume']
@@ -287,44 +380,96 @@ sleep-inactive-ac-timeout=7200
 sleep-inactive-ac-type='suspend'
 
 [shell]
-command-history=['picard', 'gnome-terminal', 'logout', 'r']
+command-history=['picard', 'gnome-terminal', 'logout', 'gnome-screenshot', 'gnome-extensions', 'kitty', 'restart', 'r']
 disable-user-extensions=false
-disabled-extensions=['dock-from-dash@fthx', 'dash-to-dock@micxgx.gmail.com']
-enabled-extensions=['asdf', 'mprisindicatorbutton@JasonLG1979.github.io', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'material-shell@papyelgringo']
-favorite-apps=['firefox.desktop', 'discord.desktop']
+disabled-extensions=['dock-from-dash@fthx', 'gnome-ui-tune@itstime.tech', 'forge@jmmaranan.com', 'mousefollowsfocus@matthes.biz', 'vim-altTab@kokong.info', 'pop-shell@system76.com', 'workspace-switch-wraparound@theychx.org', 'dash-to-dock@micxgx.gmail.com']
+enabled-extensions=['asdf', 'mprisindicatorbutton@JasonLG1979.github.io', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'topiconsfix@aleskva@devnullmail.com', 'just-perfection-desktop@just-perfection', 'no-titlebar-when-maximized@alec.ninja', 'openweather-extension@jenslody.de', 'material-shell@papyelgringo', 'tophat@fflewddur.github.io', 'gnome-compact-top-bar@metehan-arslan.github.io', 'paperwm@paperwm.github.com']
+favorite-apps=['firefox.desktop', 'slack.desktop']
 had-bluetooth-devices-setup=true
 welcome-dialog-last-shown-version='41.1'
 
+[shell/extensions/advanced-alt-tab-window-switcher]
+app-switcher-popup-filter=2
+hotkey-above='T'
+hotkey-close-all-app=''
+hotkey-close-quit=''
+hotkey-maximize=''
+hotkey-move-win-to-monitor='S'
+hotkey-sticky='P'
+super-key-mode=1
+switcher-popup-monitor=2
+win-switch-include-modals=true
+win-switch-skip-minimized=true
+win-switcher-popup-sorting=2
+
 [shell/extensions/dash-to-dock]
+apply-custom-theme=false
 background-opacity=0.80000000000000004
 custom-theme-shrink=false
-dash-max-icon-size=48
+dash-max-icon-size=64
+dock-fixed=false
 dock-position='BOTTOM'
 height-fraction=0.90000000000000002
 hot-keys=false
-isolate-workspaces=false
+icon-size-fixed=false
+intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+isolate-monitors=true
+isolate-workspaces=true
 max-alpha=0.80000000000000004
+multi-monitor=true
 preferred-monitor=-2
 preferred-monitor-by-connector='DP-0'
+preview-size-scale=0.0
 scroll-action='switch-workspace'
 show-mounts=false
 show-show-apps-button=false
 show-trash=false
 transparency-mode='DYNAMIC'
 
+[shell/extensions/dash-to-panel]
+isolate-workspaces=true
+
 [shell/extensions/dock-from-dash]
 always-show=false
 show-in-full-screen=false
 
 [shell/extensions/forge]
-tiling-mode-enabled=false
+css-last-update=uint32 37
+tiling-mode-enabled=true
 
 [shell/extensions/forge/keybindings]
 mod-mask-mouse-tile='Ctrl'
 
+[shell/extensions/gnome-ui-tune]
+increase-thumbnails-size='100%'
+
 [shell/extensions/gtile]
 show-toggle-tiling=['<Shift><Super>w']
 theme='Default'
+
+[shell/extensions/just-perfection]
+accessibility-menu=false
+activities-button=true
+app-menu=false
+app-menu-icon=false
+app-menu-label=false
+dash=false
+dash-icon-size=32
+hot-corner=true
+panel=true
+panel-arrow=false
+panel-corner-size=1
+panel-in-overview=true
+ripple-box=false
+search=false
+show-apps-button=false
+startup-status=0
+theme=false
+window-demands-attention-focus=true
+window-picker-icon=false
+workspace=true
+workspace-switcher-should-show=false
+workspaces-in-app-grid=true
 
 [shell/extensions/materialshell/bindings]
 app-launcher=['']
@@ -345,27 +490,95 @@ use-simple-layout=['']
 use-split-layout=['<Control><Alt>s']
 
 [shell/extensions/materialshell/layouts]
+default-layout='float'
 gap=0
 simple=false
 
 [shell/extensions/materialshell/theme]
 clock-horizontal=true
 focus-effect='default'
+horizontal-panel-position='bottom'
 panel-icon-color=false
 panel-opacity=80
 panel-size=32
 surface-opacity=100
 theme='dark'
+vertical-panel-position='right'
 
 [shell/extensions/materialshell/tweaks]
 cycle-through-windows=true
 cycle-through-workspaces=false
 enable-persistence=false
 
+[shell/extensions/paperwm]
+restore-attach-modal-dialogs='false'
+restore-edge-tiling='true'
+restore-keybinds='{"toggle-tiled-right":{"bind":"[\\"<Super>Right\\"]","schema_id":"org.gnome.mutter.keybindings"},"cancel-input-capture":{"bind":"[\\"<Super><Shift>Escape\\"]","schema_id":"org.gnome.mutter.keybindings"},"toggle-tiled-left":{"bind":"[\\"<Super>Left\\"]","schema_id":"org.gnome.mutter.keybindings"},"switch-to-workspace-last":{"bind":"[\\"<Super>End\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-to-workspace-right":{"bind":"[\\"<Super>Tab\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-to-workspace-up":{"bind":"[\\"<Primary><Super>Up\\",\\"<Primary><Super>KP_Up\\",\\"<Primary><Super>k\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-to-workspace-left":{"bind":"[\\"<Super><Shift>Tab\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"maximize":{"bind":"[\\"<Super>Up\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-applications-backward":{"bind":"[\\"<Shift><Super>grave\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-to-workspace-down":{"bind":"[\\"<Primary><Super>Down\\",\\"<Primary><Super>KP_Down\\",\\"<Primary><Super>j\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-applications":{"bind":"[\\"<Super>grave\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"focus-active-notification":{"bind":"[\\"<Super>n\\"]","schema_id":"org.gnome.shell.keybindings"},"next":{"bind":"[\\"<Alt><Super>Right\\"]","schema_id":"org.gnome.settings-daemon.plugins.media-keys"},"previous":{"bind":"[\\"<Alt><Super>Left\\"]","schema_id":"org.gnome.settings-daemon.plugins.media-keys"},"stop":{"bind":"[\\"<Alt><Super>Up\\"]","schema_id":"org.gnome.settings-daemon.plugins.media-keys"},"switch-windows":{"bind":"[\\"<Alt>Tab\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-windows-backward":{"bind":"[\\"<Shift><Alt>Tab\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"play":{"bind":"[\\"<Alt><Super>Down\\"]","schema_id":"org.gnome.settings-daemon.plugins.media-keys"}}'
+restore-workspaces-only-on-primary='true'
+use-default-background=true
+
+[shell/extensions/paperwm/keybindings]
+live-alt-tab=['<Alt>Tab']
+live-alt-tab-backward=['<Shift><Alt>Tab']
+move-down=['<Control><Super>Down', '<Shift><Super>j']
+move-left=['<Control><Super>Left', '<Shift><Super>h']
+move-previous-workspace=['<Control><Super>grave']
+move-right=['<Control><Super>Right', '<Shift><Super>l']
+move-up=['<Control><Super>Up', '<Shift><Super>k']
+swap-monitor-left=['<Alt><Super>Left', '<Shift><Super>z']
+swap-monitor-right=['<Alt><Super>Right', '<Shift><Super>x']
+switch-down=['<Super>Down', '<Super>j']
+switch-down-workspace=['<Super>Tab']
+switch-left=['<Super>Left', '<Super>h', '<Super>a']
+switch-monitor-left=['<Super>z']
+switch-monitor-right=['<Super>x']
+switch-right=['<Super>Right', '<Super>l', '<Super>d']
+switch-up=['<Super>Up', '<Super>k']
+switch-up-workspace=['<Shift><Super>Tab']
+take-window=['']
+
+[shell/extensions/paperwm/workspaces]
+list=['1778279d-a07a-4cdc-b63d-429c4fa1c1ac', '463e278f-9375-4cc6-b986-7f4cf4e2c7af', '4b9fefd3-3de8-4695-b1bf-a503d6c685fb', 'ab0c0e33-1593-4187-b7b7-22a50943e3d5', '30c7282b-7e96-410e-854c-1fa202d11c69', '35bc2e83-acdf-45d5-9fac-6d65f04d5440', 'b8e771c1-a532-40b6-b9bc-7d4e50bb57ed', '4442e767-48d1-4f9c-9843-84c34a3f2063']
+
+[shell/extensions/paperwm/workspaces/1778279d-a07a-4cdc-b63d-429c4fa1c1ac]
+background=''
+color='rgb(49,78,108)'
+index=0
+
+[shell/extensions/paperwm/workspaces/30c7282b-7e96-410e-854c-1fa202d11c69]
+index=6
+
+[shell/extensions/paperwm/workspaces/35bc2e83-acdf-45d5-9fac-6d65f04d5440]
+index=7
+
+[shell/extensions/paperwm/workspaces/4442e767-48d1-4f9c-9843-84c34a3f2063]
+index=5
+
+[shell/extensions/paperwm/workspaces/463e278f-9375-4cc6-b986-7f4cf4e2c7af]
+index=1
+
+[shell/extensions/paperwm/workspaces/4b9fefd3-3de8-4695-b1bf-a503d6c685fb]
+index=2
+
+[shell/extensions/paperwm/workspaces/ab0c0e33-1593-4187-b7b7-22a50943e3d5]
+index=3
+
+[shell/extensions/paperwm/workspaces/b8e771c1-a532-40b6-b9bc-7d4e50bb57ed]
+index=4
+
+[shell/extensions/pop-shell]
+focus-up=@as []
+mouse-cursor-focus-location=uint32 4
+
 [shell/extensions/switcher]
 activate-by-key=uint32 2
 launcher-stats='{"eos-update-notifier-configure.desktop":1,"org.keepassxc.KeePassXC.desktop":3,"org.gnome.Terminal.desktop":1,"net.lutris.Lutris.desktop":1}'
 show-switcher=['<Super>s']
+
+[shell/extensions/tophat]
+disk-monitor-mode='activity'
+mem-display='both'
+mount-to-monitor='/home'
 
 [shell/extensions/trayIconsReloaded]
 applications='[]'
@@ -381,11 +594,22 @@ tray-margin-left=6
 tray-margin-right=6
 
 [shell/extensions/user-theme]
-name='Yaru-remix-dark'
+name='Arc-Dark'
+
+[shell/extensions/worksets]
+debug-mode=true
+disable-wallpaper-management=false
+hide-app-list=false
+isolate-workspaces=true
+reverse-menu=false
+show-helpers=true
+show-notifications=false
+show-panel-indicator=true
+show-workspace-overlay=true
 
 [shell/keybindings]
+focus-active-notification=@as []
 screenshot=['Print']
-shift-overview-down=['<Super><Shift>d']
 shift-overview-up=['']
 show-screenshot-ui=['<Super>Print']
 switch-to-application-1=@as []
@@ -398,7 +622,7 @@ switch-to-application-7=@as []
 switch-to-application-8=['']
 switch-to-application-9=['']
 toggle-application-view=['']
-toggle-message-tray=@as []
+toggle-message-tray=['<Super>b']
 toggle-overview=@as []
 
 [shell/overrides]
