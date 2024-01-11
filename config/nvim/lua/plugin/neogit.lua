@@ -12,7 +12,7 @@ neogit.setup {
   mappings = {
     popup = {
       -- Adds a mapping with "B" as key that does the "BranchPopup" command
-      ["B"] = "BranchPopup",
+      ["b"] = "BranchPopup",
     },
     -- modify status buffer mappings
     status = {
@@ -27,4 +27,3 @@ neogit.setup {
 
 local nmap = U.keymap.nmap
 nmap('<Leader>g', ':Neogit<CR>')
-

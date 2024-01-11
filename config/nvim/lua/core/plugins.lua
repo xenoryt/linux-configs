@@ -112,12 +112,12 @@ local pluginCategories = {
     },
     {
       'williamboman/mason.nvim',
-      config = [[require('plugin.mason')]],
+      setup = [[require('plugin.mason')]],
       build = ":MasonUpdate" -- :MasonUpdate updates registry contents
     },
     {
       'williamboman/mason-lspconfig.nvim',
-      after = 'williamboman/mason.nvim',
+      requires = { 'williamboman/mason.nvim' },
       config = [[require('plugin.mason-lspconfig')]],
     },
 
@@ -142,6 +142,16 @@ local pluginCategories = {
 
   -- EXTRA: plugins that provide extra functionality
   extra = {
+    {
+      "epwalsh/obsidian.nvim",
+      requires = {
+        -- Required.
+        "nvim-lua/plenary.nvim",
+      },
+      config = [[require('plugin.obsidian')]],
+    },
+
+
     -- GIT plugins
     {
       'dinhhuy258/git.nvim',
@@ -168,8 +178,8 @@ local pluginCategories = {
     },
     {
       'lewis6991/gitsigns.nvim',
-      after = 'folke/which-key.nvim',
       requires = {
+        'folke/which-key.nvim',
         'nvim-lua/plenary.nvim'
       },
       config = { [[require('plugin.gitsigns')]] }
