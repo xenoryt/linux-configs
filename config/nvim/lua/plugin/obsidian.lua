@@ -9,9 +9,9 @@ require("obsidian").setup({
       path = "~/Obsidian Notes",
     },
   },
-  daily_notes = {
-    template = "~/Obsidian Notes/Templates/Standup.md",
-  },
+  --daily_notes = {
+  --  template = "~/Obsidian Notes/Templates/Standup.md",
+  --},
 
   --templates = {
   --  subdir = "templates",

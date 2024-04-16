@@ -160,6 +160,14 @@ local pluginCategories = {
     {
       'github/copilot.vim'
     },
+    {
+      'CopilotC-Nvim/CopilotChat.nvim',
+      requires = {
+        'github/copilot.vim',
+        'nvim-lua/plenary.nvim',
+      },
+      config = [[require('plugin.copilot-chat')]],
+    },
     --{
     --  'ldelossa/gh.nvim',
     --  after = 'folke/which-key.nvim',
