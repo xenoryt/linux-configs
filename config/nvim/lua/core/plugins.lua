@@ -102,7 +102,10 @@ local pluginCategories = {
     {
       'neovim/nvim-lspconfig',
       requires = {
-        { 'hrsh7th/nvim-compe', config = [[require('plugin.nvim-compe')]], opt = false },
+        --{ 'hrsh7th/nvim-compe', config = [[require('plugin.nvim-compe')]], opt = false },
+        { 'hrsh7th/nvim-cmp',     config = [[require('plugin.nvim-cmp')]],     opt = false },
+        { 'hrsh7th/cmp-nvim-lsp', config = [[require('plugin.cmp-nvim-lsp')]], opt = false },
+        { 'hrsh7th/cmp-cmdline',  opt = false },
         --'williamboman/nvim-lsp-installer',
         --'glepnir/lspsaga.nvim',
         'folke/lsp-colors.nvim', -- for better colourschemes
@@ -176,6 +179,7 @@ local pluginCategories = {
     --},
     {
       "NeogitOrg/neogit",
+      tag = 'v0.0.1',                    -- required for nvim v0.9.x or lower
       requires = {
         "nvim-lua/plenary.nvim",         -- required
         "nvim-telescope/telescope.nvim", -- optional

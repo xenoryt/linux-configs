@@ -50,6 +50,9 @@ set_highlight("Warning", palette.yellow)
 set_highlight("Error", palette.red)
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+if package.loaded['cmp_nvim_lsp'] then
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
+end
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { 'documentation', 'detail', 'additionalTextEdits' },
