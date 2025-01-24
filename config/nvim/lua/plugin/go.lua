@@ -1,6 +1,14 @@
-require('go').setup()
+local on_attach = require('plugin.nvim-lspconfig.on-attach')
 
-vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+    require('go.format').goimports()
+  end,
+  group = format_sync_grp,
+})
+
 
 require('go').setup({
   lsp_cfg = true,
@@ -8,4 +16,5 @@ require('go').setup({
   diagnostic = {
     underline = false
   },
+  lsp_on_attach = on_attach.attach_mappings,
 })

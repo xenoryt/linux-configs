@@ -10,13 +10,13 @@ bind / fillcmdline find
 unbind <C-f>
 bind ? fillcmdline find -?
 bind N findnext -?
-unbind d
 bind j scrollline 5
 bind k scrollline -5
 bind n findnext 1
-bind s scrollline 5
-unbind u
 bind w scrollline -5
+bind s scrollline 5
+unbind d
+unbind u
 bind x tabclose
 unbind '
 bind , gobble 1 markjump

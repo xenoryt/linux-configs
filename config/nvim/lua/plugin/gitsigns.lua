@@ -7,60 +7,57 @@ require('gitsigns').setup {
     topdelete    = { text = '‾' },
     changedelete = { text = '~' },
   },
-  signcolumn              = true,            -- Toggle with `:Gitsigns toggle_signs`
-  numhl                   = false,           -- Toggle with `:Gitsigns toggle_numhl`
-  linehl                  = false,           -- Toggle with `:Gitsigns toggle_linehl`
-  word_diff               = false,           -- Toggle with `:Gitsigns toggle_word_diff`
+  signcolumn              = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl                   = false, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl                  = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff               = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  attach_to_untracked     = true,
+  sign_priority           = 6,
+  update_debounce         = 100,
+  status_formatter        = nil, -- Use default
+  max_file_length         = 40000,
+
   on_attach               = function(bufnr)
     local gs = package.loaded.gitsigns
-    wk.register({
-      h = {
-        name = 'Hunk commands',
-        s = { gs.stage_hunk, 'Stage hunk' },
-        r = { gs.reset_hunk, 'Reset hunk' },
-        S = { gs.stage_buffer, 'Stage buffer' },
-        R = { gs.reset_buffer, 'Reset buffer' },
-        u = { gs.undo_stage_hunk, 'Undo stage hunk' },
-        p = { gs.preview_hunk, 'Preview hunk' },
-        d = { gs.diffthis, 'Diff against index' },
-        D = { function() gs.diffthis('~') end, 'Diff against previous commit' },
-      },
-
-      b = {
-        name = 'Blame',
-        l = { (function() gs.blame_line { full = true } end), 'Blame line' },
-        t = { gs.toggle_current_line_blame, 'Toggle blame' },
-      },
-
-      d = {
-        name = 'Deleted',
-        t = { gs.toggle_deleted, 'Toggle deleted' },
-      },
-
-    }, {
+    wk.add({
       mode = 'n',
       prefix = 'gs',
       buffer = bufnr,
+
+      { "gsb",  group = "Blame" },
+      { "gsbf", gs.blame,                                       desc = "Blame file" },
+      { "gsbl", (function() gs.blame_line { full = true } end), desc = "Blame line" },
+      { "gsbt", gs.toggle_current_line_blame,                   desc = "Toggle inline blame" },
+
+      { "gsd",  group = "Deleted" },
+      { "gsdt", gs.toggle_deleted,                              desc = "Toggle deleted" },
+
+      { "gsh",  group = "Hunk commands" },
+      { "gshD", (function() gs.diffthis('~') end),              desc = "Diff against previous commit" },
+      { "gshR", gs.reset_buffer,                                desc = "Reset buffer" },
+      { "gshS", gs.stage_buffer,                                desc = "Stage buffer" },
+      { "gshd", gs.diffthis,                                    desc = "Diff against index" },
+      { "gshp", gs.preview_hunk,                                desc = "Preview hunk" },
+      { "gshr", gs.reset_hunk,                                  desc = "Reset hunk" },
+      { "gshs", gs.stage_hunk,                                  desc = "Stage hunk" },
+      { "gshu", gs.undo_stage_hunk,                             desc = "Undo stage hunk" },
     })
   end,
+
   watch_gitdir            = {
-    interval = 1000,
+    interval     = 1000,
     follow_files = true
   },
-  attach_to_untracked     = true,
-  current_line_blame      = false,           -- Toggle with `:Gitsigns toggle_current_line_blame`
+
+  current_line_blame      = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
-    virt_text = true,
+    virt_text     = true,
     virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-    delay = 1000,
+    delay         = 1000,
   },
   --current_line_blame_formatter_opts = {
   --  relative_time = false
   --},
-  sign_priority           = 6,
-  update_debounce         = 100,
-  status_formatter        = nil,           -- Use default
-  max_file_length         = 40000,
   preview_config          = {
     -- Options passed to nvim_open_win
     border = 'single',

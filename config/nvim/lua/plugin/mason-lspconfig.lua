@@ -10,7 +10,7 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "bashls",
-    "gopls",
+    --"gopls",
     --"vim",
     --"yamlls",
   },
@@ -18,30 +18,31 @@ require("mason-lspconfig").setup({
   handlers = {
     function(server_name)
       lspconfig[server_name].setup({
-        on_attach = on_attach_common,
+        on_attach = on_attach_common.attach_all,
       })
-    end
+    end,
+
+    ["efm"] = function()
+      lspconfig.efm.setup {
+        on_attach = on_attach_common,
+        init_options = { documentFormatting = true,
+          documentFormattingProvider = true
+        },
+        settings = {
+          languages = {
+            typescript = { prettier },
+            yaml = { prettier },
+            json = { prettier },
+          },
+        },
+        filetypes = {
+          "typescript",
+          "javascript",
+          "yaml",
+          "json",
+        }
+      }
+    end,
   },
 
-  ["efm"] = function()
-    lspconfig.efm.setup {
-      on_attach = on_attach_common,
-      init_options = { documentFormatting = true,
-        documentFormattingProvider = true
-      },
-      settings = {
-        languages = {
-          typescript = { prettier },
-          yaml = { prettier },
-          json = { prettier },
-        },
-      },
-      filetypes = {
-        "typescript",
-        "javascript",
-        "yaml",
-        "json",
-      }
-    }
-  end,
 })

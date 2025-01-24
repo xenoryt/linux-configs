@@ -30,7 +30,7 @@ local pluginCategories = {
       },
       setup = [[require('plugin.fzf-lua')]]
     },
-    { 'ojroques/nvim-osc52', config = [[require('plugin.nvim-osc52')]] }
+    --{ 'ojroques/nvim-osc52', config = [[require('plugin.nvim-osc52')]] }
   },
 
 
@@ -111,7 +111,7 @@ local pluginCategories = {
         'folke/lsp-colors.nvim', -- for better colourschemes
         'jose-elias-alvarez/nvim-lsp-ts-utils',
       },
-      config = [[require('plugin.nvim-lspconfig.init')]],
+      --config = [[require('plugin.nvim-lspconfig.init')]],
     },
     {
       'williamboman/mason.nvim',
@@ -138,9 +138,8 @@ local pluginCategories = {
       config = [[require('plugin.go')]]
     },
     { 'sebdah/vim-delve' },
-    {
-      'elkowar/yuck.vim'
-    }
+    { 'elkowar/yuck.vim' },
+    { 'MTDL9/vim-log-highlighting' },
   },
 
   -- EXTRA: plugins that provide extra functionality
@@ -157,26 +156,17 @@ local pluginCategories = {
 
     -- GIT plugins
     {
-      'dinhhuy258/git.nvim',
-      config = { [[require('plugin.git')]] }
-    },
-    {
       'github/copilot.vim'
     },
     {
       'CopilotC-Nvim/CopilotChat.nvim',
+      branch = 'main',
       requires = {
         'github/copilot.vim',
         'nvim-lua/plenary.nvim',
       },
       config = [[require('plugin.copilot-chat')]],
     },
-    --{
-    --  'ldelossa/gh.nvim',
-    --  after = 'folke/which-key.nvim',
-    --  requires = { 'ldelossa/litee.nvim' },
-    --  config = { [[require('plugin.gh')]] }
-    --},
     {
       "NeogitOrg/neogit",
       tag = 'v0.0.1',                    -- required for nvim v0.9.x or lower
@@ -229,6 +219,10 @@ local pluginCategories = {
       run = ':TSUpdate',
       config = [[require('plugin.nvim-treesitter')]],
     },
+    -- TS Asciidoc
+    --{ 'cpkio/nvim-treesitter-asciidoc' },
+    { 'cathaysia/tree-sitter-asciidoc' },
+
     -- Vimpeccable
     --{
     --  'svermeulen/vimpeccable',

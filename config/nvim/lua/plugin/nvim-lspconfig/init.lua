@@ -1,7 +1,3 @@
-local lspconfig = require('lspconfig')
---local lspinstall = require("nvim-lsp-installer")
-local languages = require('plugin.nvim-lspconfig.format')
-local on_attach_common = require('plugin.nvim-lspconfig.on-attach')
 local palette = U.palette
 
 -- Customize diagnostics signs
@@ -70,79 +66,84 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 )
 
 
-local function setup_servers()
-  --lspinstall.setup()
-
-  local configs = {}
-
-  -- Efm language server
-  -- https://github.com/mattn/efm-langserver
-  configs.efm = {
-    init_options = { documentFormatting = true, codeAction = true, document_formatting = true },
-    root_dir = lspconfig.util.root_pattern({ '.git/', '.' }),
-
-    filetypes = {
-      "json",
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescript.tsx",
-      "typescriptreact",
-      "less",
-      "scss",
-      "css"
-    },
-    settings = { languages = languages, log_level = 1, log_file = '~/efm.log' },
-  }
-
-  -- Python languageserver
-  -- https://github.com/palantir/python-language-server
-  configs.python = {
-    filetypes = { "python" },
-    settings = {
-      pyls = {
-        plugins = {
-          pycodestyle = {
-            enabled = false,
-            ignore = {
-              "E501"
-            }
-          }
-        }
-      }
-    }
-  }
-
-  -- Terraform languageserver
-  -- https://github.com/hashicorp/terraform-ls
-  configs.terraform = {
-    cmd = { "terraform-ls", "serve" },
-    filetypes = { "tf" }
-  }
-
-  configs.volar = {
-    init_options = {
-      typescript = {
-        tsdk = os.getenv('HOME') .. '/.npm-global/lib/node_modules/typescript/lib/',
-      }
-    }
-  }
-
-  --local installed = lspinstall.get_installed_servers()
-  --for _, server in pairs(installed) do
-  --  local config = configs[server.name] or {}
-  --  config.root_dir = lspconfig.util.root_pattern({'.git/', '.'})
-  --  config.capabilities = capabilities
-  --  config.on_attach = function(client)
-  --    if server.name == "typescript" then
-  --      --client.resolved_capabilities.document_formatting = false
-  --      client.server_capabilities.documentFormattingProvider = false
-  --    end
-  --    on_attach_common(client)
-  --  end
-  --  lspconfig[server.name].setup(config)
-  --end
-end
+---- Replaced by mason-lspconfig.lua
+--local lspconfig = require('lspconfig')
+--local languages = require('plugin.nvim-lspconfig.format')
+--local lspinstall = require("nvim-lsp-installer")
+--local on_attach_common = require('plugin.nvim-lspconfig.on-attach')
+--local function setup_servers()
+--  --lspinstall.setup()
+--
+--  local configs = {}
+--
+--  -- Efm language server
+--  -- https://github.com/mattn/efm-langserver
+--  configs.efm = {
+--    init_options = { documentFormatting = true, codeAction = true, document_formatting = true },
+--    root_dir = lspconfig.util.root_pattern({ '.git/', '.' }),
+--
+--    filetypes = {
+--      "json",
+--      "javascript",
+--      "javascriptreact",
+--      "javascript.jsx",
+--      "typescript",
+--      "typescript.tsx",
+--      "typescriptreact",
+--      "less",
+--      "scss",
+--      "css"
+--    },
+--    settings = { languages = languages, log_level = 1, log_file = '~/efm.log' },
+--  }
+--
+--  -- Python languageserver
+--  -- https://github.com/palantir/python-language-server
+--  configs.python = {
+--    filetypes = { "python" },
+--    settings = {
+--      pyls = {
+--        plugins = {
+--          pycodestyle = {
+--            enabled = false,
+--            ignore = {
+--              "E501"
+--            }
+--          }
+--        }
+--      }
+--    }
+--  }
+--
+--  -- Terraform languageserver
+--  -- https://github.com/hashicorp/terraform-ls
+--  configs.terraform = {
+--    cmd = { "terraform-ls", "serve" },
+--    filetypes = { "tf" }
+--  }
+--
+--  configs.volar = {
+--    init_options = {
+--      typescript = {
+--        tsdk = os.getenv('HOME') .. '/.npm-global/lib/node_modules/typescript/lib/',
+--      }
+--    }
+--  }
+--
+--  --local installed = lspinstall.get_installed_servers()
+--  --for _, server in pairs(installed) do
+--  --  local config = configs[server.name] or {}
+--  --  config.root_dir = lspconfig.util.root_pattern({'.git/', '.'})
+--  --  config.capabilities = capabilities
+--  --  config.on_attach = function(client)
+--  --    if server.name == "typescript" then
+--  --      --client.resolved_capabilities.document_formatting = false
+--  --      client.server_capabilities.documentFormattingProvider = false
+--  --    end
+--  --    on_attach_common(client)
+--  --  end
+--  --  lspconfig[server.name].setup(config)
+--  --end
+--end
 
 --setup_servers()

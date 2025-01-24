@@ -1,7 +1,4 @@
 local lsp_enabled = false
-local formatting_enabled = false
-
-
 local buf_nmap = U.keymap.buf_nmap
 local buf_imap = U.keymap.buf_imap
 local function lua_nmap(lhs, rhs, opts)
@@ -10,39 +7,6 @@ end
 
 local function lua_imap(lhs, rhs, opts)
   buf_imap(lhs, '<cmd>lua  ' .. rhs .. '<CR>', opts)
-end
-
--- Prettier
-local format_options_prettier = {
-  tabWidth = 2,
-  useTabs = false,
-  singleQuote = true,
-  trailingComma = "all",
-  configPrecedence = "prefer-file"
-}
-
-vim.g.format_options_typescript = format_options_prettier
-vim.g.format_options_javascript = format_options_prettier
-vim.g.format_options_typescriptreact = format_options_prettier
-vim.g.format_options_javascriptreact = format_options_prettier
-vim.g.format_options_json = format_options_prettier
-vim.g.format_options_css = format_options_prettier
-vim.g.format_options_scss = format_options_prettier
-vim.g.format_options_html = format_options_prettier
-vim.g.format_options_yaml = format_options_prettier
-vim.g.format_options_markdown = format_options_prettier
-
-FormatToggle = function(value)
-  vim.g[string.format("format_disabled_%s", vim.bo.filetype)] = value
-end
-
-U.command('FormatDisable', 'lua FormatToggle(true)')
-U.command('FormatEnable', 'lua FormatToggle(false)')
-
-_G.formatting = function()
-  if not vim.g[string.format("format_disabled_%s", vim.bo.filetype)] then
-    vim.lsp.buf.formatting(vim.g[string.format("format_options_%s", vim.bo.filetype)] or {})
-  end
 end
 
 -- All of these are buffer mappings
@@ -74,16 +38,25 @@ local function mappings()
   lua_nmap('[d', 'vim.diagnostic.goto_prev()')
 end
 
-return function(client)
+local function attach_mappings(client)
   if not lsp_enabled then
-    print("LSP started.");
+    print("LSP started for", client.name);
     mappings()
-  end
-
-  -- if client.name ~= 'efm' then client.resolved_capabilities.document_formatting = false end
-
-  if not formatting_enabled and client.server_capabilities.documentFormattingProvider then
-    print("Formatting enabled.", client.name);
-    vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.format({async = false})]]
+    lsp_enabled = true
   end
 end
+
+local function attach_formatter(client)
+  if client.server_capabilities.documentFormattingProvider then
+    vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.format()]]
+  end
+end
+
+return {
+  attach_mappings = attach_mappings,
+  attach_formatter = attach_formatter,
+  attach_all = function(client)
+    attach_mappings(client)
+    attach_formatter(client)
+  end
+}
