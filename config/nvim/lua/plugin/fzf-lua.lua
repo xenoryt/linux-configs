@@ -10,40 +10,12 @@ end
 local actions = require "fzf-lua.actions"
 require'fzf-lua'.setup {
   winopts = {
-    -- split         = "belowright new",-- open in a split instead?
-                                        -- "belowright new"  : split below
-                                        -- "aboveleft new"   : split above
-                                        -- "belowright vnew" : split right
-                                        -- "aboveleft vnew   : split left
-    -- Only valid when using a float window
-    -- (i.e. when 'split' is not defined)
-    height           = 0.85,            -- window height
-    width            = 0.80,            -- window width
-    row              = 0.35,            -- window row position (0=top, 1=bottom)
-    col              = 0.50,            -- window col position (0=left, 1=right)
-    -- border argument passthrough to nvim_open_win(), also used
-    -- to manually draw the border characters around the preview
-    -- window, can be set to 'false' to remove all borders or to
-    -- 'none', 'single', 'double' or 'rounded' (default)
     border           = 'rounded', --{ '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
     fullscreen       = false,           -- start fullscreen?
-    hl = {
-      normal         = 'Normal',        -- window normal color (fg+bg)
-      border         = 'Normal',        -- border color (try 'FloatBorder')
-      -- Only valid with the builtin previewer:
-      cursor         = 'Cursor',        -- cursor highlight (grep/LSP matches)
-      cursorline     = 'CursorLine',    -- cursor line
-      -- title       = 'Normal',        -- preview border title (file/buffer)
-      -- scrollbar_f = 'PmenuThumb',    -- scrollbar "full" section highlight
-      -- scrollbar_e = 'PmenuSbar',     -- scrollbar "empty" section highlight
-    },
+
     preview = {
-      -- default     = 'bat',           -- override the default previewer?
-                                        -- default uses the 'builtin' previewer
-      border         = 'border',        -- border|noborder, applies only to
-                                        -- native fzf previewers (bat/cat/git/etc)
-      wrap           = 'nowrap',        -- wrap|nowrap
-      hidden         = 'nohidden',      -- hidden|nohidden
+      delay           = 100,            -- delay(ms) displaying the preview
+                                        -- prevents lag on fast scrolling
       vertical       = 'up:65%',        -- up|down:size
       horizontal     = 'right:60%',     -- right|left:size
       layout         = 'vertical',          -- horizontal|vertical|flex
@@ -53,17 +25,17 @@ require'fzf-lua'.setup {
       scrollbar      = 'float',         -- `false` or string:'float|border'
                                         -- float:  in-window floating border 
                                         -- border: in-border chars (see below)
-      scrolloff      = '-2',            -- float scrollbar offset from right
+      scrolloff      = '-1',            -- float scrollbar offset from right
                                         -- applies only when scrollbar = 'float'
       scrollchars    = {'█', '' },      -- scrollbar chars ({ <full>, <empty> }
                                         -- applies only when scrollbar = 'border'
     },
-    on_create = function()
-      -- called once upon creation of the fzf main window
-      -- can be used to add custom fzf-lua mappings, e.g:
-      --   vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", "<Down>",
-      --     { silent = true, noremap = true })
-    end,
+
+    -- called once upon creation of the fzf main window
+    -- can be used to add custom fzf-lua mappings, e.g:
+    --   vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", "<Down>",
+    --     { silent = true, noremap = true })
+    -- on_create = function() end,
   },
   keymap = {
     -- These override the default tables completely
@@ -151,8 +123,6 @@ require'fzf-lua'.setup {
       cmd             = "man -c %s | col -bx",
     },
     builtin = {
-      delay           = 100,          -- delay(ms) displaying the preview
-                                      -- prevents lag on fast scrolling
       syntax          = true,         -- preview syntax highlight?
       syntax_limit_l  = 0,            -- syntax limit (lines), 0=nolimit
       syntax_limit_b  = 1024*1024,    -- syntax limit (bytes), 0=nolimit

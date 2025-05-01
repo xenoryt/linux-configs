@@ -1,8 +1,13 @@
 U.nvim_create_augroup({
   ftplugin = {
-    {'FileType', 'man', 'setl laststatus=0 noruler'}, {'FileType', 'NvimTree', 'setl scl=no'},
-    {'FileType', 'vim,lua,css,javascript', 'setl sw=2'},
-    {'TermOpen', 'term://*', 'setl nornu nonu nocul so=0 scl=no'},
+    { 'FileType', 'man',                    'setl laststatus=0 noruler' },
+    { 'FileType', 'NvimTree',               'setl scl=no' },
+    { 'FileType', 'vim,lua,css,javascript', 'setl sw=2' },
+    { 'TermOpen', 'term://*',               'setl nornu nonu nocul so=0 scl=no' },
+  },
+
+  disable_autoindent = {
+    { 'FileType', 'yaml', 'setl indentkeys-=0#' }
   },
   --on_save = {
   --  {'BufWritePost', '*.vim,*.lua', 'source %'},
@@ -37,5 +42,3 @@ U.nvim_create_augroup({
   --  { 'ColorScheme', ' ', 'hi! Sneak guifg=black guibg=aqua ctermfg=black ctermbg=green' },
   --},
 })
-
-
