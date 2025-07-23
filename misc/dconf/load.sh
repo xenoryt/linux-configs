@@ -8,4 +8,4 @@ name="$(basename "$file")"
 path="$(dirname "$file")"
 
 echo "Loading '$file' to /$path"
-#dconf load "/$path" < "${path}/${name}.dconf"
+dconf load "/$path/" < "${path}/${name}"
